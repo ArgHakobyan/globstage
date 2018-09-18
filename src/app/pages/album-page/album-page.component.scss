@@ -195,3 +195,17 @@ li{
 }
 }
 
+@media only screen and (max-width: 700px) {
+
+  .upload-btn{
+      img{
+        width: 50px;
+      }
+  }
+  .album-photo{
+    width: 50%;
+  }
+  
+
+}
+

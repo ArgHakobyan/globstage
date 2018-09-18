@@ -3,7 +3,7 @@
     <i (click)="deleteWallPost(post.id)" *ngIf="post.post_user_id == user.id || post.post_wall_id == user.id" class="delete-post fa fa-times"
       aria-hidden="true"></i>
     <div class="row">
-      <div class="col-md-1">
+      <div class="col-md-1 user-images">
         <div class="wall-avatar">
           <a [routerLink]="'/user-profile/'+post.user.id">
             <img *ngIf="post.posttype !== 'googlenews'" [src]="post.user.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">

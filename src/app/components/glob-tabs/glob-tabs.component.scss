@@ -154,3 +154,23 @@
         }
     }
 }
+
+@media only screen and (max-width: 700px) {
+    .map-block{
+        padding-top: 40px;
+        .map-header .mat-tab-nav-bar a{
+            min-width: 84px;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 375px) {
+    .map-block{
+        padding-top: 0;
+        .map-header .mat-tab-nav-bar a{
+            min-width: auto;
+        }
+    }  
+  }
+

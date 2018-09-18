@@ -20,16 +20,11 @@ li{
       outline: none;
       position: fixed;
       cursor: pointer;
-      color: $color-green;
+      color: #fff;
       border: none;
       transition: 0.3s;
-      background: #fff;
-      top: 30px;
-  }
-  .menu-btn:hover{
       background: $color-green;
-      color: #fff;
-      transition: 0.3s;
+      top: 30px;
   }
   button.mat-menu-item{
       width: 260px;
@@ -85,3 +80,14 @@ li{
       background: none;
   }
 }
+
+@media only screen and (max-width: 375px) {
+     
+    .menu-btn{
+        z-index: 9999;
+        margin-left: 10px;
+    }
+  
+  
+  
+  }

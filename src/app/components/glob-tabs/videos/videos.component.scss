@@ -158,3 +158,23 @@
     right: 16px !important;
   }
 }
+
+
+@media only screen and (max-width: 700px) {
+     
+  .upload{
+      width: 80%;
+  }
+  .video-alb{
+    width: 20%;
+    img{
+      width: 50px;
+    }
+  }
+  .video-wrap{
+    width: 50%;
+    padding-left: 5px;
+  }
+  
+
+}

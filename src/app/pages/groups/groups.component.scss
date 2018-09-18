@@ -144,3 +144,25 @@ img{max-width: 100%;}
     }
 }
 
+@media only screen and (max-width: 700px) {
+
+    .groups{
+        .search-group{
+            .mat-form-field{
+                width: 85%;
+            }
+            .search{
+                width: 15%;
+            }
+        }
+        .group{
+            width: 50%;
+            .group-title{
+                width: calc(100% - 35px);
+            }
+        }
+        
+    }
+
+
+}

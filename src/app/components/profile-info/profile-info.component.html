@@ -1,173 +1,181 @@
-  <div class="home-tab tabs-a">
-      <div class="row">
-      <ng-template [ngIf]= "showInfo">
+<div class="home-tab tabs-a">
+  <div class="row">
+    <ng-template [ngIf]="showInfo">
       <div class="col-md-8 t-info">
         <div class="information col-md-12">
           <p (click)="editUserInfo()" class="title">{{'information.info' | translate}}</p>
           <div class="row">
-              <div class="col-md-6">
-                  <p>{{'information.country' | translate}}:</p>
-                  <p>{{'information.city' | translate}}:</p>
-                  <p>{{'information.dob' | translate}}:</p>
-                  <p>{{'information.rating' | translate}}:</p>
-              </div>
-              <div class="col-md-6 user-info">
-                  <div class="user-country">
-                    <span>{{ user?.user_country }}</span>
-                  </div>
-                  <div class="user-city">
-                    <span>{{ user?.user_city }}</span>
-                  </div>
-                  <div class="user-birthday">
-                    <span>{{ user?.user_date_of_birth }}</span>
-                  </div>
-                  <div class="user-info-rat">
-                    <span class="rating">10</span>
-                  </div>
-              </div>
-              <div class="clearfix"></div>
+            <div class="col-md-6 title-info">
+              <p>{{'information.country' | translate}}:</p>
+              <p>{{'information.city' | translate}}:</p>
+              <p>{{'information.dob' | translate}}:</p>
+              <p>{{'information.rating' | translate}}:</p>
             </div>
+            <div class="col-md-6 user-info">
+              <div class="user-country">
+                <span>{{ user?.user_country }}</span>
+              </div>
+              <div class="user-city">
+                <span>{{ user?.user_city }}</span>
+              </div>
+              <div class="user-birthday">
+                <span>{{ user?.user_date_of_birth }}</span>
+              </div>
+              <div class="user-info-rat">
+                <span class="rating">10</span>
+              </div>
+            </div>
+            <div class="clearfix"></div>
           </div>
         </div>
+      </div>
+    </ng-template>
+    <div class="col-md-12">
+      <div class="row">
+        <ng-template [ngIf]="editInfo">
+          <div class="edit-info col-md-8">
+            <h5>{{'information.info' | translate}}</h5>
+            <form [formGroup]="information" (ngSubmit)="saveInfo(information)" class="form-info">
+              <mat-form-field class="example-full-width">
+                <mat-select formControlName="user_gender" placeholder="Gender">
+                  <mat-option value="no-select">{{'information.no-select' | translate}}</mat-option>
+                  <mat-option value="male">{{'information.male' | translate}}</mat-option>
+                  <mat-option value="female">{{'information.female' | translate}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-select formControlName="user_marital_status" placeholder="Marital Status">
+                  <mat-option value="no-select">{{'information.no-select' | translate}}</mat-option>
+                  <mat-option value="single">{{'information.single' | translate}}</mat-option>
+                  <mat-option value="engaged">{{'information.engaged' | translate}}</mat-option>
+                  <mat-option value="married">{{'information.married' | translate}}</mat-option>
+                  <mat-option value="inLove">{{'information.in-love' | translate}}</mat-option>
+                  <mat-option value="complicated">{{'information.complicated' | translate}}</mat-option>
+                  <mat-option value="activeSearch">{{'information.active-search' | translate}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <input formControlName="user_date_of_birth" matInput [matDatepicker]="picker" placeholder="Date of birth">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input formControlName="user_country" matInput placeholder="Country" #country>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input formControlName="user_city" matInput placeholder="City">
+              </mat-form-field>
+              <div class="save-info">
+                <button type="submit" class="save btn btn-default">{{'information.save' | translate}}</button>
+                <button (click)="cancelEditInfo()" type="button" class="cancel btn btn-default">{{'information.cancel' |
+                  translate}}
+                </button>
+              </div>
+            </form>
+          </div>
         </ng-template>
-        <div class="col-md-12">
-            <div class="row">
-              <ng-template [ngIf]= "editInfo">
-              <div class="edit-info col-md-8">
-                <h5>{{'information.info' | translate}}</h5>
-                <form [formGroup]="information" (ngSubmit)="saveInfo(information)" class="form-info">
-                  <mat-form-field class="example-full-width">
-                    <mat-select formControlName="user_gender" placeholder="Gender">
-                      <mat-option value="no-select">{{'information.no-select' | translate}}</mat-option>
-                      <mat-option  value="male">{{'information.male' | translate}}</mat-option>
-                      <mat-option  value="female">{{'information.female' | translate}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width">
-                    <mat-select formControlName="user_marital_status" placeholder="Marital Status">
-                      <mat-option value="no-select">{{'information.no-select' | translate}}</mat-option>
-                      <mat-option  value="single">{{'information.single' | translate}}</mat-option>
-                      <mat-option  value="engaged">{{'information.engaged' | translate}}</mat-option>
-                      <mat-option  value="married">{{'information.married' | translate}}</mat-option>
-                      <mat-option  value="inLove">{{'information.in-love' | translate}}</mat-option>
-                      <mat-option  value="complicated">{{'information.complicated' | translate}}</mat-option>
-                      <mat-option  value="activeSearch">{{'information.active-search' | translate}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <input formControlName="user_date_of_birth" matInput [matDatepicker]="picker" placeholder="Date of birth">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width">
-                    <input formControlName="user_country" matInput placeholder="Country" #country>
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width">
-                    <input formControlName="user_city" matInput placeholder="City">
-                  </mat-form-field>
-                  <div class="save-info">
-                    <button type="submit" class="save btn btn-default">{{'information.save' | translate}}</button>
-                    <button (click)="cancelEditInfo()" type="button" class="cancel btn btn-default">{{'information.cancel' | translate}}</button>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="row">
+        <div (click)="show1Toggle()" class="show-details col-md-12">
+          <span *ngIf="!detailsToggle">{{'information.show-details' | translate}}</span>
+          <span *ngIf="detailsToggle">{{'information.close-details' | translate}}</span>
+        </div>
+        <ng-template [ngIf]="detailsToggle">
+          <div class="hidden-block col-md-8">
+            <div class="content-details borders">
+              <p (click)="editUserContact()" class="contact edits">{{'information.contact' | translate}}</p>
+              <ul class="contact-info" *ngIf="showContact">
+                <li>{{'information.mobile' | translate}}:<span>{{ user?.user_contact.user_mobile }}</span></li>
+                <li>{{'information.twitter' | translate}}:<span>{{ user?.user_contact.user_twitter}}</span></li>
+                <li>{{'information.facebook' | translate}}:<span>{{ user?.user_contact.user_facebook}}</span></li>
+                <li>{{'information.skype' | translate}}:<span>{{ user?.user_contact.user_skype}}</span></li>
+                <li>{{'information.website' | translate}}:<span>{{ user?.user_contact.user_website}}</span></li>
+              </ul>
+              <ng-template [ngIf]="editContact">
+                <div class="edit-contact">
+                  <h5>{{'information.contact' | translate}}</h5>
+                  <form [formGroup]="contact" (ngSubmit)="saveContact(contact)" class="form-contact">
+                    <mat-form-field class="example-full-width">
+                      <input formControlName="user_mobile" matInput placeholder="Mobile">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input formControlName="user_twitter" matInput placeholder="Twitter">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input formControlName="user_facebook" matInput placeholder="Facebook">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input formControlName="user_skype" matInput placeholder="Skype">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input formControlName="user_website" matInput placeholder="Website">
+                    </mat-form-field>
+                    <div class="save-contact">
+                      <button type="submit" class="save btn btn-default">{{'information.save' | translate}}</button>
+                      <button (click)="cancelEditContact()" type="button" class="cancel btn btn-default">{{'information.cancel'
+                        | translate}}</button>
+                    </div>
+                  </form>
                 </div>
+              </ng-template>
+            </div>
+            <div *ngIf="!personalEditing" class="personal borders">
+              <p (click)="editUserPersonal()" class="personal-info edits">{{'information.personal-info' | translate}}</p>
+              <p class="pers-inf">{{'information.activities' | translate}}:<span>{{ user?.user_interests.activities }}</span></p>
+              <p class="pers-inf">{{'information.interests' | translate}}:<span>{{ user?.user_interests.interests }}</span></p>
+              <p class="pers-inf">{{'information.fav-munshids' | translate}}:<span>{{ user?.user_interests.favorite_munshids
+                  }}
+                </span></p>
+              <p class="pers-inf">{{'information.fav-preachers' | translate}}:<span>{{ user?.user_interests.favorite_preachers
+                  }}
+                </span></p>
+              <p class="pers-inf">{{'information.books' | translate}} :<span>{{ user?.user_interests.favorite_books }}</span></p>
+              <p class="pers-inf">{{'information.sports' | translate}}:<span>{{ user?.user_interests.favorite_sports }}</span></p>
+              <p class="pers-inf">{{'information.quotes' | translate}}:<span>{{ user?.user_interests.favorite_books }}</span></p>
+              <p class="pers-inf">{{'information.about-me' | translate}}:<span>{{ user?.user_interests.about_me }}</span></p>
+            </div>
+            <ng-template [ngIf]="showPersonal">
+              <div class="edit-personal">
+                <h5>{{'information.personal-info' | translate}}</h5>
+                <form [formGroup]="personal" (ngSubmit)="savePersonal(personal)" class="form-contact">
+                  <mat-form-field class="example-full-width">
+                    <textarea formControlName="activities" matInput placeholder="Activities"></textarea>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <textarea formControlName="interests" matInput placeholder="Interests"></textarea>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <textarea formControlName="favorite_munshids" matInput placeholder="Favorite Munshids"></textarea>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <textarea formControlName="favorite_preachers" matInput placeholder="Favorite Preachers"></textarea>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <textarea formControlName="favorite_books" matInput placeholder="Favorite Books"></textarea>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <textarea formControlName="favorite_sports" matInput placeholder="Favorite Sports"></textarea>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <textarea formControlName="favorite_quotes" matInput placeholder="Favorite Quotes:"></textarea>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <textarea formControlName="about_me" matInput placeholder="About Me"></textarea>
+                  </mat-form-field>
+                  <div class="save-personal">
+                    <button type="submit" class="save btn btn-default">{{'information.save' | translate}}</button>
+                    <button (click)="cancelEditPersonal()" type="button" class="cancel btn btn-default">{{'information.cancel'
+                      | translate}}</button>
+                  </div>
                 </form>
               </div>
             </ng-template>
-            </div>
           </div>
-      <div class="col-md-12">
-        <div class="row">
-            <div (click)="show1Toggle()" class="show-details col-md-12">
-              <span *ngIf= "!detailsToggle">{{'information.show-details' | translate}}</span>
-              <span *ngIf= "detailsToggle">{{'information.close-details' | translate}}</span>
-            </div>
-            <ng-template [ngIf]= "detailsToggle">
-              <div class="hidden-block col-md-8">
-                  <div class="content-details borders">
-                      <p (click)="editUserContact()" class="contact edits">{{'information.contact' | translate}}</p>
-                    <ul class="contact-info"  *ngIf="showContact">
-                      <li>{{'information.mobile' | translate}}:<span>{{ user?.user_contact.user_mobile }}</span></li>
-                      <li>{{'information.twitter' | translate}}:<span>{{ user?.user_contact.user_twitter}}</span></li>
-                      <li>{{'information.facebook' | translate}}:<span>{{ user?.user_contact.user_facebook}}</span></li>
-                      <li>{{'information.skype' | translate}}:<span>{{ user?.user_contact.user_skype}}</span></li>
-                      <li>{{'information.website' | translate}}:<span>{{ user?.user_contact.user_website}}</span></li>
-                    </ul>
-                    <ng-template [ngIf]="editContact">
-                      <div class="edit-contact">
-                        <h5>{{'information.contact' | translate}}</h5>
-                        <form [formGroup]="contact" (ngSubmit)="saveContact(contact)" class="form-contact">
-                        <mat-form-field class="example-full-width">
-                            <input formControlName="user_mobile" matInput placeholder="Mobile">
-                          </mat-form-field>
-                        <mat-form-field class="example-full-width">
-                            <input formControlName="user_twitter" matInput placeholder="Twitter">
-                          </mat-form-field>
-                        <mat-form-field class="example-full-width">
-                            <input formControlName="user_facebook" matInput placeholder="Facebook">
-                        </mat-form-field>
-                        <mat-form-field class="example-full-width">
-                            <input formControlName="user_skype" matInput placeholder="Skype">
-                        </mat-form-field>
-                          <mat-form-field class="example-full-width">
-                            <input formControlName="user_website" matInput placeholder="Website">
-                          </mat-form-field>
-                          <div class="save-contact">
-                            <button type="submit" class="save btn btn-default">{{'information.save' | translate}}</button>
-                            <button (click)="cancelEditContact()" type="button" class="cancel btn btn-default">{{'information.cancel' | translate}}</button>
-                          </div>
-                        </form>
-                      </div>
-                      </ng-template>
-                  </div>
-                  <div *ngIf="!personalEditing" class="personal borders">
-                      <p (click)="editUserPersonal()" class="personal-info edits">{{'information.personal-info' | translate}}</p>
-                      <p class="pers-inf">{{'information.activities' | translate}}:<span>{{ user?.user_interests.activities }}</span></p>
-                      <p class="pers-inf">{{'information.interests' | translate}}:<span>{{ user?.user_interests.interests }}</span></p>
-                      <p class="pers-inf">{{'information.fav-munshids' | translate}}:<span>{{ user?.user_interests.favorite_munshids }}</span></p>
-                      <p class="pers-inf">{{'information.fav-preachers' | translate}}:<span>{{ user?.user_interests.favorite_preachers }}</span></p>
-                      <p class="pers-inf">{{'information.books' | translate}} :<span>{{ user?.user_interests.favorite_books }}</span></p>
-                      <p class="pers-inf">{{'information.sports' | translate}}:<span>{{ user?.user_interests.favorite_sports }}</span></p>
-                      <p class="pers-inf">{{'information.quotes' | translate}}:<span>{{ user?.user_interests.favorite_books }}</span></p>
-                      <p class="pers-inf">{{'information.about-me' | translate}}:<span>{{ user?.user_interests.about_me }}</span></p>
-                  </div>
-                  <ng-template [ngIf]= "showPersonal">
-                    <div class="edit-personal">
-                      <h5>{{'information.personal-info' | translate}}</h5>
-                      <form [formGroup]="personal" (ngSubmit)="savePersonal(personal)" class="form-contact">
-                        <mat-form-field class="example-full-width">
-                            <textarea formControlName="activities" matInput placeholder="Activities"></textarea>
-                          </mat-form-field>
-                          <mat-form-field class="example-full-width">
-                              <textarea formControlName="interests" matInput placeholder="Interests"></textarea>
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <textarea formControlName="favorite_munshids" matInput placeholder="Favorite Munshids"></textarea>
-                              </mat-form-field>
-                              <mat-form-field class="example-full-width">
-                                  <textarea formControlName="favorite_preachers" matInput placeholder="Favorite Preachers"></textarea>
-                                </mat-form-field>
-                      <mat-form-field class="example-full-width">
-                          <textarea formControlName="favorite_books" matInput placeholder="Favorite Books"></textarea>
-                        </mat-form-field>
-                        <mat-form-field class="example-full-width">
-                            <textarea formControlName="favorite_sports" matInput placeholder="Favorite Sports"></textarea>
-                          </mat-form-field>
-                          <mat-form-field class="example-full-width">
-                              <textarea formControlName="favorite_quotes" matInput placeholder="Favorite Quotes:"></textarea>
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <textarea formControlName="about_me" matInput placeholder="About Me"></textarea>
-                              </mat-form-field>
-                              <div class="save-personal">
-                                <button type="submit" class="save btn btn-default">{{'information.save' | translate}}</button>
-                                <button (click)="cancelEditPersonal()" type="button" class="cancel btn btn-default">{{'information.cancel' | translate}}</button>
-                              </div>
-                            </form>
-                    </div>
-                  </ng-template>
-              </div>
-            </ng-template>
-        </div>
+        </ng-template>
       </div>
-      <div class="clearfix"></div>
-</div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
 </div>

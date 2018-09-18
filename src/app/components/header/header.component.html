@@ -1,12 +1,9 @@
-<div class="menu-block row">
-  <div class="logo col-md-4">
-    <a routerLink="/profile"><img src="/assets/imgs/GlobFull_logo1.png" alt="GlobFull_logo1"></a>
-  </div>
-  <div class="menu col-md-8">
+<div class="menu-block col-md-12">
+  <div class="menu row">
     <ul>
       <li *ngIf="friendRequests?.length > 0" class="relative-length"><span class="notify-length">{{ friendRequests?.length }}</span></li>
       <li *ngIf="friendRequests?.length > 0" class="notification"><i class="notify fa fa-bell" aria-hidden="true"></i></li>
-      <!--<li><button><i class="fa fa-envelope"></i></button></li>-->
+      <li routerLink="/profile"><button><i class="fa fa-home"></i></button></li>
       <li routerLink="/friends"><button><i class="fa fa-users"></i></button></li>
       <li (click)="openDialogSearch()"><button><i class="fa fa-search"></i></button></li>
       <li routerLink="/settings"><button><i class="fa fa-cog"></i></button></li>
@@ -24,6 +21,5 @@
         </mat-form-field>
       </li>
     </ul>
-  </div>
   <div class="clearfix"></div>
 </div>

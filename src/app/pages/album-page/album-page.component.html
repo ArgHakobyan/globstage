@@ -10,29 +10,29 @@
       <div class="all-album">
         <span routerLink="/profile/albums" class="create">All album</span>
       </div>
-      <div class="user-avatar">
-          <div routerLink="/groups" class="box-group center">
-            <div class="img-subscribe"></div>
-            {{'profile.groupText' | translate}}
-          </div>
-          <div routerLink="/profile/videos" class="box-video center">
-            <div class="img-video"></div>
-            {{'profile.videosText' | translate}}
-          </div>
+      <!-- <div class="user-avatar">
+        <div routerLink="/groups" class="box-group center">
+          <div class="img-subscribe"></div>
+          {{'profile.groupText' | translate}}
         </div>
+        <div routerLink="/profile/videos" class="box-video center">
+          <div class="img-video"></div>
+          {{'profile.videosText' | translate}}
+        </div>
+      </div> -->
     </div>
     <div class="col-md-9">
       <app-header></app-header>
       <div class="groups">
         <div class="search-group col-md-12">
           <div class="row">
-              <div class="col-md-11">
-                <h2 class="group-title">{{album?.name}}</h2>
-              </div>
-              <div class="upload-btn col-md-1" *ngIf="isMyAlbum">
-                <img style="width: 100%; cursor: pointer" (click)="openDialogAttach()" src="/assets/imgs/Images_no_albums.png" alt="Images_no_albums.png">
-              </div>
-              <div class="clearfix"></div>
+            <div class="col-md-11">
+              <h2 class="group-title">{{album?.name}}</h2>
+            </div>
+            <div class="upload-btn col-md-1" *ngIf="isMyAlbum">
+              <img style="cursor: pointer" (click)="openDialogAttach()" src="/assets/imgs/Images_no_albums.png" alt="Images_no_albums.png">
+            </div>
+            <div class="clearfix"></div>
           </div>
         </div>
         <div class="col-md-12">

@@ -23,7 +23,7 @@
   <div class="col-md-12">
     <div class="row">
       <!--<app-video *ngFor="let video of videos" [video]="video"  (deleteVideo)="deleteVideo($event)"></app-video>-->
-      <div class="col-md-4 video-wrap" *ngFor="let video of videos">
+      <div class="col-md-6 video-wrap" *ngFor="let video of videos">
         <i class="fa fa-trash delete" aria-hidden="true" (click)="delete(video.id)"></i>
         <app-video-player  [url]="video.link_to_videos"></app-video-player>
       </div>

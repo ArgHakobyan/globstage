@@ -3,7 +3,7 @@
     position:fixed;
     z-index:9999;
     right:0;
-    bottom:0;
+    bottom:59px;
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: initial;
@@ -22,7 +22,7 @@
     width: 240px;
     height:360px;
     border: 1px solid #fff;
-    margin-right:20px;
+    margin-right: 0;
     background-color: #FFF;
     box-shadow: 0 4px 8px rgba(0,0,0,.25);
     border-bottom:0;
@@ -30,6 +30,7 @@
     #ng-chat-people.ng-chat-people-collapsed
     {
         height:30px;
+        margin-right: 0;
     }
 .ng-chat-close
 {
@@ -291,4 +292,16 @@
         .ng-chat-message-received .post_attach{
           float: left;
           margin-left: 30px;
+        }
+
+        @media only screen and (max-width: 700px) {
+            #ng-chat{
+                bottom: 59px;
+            }
+            .ng-chat-window{
+                bottom: 59px;
+            }
+            
+            
+          
         }

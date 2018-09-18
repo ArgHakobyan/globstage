@@ -46,7 +46,7 @@
 }
 .wall-attach-video{
     .name{
-        color: $color-blue;
+        color: $color-green;
         margin: 0;
     }
 }
@@ -106,4 +106,44 @@
             display: block;
         }
     }
+}
+
+@media only screen and (max-width: 700px) {
+  
+    .user-images{
+        width: 20%;
+    }
+    .wall-name{
+        width: 80%;
+    }
+    .wall-content{
+        padding-left: 15px;
+        padding-top: 0;
+    }
+    .like-dislike{
+        padding-bottom: 10px;
+        padding-left: 15px;
+    }
+    .wall-attach-video{
+        padding-left: 0;
+    }
+    
+    
+}
+
+@media only screen and (max-width: 375px) {
+    
+    .wall-content{
+        padding-left: 15px;
+        padding-top: 0;
+    }
+    .like-dislike{
+        padding-bottom: 0;
+        padding-left: 15px;
+    }
+    .wall-attach-video{
+        padding-left: 0;
+    }
+    
+  
 }

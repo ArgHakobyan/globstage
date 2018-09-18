@@ -79,7 +79,7 @@ img{
   }
   .img {
     img {
-      width: 100%;
+      max-width: 100%;
       border-radius: 3px;
     }
   }
@@ -122,24 +122,42 @@ img{
   }
 }
 
-@media only screen and (max-width: 767px) {
-  .user-img{
-    .img {
-      img {
-        border-radius: 3px;
-        width: initial;
+@media only screen and (max-width: 700px) {
+  .img{
+    text-align: center;
+  }
+  .user-avatar {
+    text-align: center;
+    .user-img{
+      display: inline-block;
+      ul{
+        text-align: left;
       }
     }
   }
-  .user-avatar .user-img{
-    .hover-display {
-      width: 50%;
+      
+
+
+
+
+}
+
+@media only screen and (max-width: 375px) {
+  .img{
+    text-align: center;
+  }
+  .user-avatar {
+    text-align: center;
+    .user-img{
+      display: inline-block;
+      ul{
+        text-align: left;
+      }
     }
-    ul{
-      width: 50%;
-    }
-  } 
-  
-  
+  }
+      
+
+
+
 
 }
