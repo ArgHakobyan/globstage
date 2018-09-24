@@ -9,13 +9,12 @@
         ul{
             padding: 0;
             position: relative;
-            margin: 0;
             li{
                 display: inline-block;
-                padding: 0 12px;
+                padding-right: 4px;
                 button{
-                 background: none;
-                 padding: 2px 0;
+                 background: $color-green;
+                 padding: 6px 0;
                  border-radius: 4px;
                  border: none;
                  font-size: 14px;
@@ -23,7 +22,6 @@
                  color: #fff;
                  transition: 0.4s;
                  cursor: pointer;
-                 border: 2px solid #fff;
                 }
                 button:hover{
                     background: #353535;
@@ -36,11 +34,7 @@
                     ::ng-deep .mat-select-arrow-wrapper{
                         display: none;
                     }
-                    ::ng-deep .mat-form-field-infix{
-                        padding: 0;
-                    }
                 }
-                
 
             }
             .notification{
@@ -77,59 +71,23 @@
             background-size: 100%;
         }
         .mat-form-field{
-            text-align: center;
+            text-align: right;
             width: 50px;
-            left: 50px;
+            left: 20px;
         }
-        // ::ng-deep .cdk-overlay-pane{
-        //     bottom: 98px;
-        //     left: 366px;
-        // }
      }
  }
- @media only screen and (max-width: 700px) {
+
+ @media only screen and (max-width: 767px) {
     .menu-block{
-        padding-top: 0;
-        position: relative;
+        .logo{
+            width: 30%;
+        } 
         .menu{
-            position: fixed;
-            bottom: 0;
-            background: $color-green;
-            width: 100%;
-            left: 0;
-            right: 0;
-            margin: auto;
-            z-index: 99999;
-            ul{
-                li{
-                    padding: 0 25px;
-                }
-            }
-            .mat-form-field{
-                left: 150px;
-            }
+            width: 70%;
         }
     }
     
     
   
 }
-
- @media only screen and (max-width: 375px) {
-    .menu-block{
-        .menu{
-            position: fixed;
-            bottom: 0;
-            background: $color-green;
-            width: 100%;
-            left: 0;
-            right: 0;
-            margin: auto;
-            z-index: 99999;
-        }
-    }
-    
-    
-  
-}
-

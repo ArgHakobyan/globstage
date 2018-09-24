@@ -1,17 +1,19 @@
 <app-home-menu></app-home-menu>
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 left-block">
       <app-profile-image></app-profile-image>
       <div class="create-group">
         <span (click)="openDialogGroup()" class="create">{{'groups.createGroup' | translate}}</span>
       </div>
-      <div class="create-group subscribe">
-        <span (click)="subscribeToGroup()" class="create">{{'groups.subToGroup' | translate}}</span>
+      <div *ngIf="!subscribe" class="create-group subscribe">
+        <span (click)="subscribeToGroup()" class="subs">{{'groups.subToGroup' | translate}}</span>
       </div>
-      <!--<app-friends-sidebar-block *ngIf="user.friends" [friends]="user.friends"></app-friends-sidebar-block>-->
+      <div *ngIf="subscribe" class="create-group subscribe">
+        <span (click)="deleteSubsGroup()" class="unsubs">Unsubscribe</span>
+      </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 right-block">
       <app-header></app-header>
       <div class="groups">
         <div class="search-group">

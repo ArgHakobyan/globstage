@@ -29,4 +29,7 @@ export class GroupService {
   subscribeToGroup(id) {
     return this.http.get(`${appConfig.apiUrl}/groups/${id}`);
   }
+  deleteSubsGroup(id){
+    return this.http.delete(`${appConfig.apiUrl}/followers/${id}?to=group`);
+  }
 }
