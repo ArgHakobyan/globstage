@@ -12,12 +12,12 @@
     <div class="friends-item" [routerLink]="'/user-profile/'+user.id" *ngFor="let user of friends">
       <div class="hover-popup">
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <img class="popup-img" [src]="user.user_photo || '/assets/imgs/no_avatar.png'" alt="no_avatar.png">
           </div>
-          <div class="col-md-7 center-text">
+          <div class="col-md-8 center-text">
             <h5>{{user.user_name + ' ' + user.user_last_name}}</h5>
-            <h4>{{user.user_country}}, {{user.user_city}}</h4>
+            <h4>{{user.user_country}} {{user.user_city}}</h4>
             <span class="age">25</span>
           </div>
           <div class="clearfix"></div>

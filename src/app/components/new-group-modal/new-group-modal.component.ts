@@ -26,7 +26,7 @@ export class NewGroupModalComponent implements OnInit {
   createGroup() {
     console.log(this.groupName);
     this.groupService.createGroup({group_name: this.groupName, group_author: getFromLocalStorage('GLOBE_USER').id}).subscribe(res => {
-
+    this.onNoClick();
     });
   }
 

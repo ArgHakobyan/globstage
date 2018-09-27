@@ -1,7 +1,9 @@
 <div class="attach-styling col-md-12">
   <div class="row">
     <div class="post_attachs col-md-6" *ngFor="let attach of post.attactments">
-      <img *ngIf="imageAttaches && imageAttaches.length == 1" class="post_attach " [src]="attach.path" alt="">
+      <!-- <img *ngIf="imageAttaches && imageAttaches.length == 1" class="post_attach "  [src]="attach.path" alt=""> -->
+      <a *ngIf="imageAttaches && imageAttaches.length == 1" data-fancybox [href]="attach.path">
+      <img class="post_attach" [src]="attach.path"></a>
       <a target="_blank" [href]="attach.path"><img *ngIf="attach.type=='pdf'"
       class="post_attach doc-hover" src="/assets/imgs/pdf_icon_svg_by_qubodup-d9n1mhy.png" alt=""></a>
       <a target="_blank" [href]="attach.path"><img *ngIf="attach.type=='doc'"

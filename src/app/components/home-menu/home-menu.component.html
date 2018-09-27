@@ -4,7 +4,7 @@
   <mat-menu #menu="matMenu">
     <div class="user-avatar-menu">
         <div class="user-img">
-          <img  src="{{ user?.user_photo || './assets/imgs/no_avatar.png'}}">
+          <img routerLink="/profile"  src="{{ user?.user_photo || './assets/imgs/no_avatar.png'}}">
         </div>
         <a class="user-name" routerLink="/profile">{{ user.user_name + " " + user.user_last_name }}</a>
         <button (click)="logOut()" class="exit btn btn-default">Exit</button>

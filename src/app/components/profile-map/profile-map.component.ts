@@ -14,6 +14,17 @@ export class ProfileMapComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.map = new google.maps.Map(this.gmapElement.nativeElement, {
+      center: new google.maps.LatLng(40.089099, 44.538189),
+      zoom: 10,
+      gestureHandling: 'cooperative',
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      styles: [{
+        'featureType': 'all',
+        'elementType': 'all',
+        'stylers': [{'invert_lightness': true}, {'saturation': 10}, {'lightness': 30}, {'gamma': 0.5}, {'hue': '#435158'}]
+      }]
+    });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.map = new google.maps.Map(this.gmapElement.nativeElement, {
@@ -28,21 +39,7 @@ export class ProfileMapComponent implements OnInit {
           }]
         });
       });
-    } else {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.map = new google.maps.Map(this.gmapElement.nativeElement, {
-          center: new google.maps.LatLng(40.089099, 44.538189),
-          zoom: 10,
-          gestureHandling: 'cooperative',
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          styles: [{
-            'featureType': 'all',
-            'elementType': 'all',
-            'stylers': [{'invert_lightness': true}, {'saturation': 10}, {'lightness': 30}, {'gamma': 0.5}, {'hue': '#435158'}]
-          }]
-        });
-      });
-    }
+    } 
   }
 
 }

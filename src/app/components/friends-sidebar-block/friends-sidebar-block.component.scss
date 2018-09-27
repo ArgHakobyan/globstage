@@ -44,11 +44,12 @@
       left: 0;
       display: none;
       .popup-img{
-        width: 100px;
+        width: 100%;
         border-radius: 4px;
       }
       .center-text{
         text-align: center;
+        padding: 0;
       }
       h5{
         color: #828995;
