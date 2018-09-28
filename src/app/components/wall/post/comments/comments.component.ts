@@ -18,6 +18,7 @@ export class CommentsComponent implements OnInit {
   public activeClass;
   public userAvatar = '';
   public smileClass = '';
+  user;
   constructor(
     private commentService: CommentService,
     public snackBar: MatSnackBar,
@@ -28,6 +29,7 @@ export class CommentsComponent implements OnInit {
       user_comment: new FormControl()
     });
     this.userAvatar = getFromLocalStorage('GLOBE_USER').user_photo || '/assets/imgs/no_ava_50.png';
+    this.user = getFromLocalStorage('GLOBE_USER');
   }
 
   focusFunction() {

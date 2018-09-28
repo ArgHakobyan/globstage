@@ -113,7 +113,20 @@ img{max-width: 100%;}
     color: $color-blue;
     font-size: 26px;
     text-align: center;
+    font-weight: bold;
   }
-
+  .invite-friends{
+    text-align: right;
+    padding-bottom: 6px;
+    .invite-fr{
+      padding: 1px 6px;
+      background: #35bbbd;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    .invite-fr:hover{
+      opacity: 0.8;
+    }
+  }
 }
 

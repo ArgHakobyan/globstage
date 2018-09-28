@@ -19,6 +19,9 @@
         <div class="search-group">
           <h2 class="group-title">{{group?.group_name}}</h2>
         </div>
+        <div class="invite-friends">
+          <button (click)="inviteFriends()" class="invite-fr btn btn-default">Invite</button>
+        </div>
         <div class="col-md-12">
           <div class="row">
             <app-wall class="col-md-12" *ngIf="group"  [groupId]="group?.id"></app-wall>

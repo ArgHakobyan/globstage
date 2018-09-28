@@ -13,12 +13,13 @@ import {UserCropImageComponent} from '../user-crop-image/user-crop-image.compone
     ],
 })
 export class ProfileImageComponent implements OnInit {
-
   public user;
+  public userPhoto = false;
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.user = getFromLocalStorage('GLOBE_USER');
+    this.userPhoto = getFromLocalStorage('GLOBE_USER').user_photo;
   }
 
   openDialogUpload() {
