@@ -39,5 +39,9 @@ export class SearchService {
     return this.http.get(`${appConfig.apiUrl}/searchs?type=${model}&q=${q}`, );
   }
 
+  searchGroups(searchGroup){
+    return this.http.get(`${appConfig.apiUrl}/groups?filter[group_name]=`+searchGroup );
+  }
+
 
 }

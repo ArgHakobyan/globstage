@@ -11,11 +11,11 @@
         <app-header></app-header>
         <div class="groups">
           <div class="search-group">
-            <form class="example-form">
+            <form class="example-form" [formGroup]="searchGroup">
                 <mat-form-field class="example-full-width">
-                  <input type="search" matInput placeholder="Search" value="">
+                  <input type="search" formControlName="groupName" required matInput placeholder="Search">
                 </mat-form-field>
-                <button type="submit" class="search btn-success save">{{'groups.search' | translate}}</button>
+                <button (click)="searchGroups(searchGroup)" type="submit" class="search btn-success save">{{'groups.search' | translate}}</button>
             </form>
           </div>
           <div class="col-md-12">
