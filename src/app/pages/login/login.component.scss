@@ -296,7 +296,7 @@
         margin: 0 auto;
         top: 54%;
         position: relative;
-        height: 505px;
+        height: 515px;
         margin-top: -265px;
         .icon-close{
             position: absolute;
@@ -344,6 +344,10 @@
             border: 1px solid #7CCB18;
             background: #ffffff;
         }
+        .privacy-link{
+            color: #b10c0c;
+            text-decoration: none;
+        }
         .register{
             width: 80%;
             margin: 0 30px;
@@ -358,7 +362,7 @@
             border-color: #398439;
         }
         .error-reg{
-            color: #e81000;
+            color: #b10c0c;
             display: block;
             text-align: center;
             padding-bottom: 6px;

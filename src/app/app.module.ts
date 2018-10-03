@@ -147,7 +147,7 @@ const appRoutes: Routes = [
   {path: 'messages', component: MessagesComponent, canActivate: [AuthGuard]},
   {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
   {path: 'privacy', component: PrivacyComponent, canActivate: [AuthGuard]},
-  {path: 'privacy-policy', component: PrivacyPolicyComponent, canActivate: [AuthGuard]},
+  {path: 'privacy-policy', component: PrivacyPolicyComponent},
   {path: 'friends', component: FriendsComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchComponent, canActivate: [AuthGuard]},
   {

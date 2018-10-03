@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   public password;
   public password_first;
   public password_second;
+  public privacy_checkbox;
   public lastname;
   public name;
   errorLogin: boolean;
@@ -55,6 +56,7 @@ export class LoginComponent implements OnInit {
       user_email: ['', Validators.required],
       user_password: ['', Validators.required],
       password_second: ['', Validators.required],
+      privacy_checkbox: ['', Validators.required],
     });
 
     this.formgroupLog = this.formbuilder.group({

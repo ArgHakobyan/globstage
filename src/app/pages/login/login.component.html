@@ -61,6 +61,7 @@
         <input class="margin" type="password" formControlName="password_second" placeholder="Password again*"><br>
         <p *ngIf="formgroupReg.invalid" class="form-error">* {{'login.allRequired' | translate}}</p>
         <span class="error-reg" *ngIf="errorReg">Pasdwords does not match*</span>
+        <mat-checkbox formControlName="privacy_checkbox" required>Accept the <a target="blank" class="privacy-link" routerLink="/privacy-policy">privacy policy</a></mat-checkbox>
         <button type="submit" [disabled]="!formgroupReg.valid" class="register btn btn-success">{{'login.register' | translate}}</button>
       </form>
   </div>
