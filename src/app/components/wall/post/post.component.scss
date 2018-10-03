@@ -9,6 +9,10 @@
         font-size: 12px;
         font-weight: bolder;
         margin-bottom: 2px;
+        p{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
     }
     .date{
         color: #fff;
@@ -33,7 +37,8 @@
     padding-left: 66px;
     .wall-atach-photo{
         h6{
-            font-size: 11px;
+            font-size: 14px;
+            margin-top: 15px;
         }
     }
 }

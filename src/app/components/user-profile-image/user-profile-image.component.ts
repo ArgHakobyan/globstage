@@ -37,6 +37,8 @@ export class UserProfileImageComponent implements OnInit {
     }
 
     console.log(this.isFriend, this.following);
+
+    window.addEventListener('scroll', this.getScrollPosition, true); 
   }
 
   @HostListener('sendMessage')
@@ -89,5 +91,19 @@ export class UserProfileImageComponent implements OnInit {
       this.snackBar.open(`You have unlocked ${this.user.user_name}.`, 'ok', {duration: 3000});
     });
   }
+
+  getScrollPosition(e){
+    let avatar = document.getElementById('userAvatar');
+    let wallHeight = document.getElementById('wallContent');
+    let homeContent = document.getElementById('homeContent');
+    if( e.srcElement.scrollTop +200 > e.srcElement.clientHeight){
+      avatar.style.position = 'relative';
+      avatar.style.top = e.srcElement.scrollTop + 'px';
+    }else{
+      avatar.style.position = 'relative';
+      avatar.style.top = 0 + 'px';
+    }   
+  }
+  
 }
 

@@ -62,4 +62,10 @@ export class ProfileComponent implements OnInit {
       setToLocalStorage('GLOBE_USER', usr);
     });
   }
+
+  toTop(){
+    console.log('fsdfdsgdsg');
+    
+    window.scrollTo(0,0);
+  }
 }

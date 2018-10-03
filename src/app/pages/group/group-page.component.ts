@@ -73,6 +73,7 @@ export class GroupPageComponent implements OnInit {
       post_wall_ids: friendArr,
       groupId: this.group_id,
     }).subscribe(res => {
+      this.snackBar.open('Your invitation has been sent successfully.', 'ok', { duration: 3000 });
     });
   }
 

@@ -6,6 +6,8 @@ ul{
 li{
   list-style: none;
 }
+#homeContent{overflow: hidden;}
+
 img{max-width: 100%;}
 ::ng-deep .cdk-overlay-container{
   left: -20px;

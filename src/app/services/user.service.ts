@@ -70,4 +70,9 @@ export class UserService {
   newName(nameLastname) {
     return this.http.put(`${this.apiUrl}/users/updateuser`, nameLastname);
   }
+  
+  deleteUserPhoto(id) {
+    return this.http.put(`${appConfig.apiUrl}/users/${JSON.parse(localStorage.getItem('GLOBE_USER')).id}`, {'user_photo': ''});
+  }
+
 }

@@ -43,6 +43,9 @@
           color: $color-white;
         }
       }
+      .user-country,.user-city,.user-birthday,.user-info-rat{
+        height: 25px;
+      }
     }
   }
   .show-details{

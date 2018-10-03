@@ -1,105 +1,22 @@
-<!-- <div class="map-block">
+<div class="map-block">
   <div class="map-header">
-    <mat-tab-group>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <i class="fa fa-globe"></i>
-        </ng-template>
-        <div class="map">
-          <div id="map" #gmap></div>
-        </div>
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <i class="fa fa-home"></i>
-        </ng-template>
-        <app-user-profile-info [user]="user"></app-user-profile-info>
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <i class="fa fa-picture-o"></i>
-        </ng-template>
-        <div class="img-album tabs-a">
-          <div class="row">
-            <div class="col-md-2 img-alb">
-              <img src="/assets/imgs/Images_no_albums.png" alt="Images_no_albums.png">
-            </div>
-            <div class="col-md-10 upload">
-              <p>{{'user.noAlbums' | translate}}</p>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <i class="fa fa-music"></i>
-        </ng-template>
-        <div class="music-album tabs-a">
-          <div class="row">
-            <div class="col-md-2 music-alb">
-              <img src="/assets/imgs/music.png" alt="music.png">
-            </div>
-            <div class="col-md-10 upload">
-              <p>{{'user.noAudio' | translate}}</p>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <i class="fa fa-film"></i>
-        </ng-template>
-        <div class="video-album tabs-a">
-          <div class="row">
-            <div class="col-md-2 video-alb">
-              <img src="/assets/imgs/no_videos.png" alt="no_videos.png">
-            </div>
-            <div class="col-md-10 upload">
-              <p>{{'user.notYetUploaded' | translate}}</p>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </div> -->
-  <div class="map-block">
-    <div class="map-header">
-      <nav mat-tab-nav-bar>
-        <a  mat-tab-link
-           routerLink=""
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
-          <i class="fa fa-globe"></i>
-        </a>
-        <a mat-tab-link
-           routerLink="info"
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
-          <i class="fa fa-home"></i>
-        </a>
-        <a mat-tab-link
-           routerLink="albums"
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
-          <i class="fa fa-picture-o"></i>
-        </a>
-        <a mat-tab-link
-           routerLink="audios"
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
-          <i class="fa fa-music"></i>
-        </a>
-        <a mat-tab-link
-           routerLink="videos"
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
-          <i class="fa fa-film"></i>
-        </a>
-      </nav>
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link routerLink="/user-profile/{{user.id}}" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+        <i class="fa fa-globe"></i>
+      </a>
+      <a mat-tab-link routerLink="info" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+        <i class="fa fa-home"></i>
+      </a>
+      <a mat-tab-link routerLink="albums" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+        <i class="fa fa-picture-o"></i>
+      </a>
+      <a mat-tab-link routerLink="audios" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+        <i class="fa fa-music"></i>
+      </a>
+      <a mat-tab-link routerLink="videos" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+        <i class="fa fa-film"></i>
+      </a>
+    </nav>
   </div>
   <router-outlet></router-outlet>
 </div>
-

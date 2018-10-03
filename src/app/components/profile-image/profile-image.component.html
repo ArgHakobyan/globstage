@@ -5,8 +5,8 @@
     </div>
     <ul class="animated fadeInUp">
       <li (click)="openDialogUpload()"><i class="fa fa-upload"></i>{{'profile.uplNewPhoto' | translate}}</li>
-      <li *ngIf= "userPhoto" (click)="openDialogCrop()"><i class="fa fa-arrows-v"></i>{{'profile.changeThumb' | translate}}</li>
-      <li *ngIf= "userPhoto"><i class="fa fa-times"></i>{{'profile.delete' | translate}}</li>
+      <li (click)="openDialogCrop()" *ngIf= "userPhoto"><i class="fa fa-arrows-v"></i>{{'profile.changeThumb' | translate}}</li>
+      <li (click)="deletePhoto()" *ngIf= "userPhoto"><i class="fa fa-times"></i>{{'profile.delete' | translate}}</li>
     </ul>
     <span class="hover-display">{{ user.user_name + " " + user.user_last_name }}</span>
   </div>

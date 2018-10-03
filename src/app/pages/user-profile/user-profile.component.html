@@ -1,7 +1,7 @@
 <app-home-menu></app-home-menu>
-<div class="container">
+<div id="homeContent" class="container">
   <div class="row" *ngIf="!userBlocked">
-    <div class="col-md-3">
+    <div id="userAvatar" class="col-md-3">
       <app-user-profile-image *ngIf="user" [user]="user"></app-user-profile-image>
     </div>
     <div class="col-md-9">
@@ -12,7 +12,7 @@
     <div class="clearfix"></div>
   </div>
   <div class="row" *ngIf="userBlocked">
-    <div class="col-md-9">
+    <div id="wallContent" class="col-md-9">
       <app-header></app-header>
     </div>
     <div class="clearfix"></div>

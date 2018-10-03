@@ -4,7 +4,7 @@
       <p>Friends <span>{{friends?.length}}</span></p>
     </div>
     <div class="see-all">
-      <a href="">See All</a>
+      <a routerLink="/friends" >See All</a>
     </div>
     <div class="clearfix"></div>
   </div>
@@ -18,7 +18,7 @@
           <div class="col-md-8 center-text">
             <h5>{{user.user_name + ' ' + user.user_last_name}}</h5>
             <h4>{{user.user_country}} {{user.user_city}}</h4>
-            <span class="age">25</span>
+            <span class="age">{{user.user_date_of_birth}}</span>
           </div>
           <div class="clearfix"></div>
         </div>

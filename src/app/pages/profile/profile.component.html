@@ -1,7 +1,8 @@
 <app-home-menu></app-home-menu>
-<div class="container">
+<button type="button" class="top"></button>
+<div id="homeContent" class="container">
   <div class="row">
-    <div class="right-block col-md-3">
+    <div id="userAvatar" class="right-block col-md-3">
       <app-profile-image></app-profile-image>
       <div class="user-avatar">
         <div class="profile-status">
@@ -32,7 +33,7 @@
         <app-friends-sidebar-block [userId]="user.id"></app-friends-sidebar-block>
       </div>
     </div>
-    <div class="left-block col-md-9">
+    <div id="wallContent" class="left-block col-md-9">
       <app-header></app-header>
       <app-glob-tabs></app-glob-tabs>
       <app-wall *ngIf="userProfile" [wallId]="userProfile.id"></app-wall>
