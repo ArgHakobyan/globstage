@@ -178,7 +178,7 @@
         margin: 0 auto;
         top: 54%;
         position: relative;
-        height: 425px;
+        height: 410px;
         margin-top: -265px;
         .icon-close{
             position: absolute;
@@ -214,6 +214,7 @@
             color: #398439;
             cursor: pointer;
             padding-right: 30px;
+            margin-bottom: 5px;
           }
         }
     }
@@ -270,6 +271,7 @@
             border-color: #4cae4c;
             font-size: 14px;
             padding: 10px;
+            margin-top: 10px;
         }
         .login:hover{
             background-color: #449d44;

@@ -37,8 +37,12 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser(getFromLocalStorage('GLOBE_USER').id).subscribe((user: any) => {
       this.userProfile = user;
       setToLocalStorage('GLOBE_USER', user);
-    });
 
+
+    });
+    
+
+    
   }
 
   logOut() {

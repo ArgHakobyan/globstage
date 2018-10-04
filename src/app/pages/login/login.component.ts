@@ -97,9 +97,9 @@ export class LoginComponent implements OnInit {
             setToLocalStorage('GLOBE_AUTH', res.auth);
           this.userService.setUser(res.user);
           this.router.navigate(['/profile']);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1800);
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 1800);
         },
         error => {
           this.showError(error.error.detail);
@@ -114,9 +114,9 @@ export class LoginComponent implements OnInit {
 
   showError(error: string) {
     this.formError = error;
-    setTimeout(function () {
-      this.formError = '';
-    }.bind(this), 3000);
+    // setTimeout(function () {
+    //   this.formError = '';
+    // }.bind(this), 3000);
   }
 
   onSignUp() {
@@ -142,9 +142,9 @@ export class LoginComponent implements OnInit {
       }, () => {
         this.loading = false;
       });
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 2000);
   }
 
   openDialogForgot() {

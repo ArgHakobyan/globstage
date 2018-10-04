@@ -16,39 +16,40 @@
   <h1>{{'login.welcomeTo' | translate}}</h1>
   <span>{{'login.globStage' | translate}}</span>
   <div class="buttons">
-      <button (click)="openLogin()" type="button" class="btn">{{'login.login' | translate}}</button>
-      <button (click)="openRegister()" type="button" class="btn-default">{{'login.register' | translate}}</button>
+    <button (click)="openLogin()" type="button" class="btn">{{'login.login' | translate}}</button>
+    <button (click)="openRegister()" type="button" class="btn-default">{{'login.register' | translate}}</button>
   </div>
   <!-- <h4 (click)="openCreatePassword()">aaaaaa</h4> -->
 </div>
-<ng-template [ngIf]= "loginPanel">
-<div class="login-panel">
-  <div class="login-form animated fadeInDownBig">
+<ng-template [ngIf]="loginPanel">
+  <div class="login-panel">
+    <div class="login-form animated fadeInDownBig">
       <span (click)="closeLogin()" class="icon-close"><i class="fa fa-times" aria-hidden="true"></i></span>
-    <h3>{{'login.welcome' | translate}}
-      <span class="solid"></span>
-    </h3>
-    <form [formGroup]="formgroupLog" (ngSubmit)="signIn(formgroupLog)"
-    action="http://api-globstage.atero.solutions/v1//users/token" method="post">
-      <div class="forms">
-        <span class="input-span">{{'login.eMail' | translate}}:</span>
-        <input class="input-text" type="email" formControlName="user_name"><br>
-        <span class="input-span">{{'login.password' | translate}}</span>
-        <input class="input-text margin" type="password" formControlName="user_password">
-        <!--<p *ngIf="formgroupLog.invalid" class="form-error">* All fields are required.</p>-->
-        <p (click)="openDialogForgot()" class="text-md-right forgot-text">{{'login.forgotYourPass' | translate}}?</p>
-      </div>
-      <!--<input class="check-box" type="checkbox" name="remember">-->
-      <!--<label class="remember-me" for="remember_me">Remember me</label>-->
-      <span class="error" *ngIf="errorLogin">Invalid email or password *</span>
-      <button type="submit" [disabled]="!formgroupLog.valid" class="login btn btn-success">{{'login.login' | translate}}</button>
-    </form>
+      <h3>{{'login.welcome' | translate}}
+        <span class="solid"></span>
+      </h3>
+      <form [formGroup]="formgroupLog" (ngSubmit)="signIn(formgroupLog)" action="http://api-globstage.atero.solutions/v1//users/token"
+        method="post">
+        <div class="forms">
+          <span class="input-span">{{'login.eMail' | translate}}:</span>
+          <input class="input-text" type="email" formControlName="user_name"><br>
+          <span class="input-span">{{'login.password' | translate}}</span>
+          <input class="input-text margin" type="password" formControlName="user_password">
+          <!--<p *ngIf="formgroupLog.invalid" class="form-error">* All fields are required.</p>-->
+          <p (click)="openDialogForgot()" class="text-md-right forgot-text">{{'login.forgotYourPass' | translate}}?</p>
+          <a target="blank" class="privacy-link" routerLink="/privacy-policy">Privacy policy</a>
+        </div>
+        <!--<input class="check-box" type="checkbox" name="remember">-->
+        <!--<label class="remember-me" for="remember_me">Remember me</label>-->
+        <span class="error" *ngIf="errorLogin">Invalid email or password *</span>
+        <button type="submit" [disabled]="!formgroupLog.valid" class="login btn btn-success">{{'login.login' | translate}}</button>
+      </form>
+    </div>
   </div>
-</div>
 </ng-template>
-<ng-template [ngIf]= "registerPanel">
-<div class="register-panel">
-  <div class="register-form animated fadeInDownBig">
+<ng-template [ngIf]="registerPanel">
+  <div class="register-panel">
+    <div class="register-form animated fadeInDownBig">
       <span (click)="closeRegister()" class="icon-close"><i class="fa fa-times" aria-hidden="true"></i></span>
       <h3>{{'login.register' | translate}}
         <span class="solid"></span>
@@ -59,11 +60,13 @@
         <input type="email" formControlName="user_email" placeholder="E-mail address*"><br>
         <input type="password" formControlName="user_password" placeholder="Password*"><br>
         <input class="margin" type="password" formControlName="password_second" placeholder="Password again*"><br>
+        <mat-checkbox formControlName="privacy_checkbox" required>Accept the <a target="blank" class="privacy-link" routerLink="/privacy-policy">privacy
+            policy
+          </a></mat-checkbox>
         <p *ngIf="formgroupReg.invalid" class="form-error">* {{'login.allRequired' | translate}}</p>
         <span class="error-reg" *ngIf="errorReg">Pasdwords does not match*</span>
-        <mat-checkbox formControlName="privacy_checkbox" required>Accept the <a target="blank" class="privacy-link" routerLink="/privacy-policy">privacy policy</a></mat-checkbox>
         <button type="submit" [disabled]="!formgroupReg.valid" class="register btn btn-success">{{'login.register' | translate}}</button>
       </form>
+    </div>
   </div>
-</div>
 </ng-template>

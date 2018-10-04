@@ -4,7 +4,7 @@
   </div>
   <div class="menu col-md-8">
     <ul>
-      <li *ngIf="friendRequests?.length > 0" class="relative-length"><span class="notify-length">{{ friendRequests?.length }}</span></li>
+      <li *ngIf="friendRequests?.length > 0 || notRequests?.length > 0 " class="relative-length"><span class="notify-length">{{ notificationlength }}</span></li>
       <li *ngIf="friendRequests?.length > 0" class="notification"><i class="notify fa fa-bell" aria-hidden="true"></i></li>
       <!--<li><button><i class="fa fa-envelope"></i></button></li>-->
       <li routerLink="/friends"><button><i class="fa fa-users"></i></button></li>
@@ -26,4 +26,5 @@
     </ul>
   </div>
   <div class="clearfix"></div>
+  <app-ng-chat *ngIf="userId" [adapter]="adapter" [userId]="userId" [isCollapsed]=true></app-ng-chat>
 </div>
