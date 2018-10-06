@@ -26,7 +26,7 @@ export class ProfileImageComponent implements OnInit {
   ngOnInit() {
     this.user = getFromLocalStorage('GLOBE_USER');
     this.userPhoto = getFromLocalStorage('GLOBE_USER').user_photo;
-    window.addEventListener('scroll', this.getScrollPosition, true); 
+    // window.addEventListener('scroll', this.getScrollPosition, true); 
         
   }
 
@@ -60,18 +60,18 @@ export class ProfileImageComponent implements OnInit {
 
   }
 
-  getScrollPosition(e){
-    let avatar = document.getElementById('userAvatar');
-    let wallHeight = document.getElementById('wallContent');
-    let homeContent = document.getElementById('homeContent');
-    // homeContent.style.maxHeight = wallHeight.clientHeight + 'px';
-    if( e.srcElement.scrollTop +200 > e.srcElement.clientHeight){
-      avatar.style.position = 'relative';
-      avatar.style.top = e.srcElement.scrollTop + 'px';
-    }else{
-      avatar.style.position = 'relative';
-      avatar.style.top = 0 + 'px';
-    }   
-  }
+  // getScrollPosition(e){
+  //   let avatar = document.getElementById('userAvatar');
+  //   let wallHeight = document.getElementById('wallContent');
+  //   let homeContent = document.getElementById('homeContent');
+  //   // homeContent.style.maxHeight = wallHeight.clientHeight + 'px';
+  //   if( e.srcElement.scrollTop +200 > e.srcElement.clientHeight){
+  //     avatar.style.position = 'relative';
+  //     avatar.style.top = e.srcElement.scrollTop + 'px';
+  //   }else{
+  //     avatar.style.position = 'relative';
+  //     avatar.style.top = 0 + 'px';
+  //   }   
+  // }
 
 }

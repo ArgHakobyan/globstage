@@ -25,7 +25,7 @@ export class FriendsService {
   }
 
   getNotification() {
-    return this.http.get(`${appConfig.apiUrl}/notifications?filter[read_status]=0&filter[for_id]=${getFromLocalStorage('GLOBE_USER').id}`);
+    return this.http.get(`${appConfig.apiUrl}/notifications/get-notifications`);
   }
   
   getFriendRequests(){

@@ -23,11 +23,7 @@
                  transition: 0.4s;
                  cursor: pointer;
                 }
-                button:hover{
-                    opacity: 0.7;
-                    transition: 0.4s;
-                }
-                mat-form-field{
+              mat-form-field{
                     ::ng-deep .mat-select-value{
                         display: none;
                     }
@@ -37,24 +33,26 @@
                 }
 
             }
-            .notification{
-                position: absolute;
-                top: 6px;
+            // .notification{
+            //     position: absolute;
+            //     top: 6px;
+            //     cursor: pointer;
                 .notify{
                     color: #d40a0a;
-                    font-size: 20px;
+                    font-size: 16px;
                 }
-            }
+            // }
             .relative-length{
                 position: relative;
+                cursor: pointer;
             }
             .notify-length{
                 color: #fff;
                 position: absolute;
-                bottom: 14px;
-                left: 10px;
+                bottom: -4px;
+                right: -23px;
                 z-index: 9999;
-                font-size: 12px;
+                font-size: 10px;
             }
         }
         .En{

@@ -36,13 +36,14 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getFriendRequests();
     this.userId = getFromLocalStorage('GLOBE_USER').id
-    this.getNotification();
 
-    setInterval(() => {
-      this.getNotification();
-    }, 5000);
+    if(this.userId){
+      setInterval(() => {
+        this.getNotification();
+      }, 5000);
+    }
+    
     
   }
 
@@ -54,15 +55,7 @@ export class HeaderComponent implements OnInit {
       
     })
   }
-  
 
-  getFriendRequests() {
-    this.friendService.getFriendRequests().subscribe((res: any[]) => {
-      this.friendRequests = res;
-      console.log(res);
-    })
-
-  }
   openDialogSearch() {
     const dialogRef = this.dialog.open(SearchAllComponent, {
       width: '400px'

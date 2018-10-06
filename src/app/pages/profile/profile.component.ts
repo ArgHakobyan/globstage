@@ -67,9 +67,5 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  toTop(){
-    console.log('fsdfdsgdsg');
-    
-    window.scrollTo(0,0);
-  }
+  
 }

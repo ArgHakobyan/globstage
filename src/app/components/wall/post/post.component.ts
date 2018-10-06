@@ -25,7 +25,8 @@ export class PostComponent implements OnInit {
   addLike() {
     let mn = this.postService.addLike({
       action: 'like',
-      post_id: this.post.id
+      post_id: this.post.id,
+      type: 'post'
     }).subscribe(res => {
       this.post.post_like_count++;
     });

@@ -4,9 +4,10 @@
   </div>
   <div class="menu col-md-8">
     <ul>
-      <li *ngIf="friendRequests?.length > 0 || notRequests?.length > 0 " class="relative-length"><span class="notify-length">{{ notificationlength }}</span></li>
-      <li *ngIf="friendRequests?.length > 0" class="notification"><i class="notify fa fa-bell" aria-hidden="true"></i></li>
-      <!--<li><button><i class="fa fa-envelope"></i></button></li>-->
+      <li routerLink="/notification" *ngIf="notRequests?.length > 0" class="relative-length"><span class="notify-length">{{ notificationlength }}</span></li>
+      <li *ngIf="notRequests?.length > 0" class="notification"><button><i class="notify fa fa-bell" aria-hidden="true"></i></button></li>
+      <!-- <li *ngIf="notRequests?.length > 0" class="relative-length"><span class="notify-length">{{ notificationlength }}</span></li>
+      <li *ngIf="notRequests?.length > 0" class="notification"><i class="notify fa fa-bell" aria-hidden="true"></i></li> -->
       <li routerLink="/friends"><button><i class="fa fa-users"></i></button></li>
       <li (click)="openDialogSearch()"><button><i class="fa fa-search"></i></button></li>
       <li routerLink="/settings"><button><i class="fa fa-cog"></i></button></li>

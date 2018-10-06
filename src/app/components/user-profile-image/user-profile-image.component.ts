@@ -38,7 +38,7 @@ export class UserProfileImageComponent implements OnInit {
 
     console.log(this.isFriend, this.following);
 
-    window.addEventListener('scroll', this.getScrollPosition, true); 
+    // window.addEventListener('scroll', this.getScrollPosition, true); 
   }
 
   @HostListener('sendMessage')
@@ -92,18 +92,18 @@ export class UserProfileImageComponent implements OnInit {
     });
   }
 
-  getScrollPosition(e){
-    let avatar = document.getElementById('userAvatar');
-    let wallHeight = document.getElementById('wallContent');
-    let homeContent = document.getElementById('homeContent');
-    if( e.srcElement.scrollTop +200 > e.srcElement.clientHeight){
-      avatar.style.position = 'relative';
-      avatar.style.top = e.srcElement.scrollTop + 'px';
-    }else{
-      avatar.style.position = 'relative';
-      avatar.style.top = 0 + 'px';
-    }   
-  }
+  // getScrollPosition(e){
+  //   let avatar = document.getElementById('userAvatar');
+  //   let wallHeight = document.getElementById('wallContent');
+  //   let homeContent = document.getElementById('homeContent');
+  //   if( e.srcElement.scrollTop +200 > e.srcElement.clientHeight){
+  //     avatar.style.position = 'relative';
+  //     avatar.style.top = e.srcElement.scrollTop + 'px';
+  //   }else{
+  //     avatar.style.position = 'relative';
+  //     avatar.style.top = 0 + 'px';
+  //   }   
+  // }
   
 }
 

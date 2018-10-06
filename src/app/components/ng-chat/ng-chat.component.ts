@@ -93,6 +93,8 @@ export class NgChatComponent implements OnInit {
   private viewPortTotalArea;
 
   smileOpen = false;
+  messNotReq: any[];
+  public messnotifylength;
 
   constructor(
     private chatService: ChatService,
@@ -122,6 +124,19 @@ export class NgChatComponent implements OnInit {
       this.openChatWindow(res, false, false);
       console.log(res);
     });
+
+    setInterval(() => {
+      this.getMessageNotify();
+    }, 5000);
+  }
+
+  getMessageNotify(){
+    this.chatService.getMessageNotify().subscribe((res: any[]) => {
+      this.messNotReq = res;
+      this.messnotifylength = res["body"].length;
+      console.log(res["body"].length);
+      
+    })
   }
 
   @HostListener('window:resize', ['$event'])

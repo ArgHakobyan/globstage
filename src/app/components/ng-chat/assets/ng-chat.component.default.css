@@ -10,6 +10,29 @@
     font-size: 11pt;
     text-align: left;
 }
+#ng-chat ul{
+    position: relative;
+}
+#ng-chat .notification{
+    position: absolute;
+    top: 2px;
+    right: 6px;
+}
+#ng-chat .relative-length{
+    position: relative;
+}
+#ng-chat .notify-length{
+    color: #fff;
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    z-index: 9999;
+    font-size: 12px;
+}
+#ng-chat-people .notify{
+    color: #d40a0a;
+    font-size: 20px;
+}
 .ng-chat-loading-wrapper
 {
     height: 30px;

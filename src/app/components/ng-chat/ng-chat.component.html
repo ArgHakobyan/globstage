@@ -1,37 +1,41 @@
 <div id="ng-chat" *ngIf="isBootstrapped">
   <div id="ng-chat-people" [ngClass]="{'ng-chat-people-collapsed':isCollapsed}">
     <a href="javascript:void(0);" class="ng-chat-title shadowed" (click)="onChatTitleClicked($event)">
-            <span>
-                {{localization.title}}
-            </span>
+      <span>
+        {{localization.title}}
+      </span>
+      <p class="relative-length"><span class="notify-length">{{ messnotifylength }}</span></p>
+      <p class="notification"><i class="notify fa fa-bell" aria-hidden="true"></i></p>
+      <!-- <ul>
+        <li *ngIf="messNotReq?.length > 0 " class="relative-length">
+          <span class="notify-length">{{ messnotifylength }}</span></li>
+        <li *ngIf="messNotReq?.length > 0" class="notification"><i class="notify fa fa-bell" aria-hidden="true"></i></li>
+      </ul> -->
     </a>
-    <input id="ng-chat-search_friend" type="search" [placeholder]="localization.searchPlaceholder"
-           [(ngModel)]="searchInput"/>
+    <input id="ng-chat-search_friend" type="search" [placeholder]="localization.searchPlaceholder" [(ngModel)]="searchInput"
+    />
     <ul id="ng-chat-users" *ngIf="!isCollapsed">
       <li *ngFor="let user of filteredUsers" (click)="openChatWindow(user, true, true)">
         <div *ngIf="!user.user_photo" class="icon-wrapper">
           <i class="user-icon"></i>
         </div>
-        <img *ngIf="user.user_photo" alt="" class="avatar" height="30" width="30" src="{{user.user_photo}}"/>
+        <img *ngIf="user.user_photo" alt="" class="avatar" height="30" width="30" src="{{user.user_photo}}" />
         <strong title="{{user.user_name}}">{{user.user_name}} {{user.user_last_name}}</strong>
-        <span
-            [ngClass]="{'ng-chat-user-status': true, 'online': user.status == UserStatus.Online, 'busy': user.status == UserStatus.Busy, 'away': user.status == UserStatus.Away, 'offline': user.status == UserStatus.Offline}"
-            title="{{getStatusTitle(UserStatus[user.status])}}"></span>
+        <span [ngClass]="{'ng-chat-user-status': true, 'online': user.status == UserStatus.Online, 'busy': user.status == UserStatus.Busy, 'away': user.status == UserStatus.Away, 'offline': user.status == UserStatus.Offline}"
+          title="{{getStatusTitle(UserStatus[user.status])}}"></span>
         <span *ngIf="unreadMessagesTotalByUser(user).length > 0" class="ng-chat-unread-messages-count">{{unreadMessagesTotalByUser(user)}}</span>
       </li>
     </ul>
   </div>
-  <div *ngFor="let window of windows; let i = index"
-       [ngClass]="{'ng-chat-window': true, 'ng-chat-window-collapsed': window.isCollapsed}"
-       [ngStyle]="{'right': friendsListWidth + 20 + windowSizeFactor * i + 'px'}">
+  <div *ngFor="let window of windows; let i = index" [ngClass]="{'ng-chat-window': true, 'ng-chat-window-collapsed': window.isCollapsed}"
+    [ngStyle]="{'right': friendsListWidth + 20 + windowSizeFactor * i + 'px'}">
     <ng-container *ngIf="window.isCollapsed">
       <div class="ng-chat-title" (click)="onChatWindowClicked(window)">
         <strong title="{{window.chattingTo.userng-star-inserted_name}}">
           {{window.chattingTo.user_name}} {{window.chattingTo.user_last_name}}
         </strong>
-        <span
-            [ngClass]="{'ng-chat-user-status': true, 'online': window.chattingTo.status == UserStatus.Online, 'busy': window.chattingTo.status == UserStatus.Busy, 'away': window.chattingTo.status == UserStatus.Away, 'offline': window.chattingTo.status == UserStatus.Offline}"
-            title="{{getStatusTitle(UserStatus[window.chattingTo.status])}}"></span>
+        <span [ngClass]="{'ng-chat-user-status': true, 'online': window.chattingTo.status == UserStatus.Online, 'busy': window.chattingTo.status == UserStatus.Busy, 'away': window.chattingTo.status == UserStatus.Away, 'offline': window.chattingTo.status == UserStatus.Offline}"
+          title="{{getStatusTitle(UserStatus[window.chattingTo.status])}}"></span>
         <span *ngIf="unreadMessagesTotal(window).length > 0" class="ng-chat-unread-messages-count">{{unreadMessagesTotal(window)}}</span>
         <a href="javascript:void(0);" class="ng-chat-close" (click)="onCloseChatWindow(window)">X</a>
       </div>
@@ -41,9 +45,8 @@
         <strong title="{{window.chattingTo.user_name}}">
           {{window.chattingTo.user_name}} {{window.chattingTo.user_last_name}}
         </strong>
-        <span
-            [ngClass]="{'ng-chat-user-status': true, 'online': window.chattingTo.status == UserStatus.Online, 'busy': window.chattingTo.status == UserStatus.Busy, 'away': window.chattingTo.status == UserStatus.Away, 'offline': window.chattingTo.status == UserStatus.Offline}"
-            title="{{getStatusTitle(UserStatus[window.chattingTo.status])}}"></span>
+        <span [ngClass]="{'ng-chat-user-status': true, 'online': window.chattingTo.status == UserStatus.Online, 'busy': window.chattingTo.status == UserStatus.Busy, 'away': window.chattingTo.status == UserStatus.Away, 'offline': window.chattingTo.status == UserStatus.Offline}"
+          title="{{getStatusTitle(UserStatus[window.chattingTo.status])}}"></span>
         <span *ngIf="unreadMessagesTotal(window).length > 0" class="ng-chat-unread-messages-count">{{unreadMessagesTotal(window)}}</span>
         <a href="javascript:void(0);" class="ng-chat-close" (click)="onCloseChatWindow(window)">X</a>
       </div>
@@ -52,43 +55,36 @@
           <div class="loader">Loading history...</div>
         </div>
 
-        <div *ngFor="let message of window.messages; let i = index"
-             [ngClass]="{'ng-chat-message': true, 'ng-chat-message-received': message.from_id != userId}">
+        <div *ngFor="let message of window.messages; let i = index" [ngClass]="{'ng-chat-message': true, 'ng-chat-message-received': message.from_id != userId}">
           <div *ngIf="!window.chattingTo.user_photo && isAvatarVisible(window, message, i)" class="icon-wrapper">
             <i class="user-icon"></i>
           </div>
-          <img *ngIf="window.chattingTo.user_photo && isAvatarVisible(window, message, i)" alt="" class="avatar"
-               height="30" width="30" [src]="window.chattingTo.user_photo"/>
+          <img *ngIf="window.chattingTo.user_photo && isAvatarVisible(window, message, i)" alt="" class="avatar" height="30" width="30"
+            [src]="window.chattingTo.user_photo" />
           <span *ngIf="message.content" [innerHtml]="message.content | emojify:emojisEnabled | linkfy:linkfyEnabled"></span>
           <div *ngIf="message.attachments?.length > 0">
             <div class="attach-styling col-md-12">
               <div class="row">
-                <div id="myImg" class="post_attachs col-md-12" *ngFor="let attach of message.attachments"
-                  [ngClass]="{'ng-chat-message-received': message.from_id != userId}">
+                <div id="myImg" class="post_attachs col-md-12" *ngFor="let attach of message.attachments" [ngClass]="{'ng-chat-message-received': message.from_id != userId}">
                   <!-- <img class="post_attach " [src]="attach.path" alt=""> -->
                   <a *ngIf="attach.type=='image'" data-fancybox="gallery" [href]="attach.path">
-                  <img class="post_attach" [src]="attach.path"></a>
-                  <a target="_blank" [href]="attach.path"><img *ngIf="attach.type=='pdf'"
-                  class="post_attach doc-hover"
-                  src="/assets/imgs/pdf_icon_svg_by_qubodup-d9n1mhy.png"
-                  alt="">
+                    <img class="post_attach" [src]="attach.path"></a>
+                  <a target="_blank" [href]="attach.path"><img *ngIf="attach.type=='pdf'" class="post_attach doc-hover" src="/assets/imgs/pdf_icon_svg_by_qubodup-d9n1mhy.png"
+                      alt="">
                   </a>
-                  <a target="_blank" [href]="attach.path"><img *ngIf="attach.type=='doc'"
-                  class="post_attach doc-hover"
-                  src="/assets/imgs/2000px-MS_word_DOC_icon.svg.png"
-                  alt="">
+                  <a target="_blank" [href]="attach.path"><img *ngIf="attach.type=='doc'" class="post_attach doc-hover" src="/assets/imgs/2000px-MS_word_DOC_icon.svg.png"
+                      alt="">
                   </a>
-                  </div>
+                </div>
                 <div class="clearfix"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <input #chatWindowInput [ngModel]="window.newMessage"
-             (ngModelChange)="window.newMessage=$event" type="text" (keydown)="onChatInputTyped($event, window)"
-             [placeholder]="localization.messagePlaceholder" (blur)="toggleWindowFocus(window)"
-             (focus)="toggleWindowFocus(window)"/>
+      <input #chatWindowInput [ngModel]="window.newMessage" (ngModelChange)="window.newMessage=$event" type="text" (keydown)="onChatInputTyped($event, window)"
+        [placeholder]="localization.messagePlaceholder" (blur)="toggleWindowFocus(window)" (focus)="toggleWindowFocus(window)"
+      />
       <div class="attach-files">
         <div class="row">
           <div class="smiles col-md-8">
