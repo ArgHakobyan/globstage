@@ -10,9 +10,9 @@
     font-size: 11pt;
     text-align: left;
 }
-#ng-chat ul{
+/* #ng-chat ul{
     position: relative;
-}
+} */
 #ng-chat .notification{
     position: absolute;
     top: 2px;

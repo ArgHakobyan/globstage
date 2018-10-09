@@ -125,7 +125,8 @@ import { NewPasswordModalComponent } from './components/new-password-modal/new-p
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { PostEmojifyPipe } from './pipes/post-emojify.pipe';
 import { UserProfileMapComponent } from './components/user-profile-map/user-profile-map.component';
-import { NotificationComponent } from './pages/notification/notification.component';
+
+
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
@@ -150,7 +151,6 @@ const appRoutes: Routes = [
   {path: 'privacy', component: PrivacyComponent, canActivate: [AuthGuard]},
   {path: 'privacy-policy', component: PrivacyPolicyComponent},
   {path: 'friends', component: FriendsComponent, canActivate: [AuthGuard]},
-  {path: 'notification', component: NotificationComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchComponent, canActivate: [AuthGuard]},
   {
     path: 'user-profile/:id', component: UserProfileComponent, children: [
@@ -232,8 +232,7 @@ export class CustomTranslateLoader implements TranslateLoader {
     NewPasswordModalComponent,
     ForgotComponent,
     PostEmojifyPipe,
-    UserProfileMapComponent,
-    NotificationComponent
+    UserProfileMapComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,9 @@ import { FriendsService } from "../../services/friends.service";
 import {ChatAdapter} from '../../components/ng-chat';
 import {GlobeAdapter} from '../../services/chatAdapter';
 import { getFromLocalStorage } from '../../utils/local-storage';
+// import {NotificationComponent} from '../../components/notification/notification.component';
+
+
 
 @Component({
   selector: 'app-header',
@@ -43,14 +46,22 @@ export class HeaderComponent implements OnInit {
         this.getNotification();
       }, 5000);
     }
-    
-    
+        
   }
 
   getNotification(){
     this.friendService.getNotification().subscribe((res: any[]) => {
       this.notRequests = res;
       this.notificationlength = res.length;
+      console.log(res);
+      
+    })
+  }
+
+  
+
+  readReq(id){
+    this.friendService.readReq(id).subscribe((res: any[]) => {
       console.log(res);
       
     })
@@ -64,6 +75,7 @@ export class HeaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
+  
 
   logOut() {
     localStorage.removeItem('GLOBE_AUTH');

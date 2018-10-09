@@ -27,7 +27,9 @@
         <div class="wall-atach-photo">
           <img *ngIf="post.posttype == 'googlenews' && post.attachments[0].path !==''" 
           [src]="post.attachments[0].path" alt="post.attachments[0].path">
-          <h6 [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
+          <h6 *ngIf="post.posttype == 'groupinvitation'">{{ post.user['user_name'] + ' '+ post.user['user_last_name']  }} invite you to join to the group 
+          <a href="http://globstage.com/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
+          <h6 *ngIf="post.posttype !== 'groupinvitation'" [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
           <app-attachments [post]="post"></app-attachments>
         </div>
         <div class="col-md-12">

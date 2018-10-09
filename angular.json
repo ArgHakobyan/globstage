@@ -24,10 +24,13 @@
               "src/styles.scss",
               "node_modules/font-awesome/scss/font-awesome.scss",
               "node_modules/videogular2/fonts/videogular.css",
+              "node_modules/video.js/dist/video-js.css",              
               "src/assets/fb/jquery.fancybox.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/video.js/dist/video.min.js",
+              "src/assets/Youtube.min.js",
               "src/assets/fb/jquery.fancybox.min.js"
             ]
           },

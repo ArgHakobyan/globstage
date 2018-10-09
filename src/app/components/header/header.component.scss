@@ -1,4 +1,40 @@
 @import '../../../variable';
+::ng-deep .mat-menu-panel{
+    border: none;
+}
+.notification{
+    background: #fff;
+    h4{
+        text-align: center;
+        color: #038e95;
+        font-size: 18px;
+        padding: 6px 0;
+     }
+     .notify-count:nth-of-type(odd) p{
+        background: #ebf7ff;
+     }
+     .notify-count{
+        padding: 2px 0;
+         p{
+             font-size: 14px;
+             padding: 10px;
+             margin-bottom: 0;
+             a{
+                 color: $color-blue;
+             }
+         }
+         img{
+             width: 50px;
+             border-radius: 100%;
+             margin: 4px 6px;
+         }
+         .notify-img{
+             width: 25%;
+             float: left;
+         }
+     }
+     
+}
 .menu-block{
     padding-top: 44px;
     padding-left: 30px;
@@ -31,30 +67,24 @@
                         display: none;
                     }
                 }
-
             }
-            // .notification{
-            //     position: absolute;
-            //     top: 6px;
-            //     cursor: pointer;
-                .notify{
-                    color: #d40a0a;
-                    font-size: 16px;
-                }
-            // }
+            .notify{
+                font-size: 16px;
+            }
             .relative-length{
                 position: relative;
                 cursor: pointer;
             }
             .notify-length{
-                color: #fff;
+                color: #880606;
                 position: absolute;
-                bottom: -4px;
-                right: -23px;
+                bottom: 12px;
+                right: 22px;
                 z-index: 9999;
-                font-size: 10px;
+                font-size: 8px;
             }
         }
+        
         .En{
             background: url("/assets/imgs/gb.svg") no-repeat;
             width: 40px;
@@ -74,8 +104,8 @@
             left: 20px;
         }
      }
-     
- }
+    }
+ 
 
  @media only screen and (max-width: 767px) {
     .menu-block{

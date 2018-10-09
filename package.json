@@ -42,6 +42,7 @@
     "popper.js": "^1.14.4",
     "rxjs": "^6.2.2",
     "rxjs-compat": "^6.0.0-rc.0",
+    "video.js": "^7.2.3",
     "videogular2": "^6.3.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.26"

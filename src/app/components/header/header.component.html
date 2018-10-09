@@ -3,11 +3,30 @@
     <a routerLink="/profile"><img src="/assets/imgs/GlobFull_logo1.png" alt="GlobFull_logo1"></a>
   </div>
   <div class="menu col-md-8">
+    <mat-menu class="notify-block" #menu="matMenu">
+      <div *ngIf="notificationlength" class="notification">
+        <h4>Notifications</h4>
+        <div (click)="readReq(notify.id)" *ngFor="let notify of notRequests" class="notify-count {{ notify.id }}">
+        <div class="notify-img">
+          <img *ngIf="notify.type == 'invitation_add_friend'" 
+          [src]="notify.user.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">
+        </div>
+         <div class="notify-content">
+          <p *ngIf="notify.type == 'invitation_add_friend'">
+            <a routerLink="/user-profile/{{notify['user'].id}}">{{ notify['user'].user_name + ' ' + notify['user'].user_last_name}}</a>
+            send you friend request</p>
+         </div>
+          <p *ngIf="notify.type == 'invitation_from_group'">
+            {{ notify.user.user_name + ' '+ notify.user.user_last_name }} invite you to join to the group
+            <a routerLink="/group/{{notify.post_id}}">{{notify.post_content}}</a>
+          </p>
+        </div>
+      </div>
+    </mat-menu>
     <ul>
-      <li routerLink="/notification" *ngIf="notRequests?.length > 0" class="relative-length"><span class="notify-length">{{ notificationlength }}</span></li>
-      <li *ngIf="notRequests?.length > 0" class="notification"><button><i class="notify fa fa-bell" aria-hidden="true"></i></button></li>
-      <!-- <li *ngIf="notRequests?.length > 0" class="relative-length"><span class="notify-length">{{ notificationlength }}</span></li>
-      <li *ngIf="notRequests?.length > 0" class="notification"><i class="notify fa fa-bell" aria-hidden="true"></i></li> -->
+      <li class="relative-length"><span class="notify-length">{{ notificationlength || ''}}</span>
+        <button class="not-btn" [matMenuTriggerFor]="menu"><i class="notify fa fa-bell" aria-hidden="true"></i></button>
+      </li>
       <li routerLink="/friends"><button><i class="fa fa-users"></i></button></li>
       <li (click)="openDialogSearch()"><button><i class="fa fa-search"></i></button></li>
       <li routerLink="/settings"><button><i class="fa fa-cog"></i></button></li>
