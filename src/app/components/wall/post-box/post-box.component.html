@@ -9,7 +9,7 @@
         <form [formGroup]="formgroupWall" action="" method="post">
         <textarea class="wall-text" formControlName="user_wall" [(ngModel)]="user_wall" (focus)="smileFocusFunction()"
         (focusout)="smileFocusOutFunction()"
-        placeholder="What do you want to say?"></textarea>
+        placeholder="{{'wall.wallPlace' | translate}}?"></textarea>
     <div class="smile-block">
         <div class="row">
             <div class="smiles col-md-8">

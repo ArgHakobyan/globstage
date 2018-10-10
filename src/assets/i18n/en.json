@@ -36,7 +36,8 @@
   "wall":{
     "wall": "Wall",
     "send": "Send",
-    "share": "Share"
+    "share": "Share",
+    "wallPlace": "What do you want to say"
   },
 
   "save": "Save",
@@ -192,6 +193,27 @@
     "firstPost": "My Firts Post on my news",
     "newComment": "New Comment",
     "send": "Send"
+  },
+  "header": {
+    "notific": "Notifications",
+    "friend": "Friends",
+    "search": "Search",
+    "sett": "Settings",
+    "signout": "Sign Out",
+    "reqFriend": "send you friend request",
+    "reqGroup": "Settings"
+  },
+  "glob": {
+    "profile": "Profile",
+    "inform": "Information",
+    "alb": "Albums",
+    "audio": "Audios",
+    "video": "Videos",
+    "news": "News"
+  },
+  "comment": {
+    "addComm": "Add a comment",
+    "sendCom": "Send"
   },
   "byPeople": "By the people",
   "onVideos": "On the videos",

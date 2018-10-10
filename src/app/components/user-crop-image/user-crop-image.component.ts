@@ -66,11 +66,14 @@ export class UserCropImageComponent implements OnInit {
       .subscribe(
         (data: any) => {
           console.log('success');
+          this.http.put(`${appConfig.apiUrl }/users/${JSON.parse(localStorage.getItem('GLOBE_USER')).id}`, {'user_photo': data.path}).subscribe(a => {
           const localUser: any = getFromLocalStorage('GLOBE_USER');
           localUser.user_photo = data.path;
           setToLocalStorage('GLOBE_USER', localUser);
           this.dialogRef.close({'user_photo': data.path});
-        },
+        });
+      },
+        
         error => console.log(error)
       );
 

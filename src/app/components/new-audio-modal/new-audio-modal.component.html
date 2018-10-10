@@ -15,6 +15,10 @@
             <span>{{'newModal.fileLink' | translate}}</span>
           </p>
         </div>
+        <div class="create-btn">
+          <button (click)="addAudio(audioForm)" type="button" class="done btn btn-default">{{'newModal.done' | translate}}</button>
+          <button (click)="onNoClick()" type="button" class="cancel btn btn-default">{{'newModal.cancel' | translate}}</button>
+        </div>
       </mat-tab>
       <mat-tab label="From the computer">
         <div class="from-comp">
@@ -30,10 +34,10 @@
             <a href="">{{'newModal.searchAudio' | translate}}</a>
           </p>
         </div>
+        <div class="create-btn">
+          <button (click)="addAudioComp()" type="button" class="done btn btn-default">{{'newModal.done' | translate}}</button>
+          <button (click)="onNoClick()" type="button" class="cancel btn btn-default">{{'newModal.cancel' | translate}}</button>
+        </div>
       </mat-tab>
     </mat-tab-group>
-    <div class="create-btn">
-      <button (click)="addAudio(audioForm)" type="button" class="done btn btn-default">{{'newModal.done' | translate}}</button>
-      <button (click)="onNoClick()" type="button" class="cancel btn btn-default">{{'newModal.cancel' | translate}}</button>
-    </div>
 </div>

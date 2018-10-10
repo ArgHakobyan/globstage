@@ -22,6 +22,10 @@ export class AudioService {
     return this.http.post(`${appConfig.apiUrl}/audios`, audio);
   }
 
+  addAudioComp(audio){
+    return this.http.post(`${appConfig.apiUrl}/audios`, audio);
+  }
+
   getUserAudios(id) {
     return this.http.get(`${appConfig.apiUrl}/audios/${id}`);
   }

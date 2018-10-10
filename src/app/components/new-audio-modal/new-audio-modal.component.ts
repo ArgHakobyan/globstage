@@ -18,6 +18,7 @@ import { UploadMediaAttachComponent } from "../../components/upload-media-attach
 export class NewAudioModalComponent implements OnInit {
   audiosPosts = [];
   audioForm: FormGroup;
+  uploadedAudio;
   constructor(
     public dialogRef: MatDialogRef<NewAudioModalComponent>,
     public postServices: PostsService,
@@ -51,6 +52,16 @@ export class NewAudioModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  addAudioComp() {
+      this.audioServices.addAudioComp({
+        'audio_name' : this.uploadedAudio.name,
+        'audio_link_url': this.uploadedAudio.path,
+        'privacy': 1
+      }).subscribe(
+      );
+      this.dialogRef.close();
+  }
+
   openDialogAttach() {
     const dialogRef = this.dialog.open(UploadMediaAttachComponent, {
       height: 'auto',
@@ -58,6 +69,8 @@ export class NewAudioModalComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.uploadedAudio = JSON.parse(result);
+      console.log(result);
     });
   }
 

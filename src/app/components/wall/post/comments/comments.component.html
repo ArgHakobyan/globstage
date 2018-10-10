@@ -2,7 +2,7 @@
   <div *ngFor="let comment of post.comments" class="borders">
     <div class="row">
       <div class="author-img col-md-1">
-          <img src="{{comment.user.user_photo || '/assets/imgs/no_ava_50.png'}}" alt="no_ava_50.png">
+        <img src="{{comment.user.user_photo || '/assets/imgs/no_ava_50.png'}}" alt="no_ava_50.png">
       </div>
       <div class="col-md-3 author">
         <a href="">{{comment.user?.user_name + ' ' + comment.user?.user_last_name}}</a>
@@ -18,9 +18,10 @@
     </div>
   </div>
   <form [formGroup]="formgroupComment" action="" method="post">
-  <div class="add-comment"  [ngClass]="activeClass">
-    <textarea formControlName="user_comment" (focus)="focusFunction()" (focusout)="focusOutFunction()" class="text-comm" placeholder="Add a comment"></textarea>
-    <button (click)="postComment()" type="submit" class="add-comm btn btn-success">{{'wall.send' | translate}}</button>
-  </div>
+    <div class="add-comment" [ngClass]="activeClass">
+      <textarea formControlName="user_comment" (focus)="focusFunction()" (focusout)="focusOutFunction()" 
+      class="text-comm" placeholder="{{'comment.addComm' | translate}}"></textarea>
+      <button (click)="postComment()" type="submit" class="add-comm btn btn-success">{{'comment.sendCom' | translate}}</button>
+    </div>
   </form>
 </div>

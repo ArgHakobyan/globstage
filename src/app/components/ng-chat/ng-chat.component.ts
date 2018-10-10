@@ -11,6 +11,7 @@ import {UploadMediaAttachComponent} from '../upload-media-attach/upload-media-at
 import {MatDialog} from '@angular/material';
 import {NewVideoModalComponent} from '../new-video-modal/new-video-modal.component';
 import {NewAudioModalComponent} from '../new-audio-modal/new-audio-modal.component';
+import {getFromLocalStorage, removeFromLocalStorage, setToLocalStorage} from '../../utils/local-storage';
 
 
 @Component({
@@ -117,6 +118,9 @@ export class NgChatComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.userId = getFromLocalStorage('GLOBE_USER').id
+
     // window.newMessage = '';
     this.bootstrapChat();
     this.chatService.change.subscribe(res => {
@@ -124,10 +128,12 @@ export class NgChatComponent implements OnInit {
       this.openChatWindow(res, false, false);
       console.log(res);
     });
-
-    setInterval(() => {
-      this.getMessageNotify();
-    }, 5000);
+    if(this.userId){
+      setInterval(() => {
+        this.getMessageNotify();
+      }, 10000);
+    }
+    
   }
 
   getMessageNotify(){

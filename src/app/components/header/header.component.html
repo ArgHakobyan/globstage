@@ -5,7 +5,7 @@
   <div class="menu col-md-8">
     <mat-menu class="notify-block" #menu="matMenu">
       <div *ngIf="notificationlength" class="notification">
-        <h4>Notifications</h4>
+        <h4>{{'header.notific' | translate}}</h4>
         <div (click)="readReq(notify.id)" *ngFor="let notify of notRequests" class="notify-count {{ notify.id }}">
         <div class="notify-img">
           <img *ngIf="notify.type == 'invitation_add_friend'" 
@@ -14,10 +14,10 @@
          <div class="notify-content">
           <p *ngIf="notify.type == 'invitation_add_friend'">
             <a routerLink="/user-profile/{{notify['user'].id}}">{{ notify['user'].user_name + ' ' + notify['user'].user_last_name}}</a>
-            send you friend request</p>
+            {{'header.reqFriend' | translate}}</p>
          </div>
           <p *ngIf="notify.type == 'invitation_from_group'">
-            {{ notify.user.user_name + ' '+ notify.user.user_last_name }} invite you to join to the group
+            {{ notify.user.user_name + ' '+ notify.user.user_last_name }} {{'header.reqGroup' | translate}}
             <a routerLink="/group/{{notify.post_id}}">{{notify.post_content}}</a>
           </p>
         </div>
@@ -25,12 +25,12 @@
     </mat-menu>
     <ul>
       <li class="relative-length"><span class="notify-length">{{ notificationlength || ''}}</span>
-        <button class="not-btn" [matMenuTriggerFor]="menu"><i class="notify fa fa-bell" aria-hidden="true"></i></button>
+        <button matTooltip="{{'header.notific' | translate}}" class="not-btn" [matMenuTriggerFor]="menu"><i class="notify fa fa-bell" aria-hidden="true"></i></button>
       </li>
-      <li routerLink="/friends"><button><i class="fa fa-users"></i></button></li>
-      <li (click)="openDialogSearch()"><button><i class="fa fa-search"></i></button></li>
-      <li routerLink="/settings"><button><i class="fa fa-cog"></i></button></li>
-      <li><button (click)="logOut()"><i class="fa fa-sign-out"></i></button></li>
+      <li routerLink="/friends"><button matTooltip="{{'header.friend' | translate}}"><i class="fa fa-users"></i></button></li>
+      <li (click)="openDialogSearch()"><button matTooltip="{{'header.search' | translate}}"><i class="fa fa-search"></i></button></li>
+      <li routerLink="/settings"><button matTooltip="{{'header.sett' | translate}}"><i class="fa fa-cog"></i></button></li>
+      <li><button matTooltip="{{'header.signout' | translate}}" (click)="logOut()"><i class="fa fa-sign-out"></i></button></li>
       <li>
         <mat-form-field>
           <mat-select [(value)]="selectedOption" [ngClass]="selectedOption" (selectionChange)="changeLang($event)">

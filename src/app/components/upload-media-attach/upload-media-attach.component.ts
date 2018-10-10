@@ -52,7 +52,7 @@ export class UploadMediaAttachComponent implements OnInit {
           console.log(response);
           this.uploadedImage =  response;
         this.onUpload.emit(response);
-        this.dialogRef.close();
+        this.dialogRef.close(response);
       };
   }
   
