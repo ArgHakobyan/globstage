@@ -24,6 +24,11 @@
     }
   }
 }
+
+.routerLinkActive {
+    border-bottom: 3px solid #85cae8;
+}
+
 .tabs-a{
     background: $color-white;
     padding: 15px;
@@ -171,6 +176,6 @@
         .map-header .mat-tab-nav-bar a{
             min-width: auto;
         }
-    }  
+    }
   }
 

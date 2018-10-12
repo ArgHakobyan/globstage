@@ -2,44 +2,45 @@
     <div class="map-header">
       <nav mat-tab-nav-bar>
         <a  mat-tab-link
-           routerLink=""
+           [routerLinkActiveOptions]="{exact: true}"
+           routerLink="/profile"
            matTooltip="{{'glob.profile' | translate}}"
-           routerLinkActive #rla="routerLinkActive"
+           routerLinkActive="routerLinkActive" #rla="routerLinkActive"
            [active]="rla.isActive">
           <i class="fa fa-globe"></i>
         </a>
         <a mat-tab-link
            routerLink="info"
            matTooltip="{{'glob.inform' | translate}}"
-           routerLinkActive #rla="routerLinkActive"
+           routerLinkActive="routerLinkActive" #rla="routerLinkActive"
            [active]="rla.isActive">
           <i class="fa fa-home"></i>
         </a>
         <a mat-tab-link
            routerLink="albums"
            matTooltip="{{'glob.alb' | translate}}"
-           routerLinkActive #rla="routerLinkActive"
+           routerLinkActive="routerLinkActive" #rla="routerLinkActive"
            [active]="rla.isActive">
           <i class="fa fa-picture-o"></i>
         </a>
         <a mat-tab-link
            routerLink="audios"
            matTooltip="{{'glob.audio' | translate}}"
-           routerLinkActive #rla="routerLinkActive"
+           routerLinkActive="routerLinkActive" #rla="routerLinkActive"
            [active]="rla.isActive">
           <i class="fa fa-music"></i>
         </a>
         <a mat-tab-link
            routerLink="videos"
            matTooltip="{{'glob.video' | translate}}"
-           routerLinkActive #rla="routerLinkActive"
+           routerLinkActive="routerLinkActive" #rla="routerLinkActive"
            [active]="rla.isActive">
           <i class="fa fa-film"></i>
         </a>
         <a mat-tab-link
            routerLink="news"
            matTooltip="{{'glob.news' | translate}}"
-           routerLinkActive #rla="routerLinkActive"
+           routerLinkActive="routerLinkActive" #rla="routerLinkActive"
            [active]="rla.isActive">
           <i class="fa fa-newspaper-o"></i>
         </a>
