@@ -10,3 +10,7 @@
 input.ng-touched.ng-invalid{
   //border: 1px solid #9D0A0E !important;
 }
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+  background-color: transparent !important;
+}

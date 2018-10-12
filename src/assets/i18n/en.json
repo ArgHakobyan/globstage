@@ -213,7 +213,8 @@
   },
   "comment": {
     "addComm": "Add a comment",
-    "sendCom": "Send"
+    "sendCom": "Send",
+    "showAllComments": "Show all comments"
   },
   "byPeople": "By the people",
   "onVideos": "On the videos",

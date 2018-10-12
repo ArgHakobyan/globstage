@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '../../../../services/comment.service';
-import {FormControl, FormGroup} from "@angular/forms";
-import {getFromLocalStorage} from "../../../../utils/local-storage";
+import {FormControl, FormGroup} from '@angular/forms';
+import {getFromLocalStorage} from '../../../../utils/local-storage';
 import { MatSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
@@ -38,11 +39,9 @@ export class CommentsComponent implements OnInit {
     this.activeClass = 'focus';
   }
 
-  focusOutFunction(){
+  focusOutFunction() {
     // this.activeClass = '';
   }
-
-  
 
   postComment() {
     let mn = this.commentService.postComment({
@@ -58,23 +57,16 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-  deleteComment(id){
-    this.commentService.deleteComment(id).subscribe(res => {
-      this.post.comments = this.post.comments.filter(c => c.id !== id);
-      this.snackBar.open('Comment is successfully deleted.', 'ok', {duration: 3000});
-    }, err => {
-      this.snackBar.open('Comment can not be deleted.', 'ok', {duration: 3000});
+  filterComments(e) {
+    console.log(e);
+    this.post.comments = this.post.comments.filter(c => c.id !== e);
+  }
+
+  getAllComments(id) {
+    this.commentService.getComments(id).subscribe(comments => {
+      this.post.comments = comments;
     });
   }
-
-  repComment(){
-    this.replayInput = true;
-  }
-  closeInput(){
-    this.replayInput = false;
-  }
-
-  
 
 }
 

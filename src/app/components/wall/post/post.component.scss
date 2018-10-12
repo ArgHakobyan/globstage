@@ -34,7 +34,7 @@
 }
 .wall-content{
     padding-top: 20px;
-    padding-left: 66px;
+    padding-left: 36px;
     .wall-atach-photo{
         h6{
             font-size: 14px;
@@ -129,7 +129,7 @@
 }
 
 @media only screen and (max-width: 700px) {
-  
+
     .user-images{
         width: 20%;
     }
@@ -147,12 +147,12 @@
     .wall-attach-video{
         padding-left: 0;
     }
-    
-    
+
+
 }
 
 @media only screen and (max-width: 375px) {
-    
+
     .wall-content{
         padding-left: 15px;
         padding-top: 0;
@@ -164,6 +164,6 @@
     .wall-attach-video{
         padding-left: 0;
     }
-    
-  
+
+
 }
