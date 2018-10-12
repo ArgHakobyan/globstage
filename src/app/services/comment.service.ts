@@ -14,7 +14,7 @@ export class CommentService {
   ) {
   }
 
-  postComment(comment){
+  postComment(comment) {
     return this.http.post(`${appConfig.apiUrl}/comments`, comment);
   }
 
@@ -22,8 +22,16 @@ export class CommentService {
   //   return this.http.get(`${appConfig.apiUrl}/comments/reply/${id}`);
   // }
 
-  deleteComment(id){
+  deleteComment(id) {
     return this.http.delete(`${appConfig.apiUrl}/comments/${id}`);
+  }
+
+  getReplies(id) {
+    return this.http.get(`${appConfig.apiUrl}/comments/reply/${id}`);
+  }
+
+  getComments(id) {
+    return this.http.get(`${appConfig.apiUrl}/comments/get-all-comments/${id}`);
   }
 
 }

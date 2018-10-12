@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="author-img col-md-1">
+    <img src="{{comment.user.user_photo || '/assets/imgs/no_ava_50.png'}}" alt="no_ava_50.png">
+  </div>
+  <div class="col-md-3 author">
+    <a href="">{{comment.user?.user_name + ' ' + comment.user?.user_last_name}}</a>
+
+  </div>
+  <div class="col-md-4 date">
+    <span class="date-comm">{{comment.comment_created_date}}</span>
+  </div>
+  <div class="col-md-4 delete-comm">
+    <i (click)="deleteComment(comment.id)" *ngIf="comment.comment_user_id == user.id" class="delete fa fa-trash" aria-hidden="true"></i>
+
+  </div>
+
+    <div class="comment-text">{{comment.comment_content}}</div>
+
+  <mat-icon *ngIf="comment.comment_user_id !== user.id" (click)="repComment()" class="replay">
+    reply
+  </mat-icon>
+  <mat-icon *ngIf="comment.has_child && replies.length == 0" (click)="getReplies()" class="extend">
+    vertical_align_bottom
+  </mat-icon>
+  <mat-icon *ngIf="replies.length != 0" (click)="hideReplies()" class="extend">
+    vertical_align_top
+  </mat-icon>
+  <div class="clearfix"></div>
+  <app-comment class="replay-comment" (onDelete)="filterReplies($event)" [comment]="reply"  *ngFor="let reply of replies"></app-comment>
+</div>
+
+<div *ngIf="replayInput" class="replay-block">
+  <div class="add-comment" [formGroup]="formgroupComment">
+    <textarea formControlName="user_comment" class="text-comm" placeholder="Replay comment"></textarea>
+    <button (click)="postComment()" type="submit" class="add-comm btn btn-success">{{'comment.sendCom' | translate}}</button>
+    <button (click)="closeInput()" type="submit" class="close-input btn btn-success">Cancel</button>
+  </div>
+</div>

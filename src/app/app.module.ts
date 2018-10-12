@@ -125,6 +125,7 @@ import { NewPasswordModalComponent } from './components/new-password-modal/new-p
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { PostEmojifyPipe } from './pipes/post-emojify.pipe';
 import { UserProfileMapComponent } from './components/user-profile-map/user-profile-map.component';
+import { CommentComponent } from './components/wall/post/comment/comment.component';
 
 
 
@@ -232,7 +233,8 @@ export class CustomTranslateLoader implements TranslateLoader {
     NewPasswordModalComponent,
     ForgotComponent,
     PostEmojifyPipe,
-    UserProfileMapComponent
+    UserProfileMapComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,
