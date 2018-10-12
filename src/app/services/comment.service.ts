@@ -17,6 +17,11 @@ export class CommentService {
   postComment(comment){
     return this.http.post(`${appConfig.apiUrl}/comments`, comment);
   }
+
+  // replayComment(id){
+  //   return this.http.get(`${appConfig.apiUrl}/comments/reply/${id}`);
+  // }
+
   deleteComment(id){
     return this.http.delete(`${appConfig.apiUrl}/comments/${id}`);
   }

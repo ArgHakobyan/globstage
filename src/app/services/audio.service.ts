@@ -22,7 +22,7 @@ export class AudioService {
     return this.http.post(`${appConfig.apiUrl}/audios`, audio);
   }
 
-  addAudioComp(audio){
+  addDownAudio(audio){
     return this.http.post(`${appConfig.apiUrl}/audios`, audio);
   }
 

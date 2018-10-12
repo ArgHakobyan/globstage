@@ -5,7 +5,8 @@
     <div class="row">
       <div class="col-md-1 user-images">
         <div class="wall-avatar">
-          <a [routerLink]="'/user-profile/'+post.user.id">
+            <!-- [routerLink]="'/user-profile/'+post.user.id" -->
+          <a>
             <img *ngIf="post.posttype !== 'googlenews'" [src]="post.user.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">
             <img *ngIf="post.posttype == 'googlenews'" [src]="post.user.user_photo || '/assets/imgs/googlenews.png'" alt="googlenews">
           </a>
@@ -29,7 +30,24 @@
           [src]="post.attachments[0].path" alt="post.attachments[0].path">
           <h6 *ngIf="post.posttype == 'groupinvitation'">{{ post.user['user_name'] + ' '+ post.user['user_last_name']  }} invite you to join to the group 
           <a href="http://globstage.com/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
-          <h6 *ngIf="post.posttype !== 'groupinvitation'" [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
+          <h6 *ngIf="post.posttype !== 'groupinvitation' && post.posttype !== 'audio'  " [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
+
+          <div *ngIf="post.posttype == 'audio'" class="audio">
+              <h6 *ngIf="post.user.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new audio</h6>
+              <audio  controls="controls">
+                <source [src]="post.post_attachment_url" />
+              </audio>
+              <div class="clearfix"></div>
+            </div>
+
+            <div *ngIf="post.posttype == 'video'" class="audio">  
+                <h6 *ngIf="post.user.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new video</h6>
+                <video controls="true">
+                    <source [src]="post.post_attachment_url" type="video/mp4" />
+                </video>
+                <div class="clearfix"></div>
+              </div>
+
           <app-attachments [post]="post"></app-attachments>
         </div>
         <div class="col-md-12">

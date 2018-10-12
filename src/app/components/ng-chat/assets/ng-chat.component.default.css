@@ -22,16 +22,15 @@
     position: relative;
 }
 #ng-chat .notify-length{
-    color: #fff;
+    color: #820505;
     position: absolute;
-    bottom: 2px;
-    right: 3px;
+    bottom: 5px;
+    right: 2px;
     z-index: 9999;
-    font-size: 12px;
+    font-size: 9px;
 }
 #ng-chat-people .notify{
-    color: #d40a0a;
-    font-size: 20px;
+    font-size: 22px;
 }
 .ng-chat-loading-wrapper
 {

@@ -38,9 +38,9 @@ export class NewAudioModalComponent implements OnInit {
     if (this.audioForm.valid) {
       this.audioServices.addAudio(
         {
-          "audio_name":audio,
-          "audio_link_url":cname,
-          "privacy":1
+          'audio_name' : audio,
+          'audio_link_url':cname,
+          'privacy':1
         }).subscribe()
     }
     this.audioServices.addAudio(JSON.parse(localStorage.getItem('GLOBE_USER')).id).subscribe(
@@ -52,14 +52,16 @@ export class NewAudioModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  addAudioComp() {
-      this.audioServices.addAudioComp({
+  addDownAudio() {
+      this.audioServices.addDownAudio({
         'audio_name' : this.uploadedAudio.name,
         'audio_link_url': this.uploadedAudio.path,
         'privacy': 1
       }).subscribe(
       );
       this.dialogRef.close();
+      console.log(this.uploadedAudio);
+      
   }
 
   openDialogAttach() {

@@ -18,6 +18,7 @@ export class CommentsComponent implements OnInit {
   public activeClass;
   public userAvatar = '';
   public smileClass = '';
+  public replayInput = false;
   user;
   constructor(
     private commentService: CommentService,
@@ -30,6 +31,7 @@ export class CommentsComponent implements OnInit {
     });
     this.userAvatar = getFromLocalStorage('GLOBE_USER').user_photo || '/assets/imgs/no_ava_50.png';
     this.user = getFromLocalStorage('GLOBE_USER');
+
   }
 
   focusFunction() {
@@ -39,6 +41,8 @@ export class CommentsComponent implements OnInit {
   focusOutFunction(){
     // this.activeClass = '';
   }
+
+  
 
   postComment() {
     let mn = this.commentService.postComment({
@@ -62,5 +66,15 @@ export class CommentsComponent implements OnInit {
       this.snackBar.open('Comment can not be deleted.', 'ok', {duration: 3000});
     });
   }
+
+  repComment(){
+    this.replayInput = true;
+  }
+  closeInput(){
+    this.replayInput = false;
+  }
+
+  
+
 }
 

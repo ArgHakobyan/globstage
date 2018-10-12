@@ -14,12 +14,14 @@ export class PostComponent implements OnInit {
   @Output() onDelete = new EventEmitter<any>();
   user;
   videos = [];
+  audios = [];
 
   constructor(private postService: PostsService) {
   }
 
   ngOnInit() {
     this.user = getFromLocalStorage('GLOBE_USER');
+    
   }
 
   addLike() {

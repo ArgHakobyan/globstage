@@ -12,7 +12,7 @@
             outline: none;
             border-radius: 2px;
         }
-        .add-comm{
+        .add-comm,.close-input{
             outline: none;
             font-size: 12px;
             height: 30px;
@@ -22,9 +22,8 @@
             color: #3F4752;
             border: 1px solid #E0E0E0;
             background: linear-gradient(#FFFFFF, #F5F5F5) #FCFCFC;
-            display: none;
         }
-        .add-comm:hover{
+        .add-comm:hover,.close-input:hover{
             background: $color-green;
             color: #fff;
         }
@@ -33,9 +32,12 @@
             .text-comm{
                 border-color: #66afe9; 
             }   
-            .add-comm{
-                display: block;
-            }            
+            // .add-comm{
+            //     display: block;
+            // }    
+            .add-comm,.close-input{
+                display: inline-block;
+            }        
         }
         .author-comment{
             padding-left: 66px;
@@ -64,6 +66,13 @@
         .comment-text{
             display: block;
             font-size: 12px;
+        }
+        .replay{
+            margin-left: 10px;
+            font-size: 14px;
+            color: #565353;
+            cursor: pointer;
+            display: inline;
         }
         }
         .date{
