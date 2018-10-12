@@ -63,6 +63,7 @@ import {
 } from '@angular/material';
 import {NewAlbumModalComponent} from './components/new-album-modal/new-album-modal.component';
 import {NewAudioModalComponent} from './components/new-audio-modal/new-audio-modal.component';
+import {NewPollModalComponent} from './components/new-poll-modal/new-poll-modal.component';
 import {NewVideoModalComponent} from './components/new-video-modal/new-video-modal.component';
 import {ProfileInfoComponent} from './components/profile-info/profile-info.component';
 import {NewsComponent} from './components/news/news.component';
@@ -184,6 +185,7 @@ export class CustomTranslateLoader implements TranslateLoader {
     HeaderComponent,
     NewAlbumModalComponent,
     NewAudioModalComponent,
+    NewPollModalComponent,
     NewVideoModalComponent,
     ProfileInfoComponent,
     NewsComponent,
@@ -319,6 +321,7 @@ export class CustomTranslateLoader implements TranslateLoader {
     NewGroupModalComponent,
     NewGroupModalComponent,
     NewNotesModalComponent,
+    NewPollModalComponent,
     NewPasswordModalComponent,
     UserUploadImageComponent,
     UserCropImageComponent,

@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-1 user-images">
         <div class="wall-avatar">
-            <!-- [routerLink]="'/user-profile/'+post.user.id" -->
+          <!-- [routerLink]="'/user-profile/'+post.user.id" -->
           <a>
             <img *ngIf="post.posttype !== 'googlenews'" [src]="post.user.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">
             <img *ngIf="post.posttype == 'googlenews'" [src]="post.user.user_photo || '/assets/imgs/googlenews.png'" alt="googlenews">
@@ -26,27 +26,43 @@
     <div class="row">
       <div class="wall-content col-md-11">
         <div class="wall-atach-photo">
-          <img *ngIf="post.posttype == 'googlenews' && post.attachments[0].path !==''" 
-          [src]="post.attachments[0].path" alt="post.attachments[0].path">
-          <h6 *ngIf="post.posttype == 'groupinvitation'">{{ post.user['user_name'] + ' '+ post.user['user_last_name']  }} invite you to join to the group 
-          <a href="http://globstage.com/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
+          <img *ngIf="post.posttype == 'googlenews' && post.attachments[0].path !==''" [src]="post.attachments[0].path" alt="post.attachments[0].path">
+          <h6 *ngIf="post.posttype == 'groupinvitation'">{{ post.user['user_name'] + ' '+ post.user['user_last_name'] }}
+            invite you to join to the group
+            <a href="http://globstage.com/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
           <h6 *ngIf="post.posttype !== 'groupinvitation' && post.posttype !== 'audio'  " [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
 
           <div *ngIf="post.posttype == 'audio'" class="audio">
-              <h6 *ngIf="post.user.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new audio</h6>
-              <audio  controls="controls">
-                <source [src]="post.post_attachment_url" />
-              </audio>
-              <div class="clearfix"></div>
-            </div>
+            <h6 *ngIf="post.user.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
+              audio
+            </h6>
+            <audio controls="controls">
+              <source [src]="post.post_attachment_url" />
+            </audio>
+            <div class="clearfix"></div>
+          </div>
 
-            <div *ngIf="post.posttype == 'video'" class="audio">  
-                <h6 *ngIf="post.user.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new video</h6>
-                <video controls="true">
-                    <source [src]="post.post_attachment_url" type="video/mp4" />
-                </video>
-                <div class="clearfix"></div>
+          <div *ngIf="post.posttype == 'vote'" class="poll">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="wall-poll">
+                  <h4 class="name">{{ post.post_poll_title }}</h4>
+                  <p class="title2"><span>1.</span> {{ post.questions[0].title }}</p>
+                  <p class="title2"><span>2.</span> {{ post.questions[1].title }}</p>
+                </div>
               </div>
+            </div>
+          </div>
+
+          <div *ngIf="post.posttype == 'video'" class="audio">
+            <h6 *ngIf="post.user.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
+              video
+            </h6>
+            <video controls="true">
+              <source [src]="post.post_attachment_url" type="video/mp4" />
+            </video>
+            <div class="clearfix"></div>
+          </div>
 
           <app-attachments [post]="post"></app-attachments>
         </div>

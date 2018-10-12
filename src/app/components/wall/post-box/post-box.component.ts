@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { NewAudioModalComponent } from '../../new-audio-modal/new-audio-modal.component';
+import { NewPollModalComponent } from '../../new-poll-modal/new-poll-modal.component';
 import { NewVideoModalComponent } from '../../new-video-modal/new-video-modal.component';
 import { UploadMediaAttachComponent } from '../../upload-media-attach/upload-media-attach.component';
 import { getFromLocalStorage } from '../../../utils/local-storage';
@@ -17,6 +18,7 @@ import { WallSmilesComponent } from '../../../components/wall/wall-smiles/wall-s
   styleUrls: ['./post-box.component.scss'],
   entryComponents: [
     NewAudioModalComponent,
+    NewPollModalComponent,
     UploadMediaAttachComponent,
     NewVideoModalComponent,
     WallSmilesComponent],
@@ -121,6 +123,15 @@ export class PostBoxComponent implements OnInit {
 
   openDialogAudio() {
     const dialogRef = this.dialog.open(NewAudioModalComponent, {
+      height: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  openDialogPoll() {
+    const dialogRef = this.dialog.open(NewPollModalComponent, {
       height: '350px'
     });
 

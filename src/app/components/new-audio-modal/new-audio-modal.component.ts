@@ -45,15 +45,15 @@ export class NewAudioModalComponent implements OnInit {
     }
     this.audioServices.addAudio(JSON.parse(localStorage.getItem('GLOBE_USER')).id).subscribe(
       audios => {
+        this.dialogRef.close();
       });
-      this.dialogRef.close();
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   addDownAudio() {
-      this.audioServices.addDownAudio({
+      this.audioServices.addAudio({
         'audio_name' : this.uploadedAudio.name,
         'audio_link_url': this.uploadedAudio.path,
         'privacy': 1

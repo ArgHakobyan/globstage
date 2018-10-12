@@ -41,6 +41,21 @@
             margin-top: 15px;
         }
     }
+
+    .poll{
+        .wall-poll{
+            .name{
+                color: #095b5d;
+            }
+            .title2{
+                cursor: pointer;
+                span{
+                    color: #000;
+                }
+            }
+            
+        }
+    }
 }
 .wall-atach-photo{
     padding-bottom: 20px;

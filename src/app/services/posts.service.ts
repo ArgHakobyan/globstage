@@ -47,4 +47,8 @@ export class PostsService {
     return this.http.get(`/followers/news`);
   }
 
+  addPoll(poll){
+    return this.http.post(`/posts`, poll);
+  }
+
 }
