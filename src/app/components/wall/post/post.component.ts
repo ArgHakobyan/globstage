@@ -15,6 +15,7 @@ export class PostComponent implements OnInit {
   user;
   videos = [];
   audios = [];
+  userId;
 
   constructor(private postService: PostsService) {
   }
@@ -50,5 +51,18 @@ export class PostComponent implements OnInit {
       this.onDelete.emit({message: 'postDeleted', id: id});
     });
   }
+
+  selectQuest(id){
+    this.userId = getFromLocalStorage('GLOBE_USER').id;
+     this.postService.selectQuest({
+      author_id: this.userId,
+      post_id: this.post.id,
+      question_id: id,
+    }).subscribe(res => {
+
+    });
+  }
+
+  
 
 }

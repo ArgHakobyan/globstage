@@ -47,13 +47,18 @@
               <div class="row">
                 <div class="wall-poll">
                   <h4 class="name">{{ post.post_poll_title }}</h4>
-                  <p class="title2"><span>1.</span> {{ post.questions[0].title }}</p>
-                  <p class="title2"><span>2.</span> {{ post.questions[1].title }}</p>
+                  <p (click)="selectQuest(post.questions[0].id)" class="title2"><span>1.</span> {{ post.questions[0].title
+                    }}</p>
+                  <div [ngStyle]="{'background': 'linear-gradient(90deg, #bbc7c7 ' + post.questions[0].vote_count/(post.questions[0].vote_count + post.questions[1].vote_count)*100 + '%, #fff 0%)'}" class="count-vote">
+                  </div>
+                  <p (click)="selectQuest(post.questions[1].id)" class="title2"><span>2.</span> {{ post.questions[1].title
+                    }}</p>
+                  <div [ngStyle]="{'background': 'linear-gradient(90deg, #bbc7c7 ' + post.questions[1].vote_count/(post.questions[0].vote_count + post.questions[1].vote_count)*100 + '%, #fff 0%)'}" class="count-vote">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
           <div *ngIf="post.posttype == 'video'" class="audio">
             <h6 *ngIf="post.user.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
               video

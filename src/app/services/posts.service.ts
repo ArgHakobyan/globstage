@@ -51,4 +51,8 @@ export class PostsService {
     return this.http.post(`/posts`, poll);
   }
 
+  selectQuest(vote) {
+    return this.http.post('/votes', vote);
+  }
+
 }
