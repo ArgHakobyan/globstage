@@ -3,7 +3,7 @@
   <div *ngFor="let comment of post.comments" class="borders">
     <app-comment [comment]="comment" (onDelete)="filterComments($event)" ></app-comment>
   </div>
-  <span class="show-all" (click)="getAllComments(post.id)">{{'comment.showAllComments' | translate}} {{post.post_comment_count}}</span>
+  <span *ngIf="post.post_comment_count > 4" class="show-all" (click)="getAllComments(post.id)">{{'comment.showAllComments' | translate}} {{post.post_comment_count}}</span>
   <form [formGroup]="formgroupComment" action="" method="post">
     <div class="add-comment" [ngClass]="activeClass">
       <textarea formControlName="user_comment" (focus)="focusFunction()" (focusout)="focusOutFunction()"
