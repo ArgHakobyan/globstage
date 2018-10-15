@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 export class PrivacyComponent implements OnInit {
 
   public infoPrivacy: FormGroup;
-
+  public notification: any;
   
   constructor(private userService: UserService) {
     this.infoPrivacy = new FormGroup({
@@ -22,6 +22,7 @@ export class PrivacyComponent implements OnInit {
       can_comment: new FormControl("1"),
       basic_info: new FormControl("1"),
       see_guests: new FormControl("1"),
+      notification: new FormControl("1")
     });
 
    }
@@ -35,6 +36,8 @@ export class PrivacyComponent implements OnInit {
         can_comment: new FormControl(res.can_comment ? res.can_comment.toString() : "1"),
         basic_info: new FormControl(res.basic_info ? res.basic_info.toString() : "1"),
         see_guests: new FormControl(res.see_guests ? res.see_guests.toString() : "1"),
+        notification: new FormControl(res.notification ? res.notification.toString() : "1"),
+
       });
       console.log(res);
       console.log(this.infoPrivacy);
@@ -44,6 +47,12 @@ export class PrivacyComponent implements OnInit {
   onChange(){
     this.userService.savePrivacy(this.infoPrivacy.value).subscribe(res =>{
       console.log(res);
+    });
+  }
+
+  onChange1(){
+    this.userService.reqNot(this.infoPrivacy.value).subscribe(result =>{
+      console.log(result);
     });
   }
 

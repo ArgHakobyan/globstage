@@ -117,7 +117,12 @@
     "justFriends": "Just Friends",
     "no": "No",
     "onlyVerified": "Only verified",
-    "onlyI": "Only I"
+    "onlyI": "Only I",
+    "notificPriv": "Noti",
+    "notHide": "Hide",
+    "notShow": "Show"
+
+    
   },
   "settings":{
     "changePass": "Change password",

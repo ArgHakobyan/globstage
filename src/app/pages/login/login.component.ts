@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   public privacy_checkbox;
   public lastname;
   public name;
+  public errorRegister;
   errorLogin: boolean;
   errorReg: boolean;
   formgroupLog: FormGroup;
@@ -137,6 +138,13 @@ export class LoginComponent implements OnInit {
         this.userService.setUser(response.user);
         this.router.navigate(['/profile']);
       }, error => {
+        console.log(error);
+
+        if(error.error.code == 402){
+          console.log(error.error.code);
+          this.errorRegister = error.error.code;
+        }
+        
         this.loading = false;
         this.formError = 'true';
       }, () => {

@@ -60,6 +60,10 @@ export class UserService {
     return this.http.put(`${this.apiUrl}/privacys/${JSON.parse(localStorage.getItem('GLOBE_USER')).id}`, privacy);
   }
 
+  reqNot(priv) {
+    return this.http.put(`${this.apiUrl}/privacys/${JSON.parse(localStorage.getItem('GLOBE_USER')).id}`, priv);
+  }
+
   getPrivacy() {
     return this.http.get(`${this.apiUrl}/privacys`);
   }

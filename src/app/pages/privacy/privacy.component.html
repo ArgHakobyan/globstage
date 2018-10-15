@@ -1,59 +1,79 @@
 <app-home-menu></app-home-menu>
 <div class="container">
-    <div class="row">
-      <div class="col-md-3">
+  <div class="row">
+    <div class="col-md-3">
       <app-profile-image></app-profile-image>
-      </div>
-      <div class="col-md-9">
-        <app-header></app-header>
-        <div class="privacy">
-          <form [formGroup]="infoPrivacy" class="example-form">
-          <p>{{'privacy.privateMess' | translate}}:<mat-form-field>
-            <mat-select formControlName="write_messages" (selectionChange)="onChange()">
-              <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
-              <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
-              <mat-option value="3">{{'privacy.no' | translate}}</mat-option>
-              <mat-option value="4">{{'privacy.onlyVerified' | translate}}</mat-option>
-            </mat-select>
-          </mat-form-field></p>
-        <p>{{'privacy.otherPeoples' | translate}} :<mat-form-field>
-            <mat-select formControlName="sees_other_records" (selectionChange)="onChange()">
-              <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
-              <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
-              <mat-option value="3">{{'privacy.onlyI' | translate}}</mat-option>
-            </mat-select>
-          </mat-form-field></p>
-          <p>{{'privacy.postMyWall' | translate}} :<mat-form-field>
-            <mat-select formControlName="can_post" (selectionChange)="onChange()">
-              <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
-              <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
-              <mat-option value="3">{{'privacy.onlyI' | translate}}</mat-option>
-            </mat-select>
-          </mat-form-field></p>
-        <p>{{'privacy.commentEntries' | translate}} :<mat-form-field>
-            <mat-select formControlName="can_comment" (selectionChange)="onChange()">
-              <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
-              <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
-              <mat-option value="3">{{'privacy.onlyI' | translate}}</mat-option>
-            </mat-select>
-          </mat-form-field></p>
-          <p>{{'privacy.basicInfoPage' | translate}} :<mat-form-field>
-            <mat-select formControlName="basic_info" (selectionChange)="onChange()">
-              <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
-              <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
-              <mat-option value="3">{{'privacy.onlyI' | translate}}</mat-option>
-            </mat-select>
-          </mat-form-field></p>
-        <p>{{'privacy.listMyQuotes' | translate}} :<mat-form-field>
-            <mat-select formControlName="see_guests" (selectionChange)="onChange()">
-              <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
-              <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
-              <mat-option value="3">{{'privacy.onlyI' | translate}}</mat-option>
-            </mat-select>
-          </mat-form-field></p>
-        </form>
-        </div>
-      </div>
-      <div class="clearfix"></div>
     </div>
+    <div class="col-md-9">
+      <app-header></app-header>
+      <div class="privacy">
+        <form [formGroup]="infoPrivacy" class="example-form">
+          <p>{{'privacy.privateMess' | translate}}:
+            <mat-form-field>
+              <mat-select formControlName="write_messages" (selectionChange)="onChange()">
+                <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
+                <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
+                <mat-option value="3">{{'privacy.no' | translate}}</mat-option>
+                <mat-option value="4">{{'privacy.onlyVerified' | translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>{{'privacy.otherPeoples' | translate}} :
+            <mat-form-field>
+              <mat-select formControlName="sees_other_records" (selectionChange)="onChange()">
+                <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
+                <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
+                <mat-option value="3">{{'privacy.onlyI' | translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>{{'privacy.postMyWall' | translate}} :
+            <mat-form-field>
+              <mat-select formControlName="can_post" (selectionChange)="onChange()">
+                <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
+                <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
+                <mat-option value="3">{{'privacy.onlyI' | translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>{{'privacy.commentEntries' | translate}} :
+            <mat-form-field>
+              <mat-select formControlName="can_comment" (selectionChange)="onChange()">
+                <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
+                <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
+                <mat-option value="3">{{'privacy.onlyI' | translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>{{'privacy.basicInfoPage' | translate}} :
+            <mat-form-field>
+              <mat-select formControlName="basic_info" (selectionChange)="onChange()">
+                <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
+                <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
+                <mat-option value="3">{{'privacy.onlyI' | translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>{{'privacy.listMyQuotes' | translate}} :
+            <mat-form-field>
+              <mat-select formControlName="see_guests" (selectionChange)="onChange()">
+                <mat-option value="1">{{'privacy.allMember' | translate}}</mat-option>
+                <mat-option value="2">{{'privacy.justFriends' | translate}}</mat-option>
+                <mat-option value="3">{{'privacy.onlyI' | translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>{{'privacy.notificPriv' | translate}} :
+            <mat-form-field>
+              <mat-select formControlName="notification" (selectionChange)="onChange1()">
+                <mat-option value="1">{{'privacy.notShow' | translate}}</mat-option>
+                <mat-option value="2">{{'privacy.notHide' | translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+        </form>
+      </div>
+    </div>
+    <div class="clearfix"></div>
   </div>
+</div>

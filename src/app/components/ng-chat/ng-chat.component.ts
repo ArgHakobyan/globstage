@@ -120,7 +120,7 @@ export class NgChatComponent implements OnInit {
   ngOnInit() {
 
     this.userId = getFromLocalStorage('GLOBE_USER').id
-
+    
     // window.newMessage = '';
     this.bootstrapChat();
     this.chatService.change.subscribe(res => {

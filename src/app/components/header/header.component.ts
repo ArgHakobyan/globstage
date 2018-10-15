@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   public selectedOption = 'En';
   public userId;
   public adapter: ChatAdapter = this.chatAdapter;
-  public notificationlength;
+  public notificationlength = 0;
 
   constructor(
     private router: Router,
@@ -53,8 +53,13 @@ export class HeaderComponent implements OnInit {
   getNotification(){
     this.friendService.getNotification().subscribe((res: any[]) => {
       this.notRequests = res;
-      this.notificationlength = res.length;
-      console.log(res);
+      this.notificationlength = 0;
+      res.forEach(element => {
+        if(element.read_status === 0){
+          this.notificationlength = this.notificationlength + 1;
+        }
+      });
+      console.log(this.notificationlength);
       
     })
   }

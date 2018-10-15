@@ -4,7 +4,7 @@
   </div>
   <div class="menu col-md-8">
     <mat-menu class="notify-block" #menu="matMenu">
-      <div *ngIf="notificationlength" class="notification">
+      <div class="notification">
         <h4>{{'header.notific' | translate}}</h4>
         <div (click)="readReq(notify.id)" *ngFor="let notify of notRequests" class="notify-count {{ notify.id }}">
         <div class="notify-img">
@@ -24,7 +24,7 @@
       </div>
     </mat-menu>
     <ul>
-      <li class="relative-length"><span class="notify-length">{{ notificationlength || ''}}</span>
+      <li class="relative-length"><span *ngIf="this.notificationlength > 0" class="notify-length">{{ notificationlength }}</span>
         <button matTooltip="{{'header.notific' | translate}}" class="not-btn" [matMenuTriggerFor]="menu"><i class="notify fa fa-bell" aria-hidden="true"></i></button>
       </li>
       <li routerLink="/friends"><button matTooltip="{{'header.friend' | translate}}"><i class="fa fa-users"></i></button></li>
