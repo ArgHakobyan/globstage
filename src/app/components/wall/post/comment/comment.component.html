@@ -1,6 +1,6 @@
 <div class="row">
   <div class="author-img col-md-1">
-    <img src="{{comment.user.user_photo || '/assets/imgs/no_ava_50.png'}}" alt="no_ava_50.png">
+    <img src="{{comment.user?.user_photo || '/assets/imgs/no_ava_50.png'}}" alt="no_ava_50.png">
   </div>
   <div class="col-md-3 author">
     <a href="">{{comment.user?.user_name + ' ' + comment.user?.user_last_name}}</a>

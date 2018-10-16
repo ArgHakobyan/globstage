@@ -9,7 +9,7 @@
     <div class="clearfix"></div>
   </div>
   <div class="friend-img">
-    <div class="friends-item" [routerLink]="'/user-profile/'+user.id" *ngFor="let user of friends">
+    <div class="friends-item" [routerLink]="'/user-profile/'+user.username" *ngFor="let user of friends">
       <div class="hover-popup">
         <div class="row">
           <div class="col-md-4">
@@ -30,33 +30,3 @@
     </div>
   </div>
 </div>
-<!--<div class="online-friend">-->
-  <!--<div class="user-quantity-online">-->
-    <!--<div class="friends">-->
-      <!--<p>Contacts Online<span>1</span></p>-->
-    <!--</div>-->
-    <!--<div class="see-all">-->
-      <!--<a href="">See All</a>-->
-    <!--</div>-->
-    <!--<div class="clearfix"></div>-->
-  <!--</div>-->
-  <!--<div class="friend-img">-->
-    <!--<div class="friends-item"  *ngFor="let user of friendsOnline">-->
-      <!--<div class="hover-popup">-->
-        <!--<div class="row">-->
-          <!--<div class="col-md-5">-->
-            <!--<img class="popup-img" [src]="user.user_photo || '/assets/imgs/no_avatar.png'" alt="no_avatar.png">-->
-          <!--</div>-->
-          <!--<div class="col-md-7 center-text">-->
-            <!--<h5>{{user.user_name + ' ' + user.user_last_name}}</h5>-->
-            <!--<h4>{{user.country}}, {{user.city}}</h4>-->
-            <!--<span class="age">25</span>-->
-          <!--</div>-->
-          <!--<div class="clearfix"></div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="to-bottom"></div>-->
-      <!--<img class="friend-ava" [src]="user.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50.png">-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->

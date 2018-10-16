@@ -22,7 +22,6 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.user = getFromLocalStorage('GLOBE_USER');
-    
   }
 
   addLike() {

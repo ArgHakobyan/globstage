@@ -40,6 +40,10 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/users/${id}`);
   }
 
+  getUserByUsername(username) {
+    return this.http.get(`${this.apiUrl}/users/views/${username}`);
+  }
+
   updateUserInfo(info) {
     return this.http.put(`${this.apiUrl}/users/${JSON.parse(localStorage.getItem('GLOBE_USER')).id}`, info);
   }

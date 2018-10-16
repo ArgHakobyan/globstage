@@ -1,15 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
-import { SearchAllComponent } from '../search-all/search-all.component';
-import { TranslateService } from '@ngx-translate/core';
-import { FriendsService } from "../../services/friends.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {SearchAllComponent} from '../search-all/search-all.component';
+import {TranslateService} from '@ngx-translate/core';
+import {FriendsService} from '../../services/friends.service';
 import {ChatAdapter} from '../../components/ng-chat';
 import {GlobeAdapter} from '../../services/chatAdapter';
-import { getFromLocalStorage } from '../../utils/local-storage';
+import {getFromLocalStorage} from '../../utils/local-storage';
 // import {NotificationComponent} from '../../components/notification/notification.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
 
 
 @Component({
@@ -30,47 +29,48 @@ export class HeaderComponent implements OnInit {
   public notificationlength = 0;
 
   constructor(
-    private router: Router,
-    public dialog: MatDialog,
-    public translate: TranslateService,
-    private friendService: FriendsService,
-    private chatAdapter: GlobeAdapter,
+      private router: Router,
+      public dialog: MatDialog,
+      public translate: TranslateService,
+      private friendService: FriendsService,
+      private chatAdapter: GlobeAdapter,
   ) {
 
   }
 
   ngOnInit() {
-    this.userId = getFromLocalStorage('GLOBE_USER').id
+    this.userId = getFromLocalStorage('GLOBE_USER').id;
 
-    if(this.userId){
+    if (this.userId) {
       setInterval(() => {
         this.getNotification();
       }, 60000);
     }
-        
+
   }
 
-  getNotification(){
+  getNotification() {
     this.friendService.getNotification().subscribe((res: any[]) => {
       this.notRequests = res;
+
       this.notificationlength = 0;
       res.forEach(element => {
-        if(element.read_status === 0){
+        if (element.read_status === 0) {
           this.notificationlength = this.notificationlength + 1;
         }
       });
       console.log(this.notificationlength);
-      
-    })
+
+    });
+
   }
 
-  
 
-  readReq(id){
+  readReq(id) {
     this.friendService.readReq(id).subscribe((res: any[]) => {
       console.log(res);
-      
-    })
+
+    });
   }
 
   openDialogSearch() {
@@ -81,7 +81,7 @@ export class HeaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-  
+
 
   logOut() {
     localStorage.removeItem('GLOBE_AUTH');
@@ -91,6 +91,7 @@ export class HeaderComponent implements OnInit {
     //   window.location.reload();
     // }, 1);
   }
+
   onChatTitleClicked(event: any): void {
     this.isCollapsed = !this.isCollapsed;
   }

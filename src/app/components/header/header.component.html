@@ -7,8 +7,8 @@
       <div class="notification">
         <h4>{{'header.notific' | translate}}</h4>
         <div (click)="readReq(notify.id)" *ngFor="let notify of notRequests" class="notify-count {{ notify.id }}">
-        <div class="notify-img">
-          <img *ngIf="notify.type == 'invitation_add_friend'" 
+        <div *ngIf="notify.user"  class="notify-img" >
+          <img *ngIf="notify.type == 'invitation_add_friend'"
           [src]="notify.user.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">
         </div>
          <div class="notify-content">
@@ -16,7 +16,7 @@
             <a routerLink="/user-profile/{{notify['user'].id}}">{{ notify['user'].user_name + ' ' + notify['user'].user_last_name}}</a>
             {{'header.reqFriend' | translate}}</p>
          </div>
-          <p *ngIf="notify.type == 'invitation_from_group'">
+          <p *ngIf="notify.user && notify.type == 'invitation_from_group'">
             {{ notify.user.user_name + ' '+ notify.user.user_last_name }} {{'header.reqGroup' | translate}}
             <a routerLink="/group/{{notify.post_id}}">{{notify.post_content}}</a>
           </p>

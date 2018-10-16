@@ -26,7 +26,7 @@
       <div class="col-md-6 video-wrap" *ngFor="let video of videos">
         <i class="fa fa-trash delete" aria-hidden="true" (click)="delete(video.id)"></i>
         <p>{{ video.video_name }}</p>
-        <app-video-player [url]="video.link_to_videos"></app-video-player>
+        <app-video-player [video]="video"></app-video-player>
         <p>{{ video.video_description }}</p>
       </div>
       <div class="clearfix"></div>

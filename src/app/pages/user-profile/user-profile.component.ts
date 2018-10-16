@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {appConfig} from '../../app.config';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,14 +17,15 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private userService: UserService
   ) {
 
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.http.get(`${appConfig.apiUrl}/users/${params.id}`).subscribe(user => {
+      this.userService.getUserByUsername(params.id).subscribe(user => {
           console.log(user);
           this.user = user;
         },
