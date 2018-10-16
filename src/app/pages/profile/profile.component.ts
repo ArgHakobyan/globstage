@@ -25,24 +25,19 @@ export class ProfileComponent implements OnInit {
   public userProfile: any;
 
   constructor(
-    public authService: AuthService,
-    public router: Router,
-    public dialog: MatDialog,
-    private userService: UserService
+      public authService: AuthService,
+      public router: Router,
+      public dialog: MatDialog,
+      private userService: UserService
   ) {
   }
 
   ngOnInit() {
     this.user = getFromLocalStorage('GLOBE_USER');
-    this.userService.getUser(getFromLocalStorage('GLOBE_USER').id).subscribe((user: any) => {
+    this.userService.getUser(getFromLocalStorage('GLOBE_USER').username).subscribe((user: any) => {
       this.userProfile = user;
       setToLocalStorage('GLOBE_USER', user);
-
-
     });
-    
-
-    
   }
 
   logOut() {
@@ -57,7 +52,7 @@ export class ProfileComponent implements OnInit {
   }
 
   postStatus() {
-    this.userService.updateUserInfo({user_status: this.user.user_status}).subscribe((res: any)  => {
+    this.userService.updateUserInfo({user_status: this.user.user_status}).subscribe((res: any) => {
       this.newStatus = false;
       this.status = true;
       const usr = getFromLocalStorage('GLOBE_USER');
@@ -67,5 +62,5 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  
+
 }

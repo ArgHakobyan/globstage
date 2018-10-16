@@ -1,4 +1,4 @@
-<article class="post-article">
+<article class="post-article" *ngIf="post.user || post.posttype == 'googlenews'">
   <div class="col-md-12 wall-user">
     <i (click)="deleteWallPost(post.id)" *ngIf="post.post_user_id == user.id || post.post_wall_id == user.id" class="delete-post fa fa-times"
       aria-hidden="true"></i>
@@ -7,14 +7,14 @@
         <div class="wall-avatar">
           <!-- [routerLink]="'/user-profile/'+post.user.id" -->
           <a>
-            <img *ngIf="post.posttype !== 'googlenews'" [src]="post.user.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">
-            <img *ngIf="post.posttype == 'googlenews'" [src]="post.user.user_photo || '/assets/imgs/googlenews.png'" alt="googlenews">
+            <img *ngIf="post.posttype !== 'googlenews'" [src]="post.user?.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">
+            <img *ngIf="post.posttype == 'googlenews'" [src]="post.user?.user_photo || '/assets/imgs/googlenews.png'" alt="googlenews">
           </a>
         </div>
       </div>
       <div class="col-md-11 wall-name">
-        <p *ngIf="post.user.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}}</p>
-        <p *ngIf="post.user.user_name === null">Google News</p>
+        <p *ngIf="post.user?.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}}</p>
+        <p *ngIf="post.user?.user_name === null && post.posttype == 'googlenews'">Google News</p>
         <div class="date">
           {{post.post_created_date | date : "dd MMM yyyy"}}
         </div>
@@ -27,13 +27,13 @@
       <div class="wall-content col-md-11">
         <div class="wall-atach-photo">
           <img *ngIf="post.posttype == 'googlenews' && post.attachments[0].path !==''" [src]="post.attachments[0].path" alt="post.attachments[0].path">
-          <h6 *ngIf="post.posttype == 'groupinvitation'">{{ post.user['user_name'] + ' '+ post.user['user_last_name'] }}
+          <h6 *ngIf="post.user && post.posttype == 'groupinvitation'">{{ post.user.user_name + ' '+ post.user.user_last_nam }}
             invite you to join to the group
             <a href="http://globstage.com/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
           <h6 *ngIf="post.posttype !== 'groupinvitation' && post.posttype !== 'audio'  " [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
 
           <div *ngIf="post.posttype == 'audio'" class="audio">
-            <h6 *ngIf="post.user.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
+            <h6 *ngIf="post.user?.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
               audio
             </h6>
             <audio controls="controls">
@@ -55,9 +55,10 @@
           </div>
 
           <div *ngIf="post.posttype == 'video'" class="audio">
-            <h6 *ngIf="post.user.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
+            <h6 *ngIf="post.user?.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
               video
             </h6>
+
             <video controls="true">
               <source [src]="post.post_attachment_url" type="video/mp4" />
             </video>
@@ -70,7 +71,7 @@
           <div class="row">
             <div class="wall-attach-video col-md-6" *ngFor="let video of post.videos">
               <p class="name">{{ video.video_name }}</p>
-              <app-video-player [url]="video.link_to_videos"></app-video-player>
+              <app-video-player [video]="video"></app-video-player>
             </div>
           </div>
         </div>
@@ -81,7 +82,7 @@
           <span>{{ post.post_like_count }}</span>
           <div *ngIf="post.post_like_count != 0" class="like-count">
             <div class="like-abs" *ngFor="let like of post.likes_dislikes">
-              <h5 *ngIf="like.status === 'like'">{{ like.user.user_name + " " + like.user.user_last_name }}</h5>
+              <h5 *ngIf="like.status === 'like'">{{ like.user?.user_name + " " + like.user?.user_last_name }}</h5>
             </div>
           </div>
         </i>
@@ -89,7 +90,7 @@
           <span>{{post.post_dislike_count || 0}}</span>
           <div *ngIf="post.post_dislike_count != 0" class="dislike-count">
             <div *ngFor="let dislike of post.likes_dislikes" class="dislike-abs">
-              <h5 *ngIf="dislike.status === 'dislike'">{{ dislike.user.user_name + " " + dislike.user.user_last_name }}</h5>
+              <h5 *ngIf="dislike.status === 'dislike'">{{ dislike.user?.user_name + " " + dislike.user?.user_last_name }}</h5>
             </div>
           </div>
         </i>
