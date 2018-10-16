@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
-import { PostsService } from '../../services/posts.service';
-import { AudioService } from '../../services/audio.service';
-import { MatDialog } from '@angular/material';
-import { UploadMediaAttachComponent } from "../../components/upload-media-attach/upload-media-attach.component";
-
+import {Component, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material';
+import {FormGroup, FormControl, Validators, FormArray, FormBuilder} from '@angular/forms';
+import {PostsService} from '../../services/posts.service';
+import {AudioService} from '../../services/audio.service';
+import {MatDialog} from '@angular/material';
+import {UploadMediaAttachComponent} from '../../components/upload-media-attach/upload-media-attach.component';
 
 
 @Component({
@@ -21,16 +20,18 @@ export class NewPollModalComponent implements OnInit {
   questions: FormArray;
   uploadedAudio;
   pollPost = [];
+
   // public questions = [1,2];
 
 
   constructor(
-    public dialogRef: MatDialogRef<NewPollModalComponent>,
-    public postServices: PostsService,
-    public audioServices: AudioService,
-    private formBuilder: FormBuilder,
-    public dialog: MatDialog,
-  ) { }
+      public dialogRef: MatDialogRef<NewPollModalComponent>,
+      public postServices: PostsService,
+      public audioServices: AudioService,
+      private formBuilder: FormBuilder,
+      public dialog: MatDialog,
+  ) {
+  }
 
   ngOnInit() {
     this.pollForm = new FormGroup({
@@ -39,33 +40,32 @@ export class NewPollModalComponent implements OnInit {
         new FormControl(null),
         new FormControl(null),
       ]),
-    })
+    });
   }
 
   addPoll(name) {
     const title = name.controls.pollTitle.value;
-
-    
     if (this.pollForm.valid) {
       const questions = [];
-      for(let i = 0; i < this.pollForm.controls.questions.controls.length; i++ ) {
-        if(this.pollForm.controls.questions.controls[i].value){
-          questions.push(this.pollForm.controls.questions.controls[i].value)
+      for (let i = 0; i < this.pollForm.controls.questions['controls'].length; i++) {
+        if (this.pollForm.controls.questions['controls'][i].value) {
+          questions.push(this.pollForm.controls.questions['controls'][i].value);
         }
       }
 
       this.postServices.addPoll(
-        {
-          'posttype':'vote',
-          'title' : title,
-          'questions' : questions
-        }).subscribe(res =>{
-          this.pollPost = [];
-        });
-        this.dialogRef.close();
+          {
+            'posttype': 'vote',
+            'title': title,
+            'questions': questions
+          }).subscribe(res => {
+        this.pollPost = [];
+      });
+      this.dialogRef.close();
     }
-     
+
   }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -90,8 +90,8 @@ export class NewPollModalComponent implements OnInit {
     });
   }
 
-copy() {
-  // this.questions.push(this.questions.length + 1)
-}
+  copy() {
+    // this.questions.push(this.questions.length + 1)
+  }
 
 }

@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {VideoService} from '../../services/video.service';
+import {PostsService} from '../../services/posts.service';
 import {EmbedVideoService} from '../../services/embed-video.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class NewVideoModalComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<NewVideoModalComponent>,
     public videoServices: VideoService,
+    public postServices: PostsService,
     private embedVideoService: EmbedVideoService
   ) {
 
@@ -45,8 +47,9 @@ export class NewVideoModalComponent implements OnInit {
 
   done() {
     if (this.newpostvideo.valid) {
-      this.videoServices.addVideo(
+      this.postServices.createWallPost(
         {
+          'posttype': 'video',
           'video_name': this.newpostvideo.value.namevideo,
           'link_to_videos': this.newpostvideo.value.linkvideo,
           'video_description': this.newpostvideo.value.descvideo,
