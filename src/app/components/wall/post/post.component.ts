@@ -22,6 +22,15 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.user = getFromLocalStorage('GLOBE_USER');
+    if( this.post.posttype === 'vote'){
+      let totalVotes = 0;
+      this.post.questions.forEach( question => {
+        totalVotes = totalVotes + question.vote_count;
+      });
+      this.post.questions.forEach( question => {
+        question.percent = 100 * question.vote_count / totalVotes ;
+      });
+    }
   }
 
   addLike() {
@@ -37,7 +46,8 @@ export class PostComponent implements OnInit {
   disLike() {
     let mn = this.postService.disLike({
       action: 'dislike',
-      post_id: this.post.id
+      post_id: this.post.id,
+      type: 'post'
     }).subscribe(res => {
       this.post.post_dislike_count++;
     });

@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
 
   }
 
+  
   ngOnInit() {
 
     if (this.authService.isLogged) {
@@ -75,9 +76,29 @@ export class LoginComponent implements OnInit {
     // this.password = this.formgroupLog.controls['password'];
 
   }
+
+  checkPasswords() {
+    console.log(this.formgroupReg);
+
+      console.log('Validating');
+      let passwordInput = this.formgroupReg.controls['user_password'],
+          passwordConfirmationInput = this.formgroupReg.controls['password_second'];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        this.errorReg = true;
+        // passwordConfirmationInput.setErrors({notEquivalent: true})
+      }
+      else {
+        this.errorReg = false;
+          // passwordConfirmationInput.setErrors(null);
+      }
+    
+  }
+
   openLogin() {
     this.loginPanel = true;
   }
+
+
   closeLogin() {
     this.loginPanel = false;
   }
@@ -128,10 +149,8 @@ export class LoginComponent implements OnInit {
     sendData.user_email = this.formgroupReg.get('user_email').value;
     sendData.user_password = this.formgroupReg.get('user_password').value;
     sendData.password_second = this.formgroupReg.get('password_second').value;
-    if(sendData.user_password !== sendData.password_second){
-      this.errorReg = true;      
-    }
-    this.authService.signUpUser(sendData)
+    if(sendData.user_password === sendData.password_second){
+      this.authService.signUpUser(sendData)
       .subscribe(response => {
         console.log(response, 'response');
         setToLocalStorage('GLOBE_AUTH', response.auth);
@@ -150,6 +169,11 @@ export class LoginComponent implements OnInit {
       }, () => {
         this.loading = false;
       });
+            
+    }else{
+      // this.errorReg = true;
+    }
+    
       // setTimeout(() => {
       //   window.location.reload();
       // }, 2000);

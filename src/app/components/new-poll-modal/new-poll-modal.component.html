@@ -1,16 +1,18 @@
 <div class="poll-post">
   <p class="center-p">Adding a new Poll post</p>
   <form class="example-form" [formGroup]="pollForm">
-    <mat-form-field class="example-full-width">
+    <mat-form-field  class="example-full-width">
       <input matInput formControlName="pollTitle" placeholder="Poll name">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput formControlName="Questions1" placeholder="Questions 1">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput formControlName="Questions2" placeholder="Questions 2">
-    </mat-form-field>
+    <div formArrayName="questions">
+      <mat-form-field *ngFor="let item of pollForm.controls.questions.controls; let i = index"  class="example-full-width">
+        <input matInput [formControlName]="i" placeholder="Questions {{i+1}}">
+      </mat-form-field>
+    </div>    
   </form>
+  <div class="input-btn">
+    <button (click)="addInput()" class="add-input"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+  </div>
   <div class="create-btn">
     <button (click)="addPoll(pollForm)" type="button" class="done btn btn-default">{{'newModal.done' | translate}}</button>
     <button (click)="onNoClick()" type="button" class="cancel btn btn-default">{{'newModal.cancel' | translate}}</button>

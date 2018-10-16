@@ -34,11 +34,11 @@
         </table>
     <div>
       <button type="button" class="btn btn-success btn-s"
-              (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+              (click)="uploader.uploadAll()" [hidden]="!uploader.getNotUploadedItems().length">
           <span class="glyphicon glyphicon-upload"></span> {{'uploadAll' | translate}}
       </button>
       <button type="button" class="btn btn-danger btn-s"
-              (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+              (click)="uploader.clearQueue()" [hidden]="!uploader.queue.length">
           <span class="glyphicon glyphicon-trash"></span> {{'removeAll' | translate}}
       </button>
     </div>

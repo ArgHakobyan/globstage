@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { PostsService } from '../../services/posts.service';
 import { AudioService } from '../../services/audio.service';
 import { MatDialog } from '@angular/material';
@@ -18,45 +18,53 @@ import { UploadMediaAttachComponent } from "../../components/upload-media-attach
 export class NewPollModalComponent implements OnInit {
   audiosPosts = [];
   pollForm: FormGroup;
+  questions: FormArray;
   uploadedAudio;
   pollPost = [];
+  // public questions = [1,2];
+
 
   constructor(
     public dialogRef: MatDialogRef<NewPollModalComponent>,
     public postServices: PostsService,
     public audioServices: AudioService,
-    public dialog: MatDialog
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
     this.pollForm = new FormGroup({
       pollTitle: new FormControl(),
-      Questions1: new FormControl(),
-      Questions2: new FormControl()
+      questions: new FormArray([
+        new FormControl(null),
+        new FormControl(null),
+      ]),
     })
   }
+
   addPoll(name) {
     const title = name.controls.pollTitle.value;
-    const quest1 = name.controls.Questions1.value;
-    const quest2 = name.controls.Questions2.value;
+
     
     if (this.pollForm.valid) {
+      const questions = [];
+      for(let i = 0; i < this.pollForm.controls.questions.controls.length; i++ ) {
+        if(this.pollForm.controls.questions.controls[i].value){
+          questions.push(this.pollForm.controls.questions.controls[i].value)
+        }
+      }
+
       this.postServices.addPoll(
         {
           'posttype':'vote',
           'title' : title,
-          'questions' : {
-            '1': quest1,
-            '2': quest2,
-          }
+          'questions' : questions
         }).subscribe(res =>{
           this.pollPost = [];
         });
+        this.dialogRef.close();
     }
-    this.postServices.addPoll(JSON.parse(localStorage.getItem('GLOBE_USER')).id).subscribe(
-      audios => {
-      });
-      this.dialogRef.close();
+     
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -67,8 +75,23 @@ export class NewPollModalComponent implements OnInit {
       height: 'auto',
       width: '350px',
     });
-
-    
   }
+
+  addInput() {
+    this.questions = this.pollForm.get('questions') as FormArray;
+    this.questions.push(new FormControl());
+  }
+
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      name: '',
+      description: '',
+      price: ''
+    });
+  }
+
+copy() {
+  // this.questions.push(this.questions.length + 1)
+}
 
 }

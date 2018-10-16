@@ -58,13 +58,13 @@
         <input type="text" formControlName="user_first_name" placeholder="Your name*"><br>
         <input type="text" formControlName="user_last_name" placeholder="Your last name*"><br>
         <input type="email" formControlName="user_email" placeholder="E-mail address*"><br>
-        <input type="password" formControlName="user_password" placeholder="Password*"><br>
-        <input class="margin" type="password" formControlName="password_second" placeholder="Password again*"><br>
+        <input class="aaaa" (input)="checkPasswords()" [ngClass]="{'pass-error': errorReg}" type="password" formControlName="user_password" placeholder="Password*"><br>
+        <input (input)="checkPasswords()" [ngClass]="{'pass-error': errorReg}" class="margin" type="password" formControlName="password_second" placeholder="Password again*"><br>
         <mat-checkbox formControlName="privacy_checkbox" required>Accept the <a target="blank" class="privacy-link" routerLink="/privacy-policy">privacy
             policy
           </a></mat-checkbox>
         <p *ngIf="formgroupReg.invalid" class="form-error">* {{'login.allRequired' | translate}}</p>
-        <span class="error-reg" *ngIf="errorReg">Pasdwords does not match*</span>
+        <span class="error-reg" *ngIf="errorReg">* Pasdwords does not match</span>
         <span class="email-error" *ngIf="errorRegister">Email* allready exist</span>
         <button type="submit" [disabled]="!formgroupReg.valid" class="register btn btn-success">{{'login.register' | translate}}</button>
       </form>

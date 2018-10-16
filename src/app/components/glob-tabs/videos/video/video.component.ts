@@ -1,7 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {VideoService} from '../../../../services/video.service';
-import { Plyr } from 'plyr';
-// declare var Plyr;
 
 @Component({
   selector: 'app-video',
@@ -19,9 +17,7 @@ export class VideoComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      const players = Array.from(document.querySelectorAll('.js-player')).map(p => new Plyr(p));
-    });
+    
 
   }
 

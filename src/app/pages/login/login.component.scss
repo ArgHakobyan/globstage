@@ -215,6 +215,7 @@
             cursor: pointer;
             padding-right: 30px;
             margin-bottom: 5px;
+            display: inline-block;
           }
         }
     }
@@ -326,6 +327,9 @@
                 margin: 20px auto;
             }
         }
+        .pass-error{
+            border: 1px solid #E51616;
+        }
         input{
             height: 40px;
             width: 80%;
@@ -364,11 +368,12 @@
             border-color: #398439;
         }
         .error-reg{
-            color: #b10c0c;
-            display: block;
-            text-align: center;
-            padding-bottom: 6px;
-            padding-top: 10px;
+            color: #e81000;
+            font-size: 15px;
+            margin-bottom: 0;
+            text-align: left;
+            display: inherit;
+            margin-left: 30px;
         }
         .email-error{
             color: #b10c0c;
