@@ -166,7 +166,8 @@
     "notes": "Notes",
     "privacy": "Privacy",
     "pageBackground": "Page Background",
-    "language": "Language"
+    "language": "Language",
+    "logOut": "Logout"
   },
   "newModal": {
     "createAlbum": "Create a new album",

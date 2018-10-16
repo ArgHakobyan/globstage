@@ -7,7 +7,7 @@
           <img routerLink="/profile"  src="{{ user?.user_photo || './assets/imgs/no_avatar.png'}}">
         </div>
         <a class="user-name" routerLink="/profile">{{ user.user_name + " " + user.user_last_name }}</a>
-        <button (click)="logOut()" class="exit btn btn-default">Exit</button>
+        <button (click)="logOut()" class="exit btn btn-default">{{'homeMenu.logOut' | translate}}</button>
     </div>
       <button routerLink="/profile/albums" mat-menu-item>
         <mat-icon>photo</mat-icon>
