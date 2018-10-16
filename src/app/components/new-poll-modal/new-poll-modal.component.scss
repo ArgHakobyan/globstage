@@ -1,5 +1,6 @@
 @import '../../../variable';
 .poll-post{
+    width: 350px;
     .example-full-width {
         width: 100%;
       }
@@ -12,5 +13,32 @@
         font-size: 13px;
         font-weight: bold;
         text-align: center;
+    }
+    .create-btn{
+        text-align: right;
+        padding-top: 10px;
+        .done{
+            background: linear-gradient(#FFFFFF, #F5F5F5) repeat scroll 0 0 #FCFCFC;
+            border: 1px solid #E0E0E0;
+            border-radius: 3px;
+            color: #3F4752;
+            font-size: 11px;
+            padding: 4px 15px;
+        }
+        .done:hover{
+            background: $color-green;
+        }
+        .cancel{
+            background: linear-gradient(#FFFFFF, #F5F5F5) repeat scroll 0 0 #FCFCFC;
+            border: 1px solid #E0E0E0;
+            border-radius: 3px;
+            color: #3F4752;
+            font-size: 11px;
+            padding: 4px 15px;
+        }
+        .cancel:hover{
+            background: linear-gradient(#FFFFFF, #E9E9E9);
+        }
+        
     }
 }

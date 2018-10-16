@@ -65,6 +65,7 @@
           </a></mat-checkbox>
         <p *ngIf="formgroupReg.invalid" class="form-error">* {{'login.allRequired' | translate}}</p>
         <span class="error-reg" *ngIf="errorReg">Pasdwords does not match*</span>
+        <span class="email-error" *ngIf="errorRegister">Email* allready exist</span>
         <button type="submit" [disabled]="!formgroupReg.valid" class="register btn btn-success">{{'login.register' | translate}}</button>
       </form>
     </div>

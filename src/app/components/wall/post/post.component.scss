@@ -47,9 +47,17 @@
             }
             .title2{
                 cursor: pointer;
+                margin-bottom: 5px;
                 span{
                     color: #000;
                 }
+            }
+            .count-vote{
+                width: 200px;
+                border: 1px solid #000;
+                height: 12px;
+                border-radius: 16px;
+                margin-bottom: 10px;
             }
         }
     }
