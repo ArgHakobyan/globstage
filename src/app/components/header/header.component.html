@@ -8,12 +8,12 @@
         <h4>{{'header.notific' | translate}}</h4>
         <div (click)="readReq(notify.id)" *ngFor="let notify of notRequests" class="notify-count {{ notify.id }}">
         <div *ngIf="notify.user"  class="notify-img" >
-          <img *ngIf="notify.type == 'invitation_add_friend'"
+          <img *ngIf="notify.user && notify.type == 'invitation_add_friend'"
           [src]="notify.user.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">
         </div>
          <div class="notify-content">
-          <p *ngIf="notify.type == 'invitation_add_friend'">
-            <a routerLink="/user-profile/{{notify['user'].id}}">{{ notify['user'].user_name + ' ' + notify['user'].user_last_name}}</a>
+          <p [ngClass]="'read-' + notify.read_status" *ngIf="notify.user && notify.type == 'invitation_add_friend'">
+            <a routerLink="/user-profile/{{notify.user.username}}">{{ notify.user.user_name + ' ' + notify.user.user_last_name}}</a>
             {{'header.reqFriend' | translate}}</p>
          </div>
           <p *ngIf="notify.user && notify.type == 'invitation_from_group'">
@@ -24,7 +24,7 @@
       </div>
     </mat-menu>
     <ul>
-      <li class="relative-length"><span *ngIf="this.notificationlength > 0" class="notify-length">{{ notificationlength }}</span>
+      <li class="relative-length"><span  class="notify-length">{{ notificationlength }}</span>
         <button matTooltip="{{'header.notific' | translate}}" class="not-btn" [matMenuTriggerFor]="menu"><i class="notify fa fa-bell" aria-hidden="true"></i></button>
       </li>
       <li routerLink="/friends"><button matTooltip="{{'header.friend' | translate}}"><i class="fa fa-users"></i></button></li>

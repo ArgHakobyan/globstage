@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
     if (this.userId) {
       setInterval(() => {
         this.getNotification();
-      }, 60000);
+      }, 6000);
     }
 
   }
@@ -52,6 +52,8 @@ export class HeaderComponent implements OnInit {
   getNotification() {
     this.friendService.getNotification().subscribe((res: any[]) => {
       this.notRequests = res;
+      console.log(this.notRequests);
+
 
       this.notificationlength = 0;
       res.forEach(element => {
@@ -59,7 +61,7 @@ export class HeaderComponent implements OnInit {
           this.notificationlength = this.notificationlength + 1;
         }
       });
-      console.log(this.notificationlength);
+      // console.log(this.notificationlength);
 
     });
 
