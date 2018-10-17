@@ -8,6 +8,10 @@ li{
 }
 .album-photo{
   padding: 0 4px;
+  //object-fit: cover;
+  height: 120px;
+  overflow: hidden;
+  margin-bottom: 10px;
   .delete{
     position: absolute;
     color: #c9302c;
@@ -25,7 +29,7 @@ li{
     margin-bottom: 6px;
     cursor: pointer;
     width: 100%;
-    height: 110px;
+
   }
 }
 .album-photo:hover{

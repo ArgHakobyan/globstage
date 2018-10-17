@@ -41,8 +41,8 @@ export class AttachmentsComponent implements OnInit {
       }
     ];
 
-    if (this.post.attactments && this.post.attactments.length > 0) {
-      this.imageAttaches  = this.post.attactments.filter(a => a.type === 'image');
+    if (this.post.attachments && this.post.attachments.length > 0) {
+      this.imageAttaches  = this.post.attachments.filter(a => a.type === 'image');
       if (this.imageAttaches && this.imageAttaches.length > 1) {
         this.imageAttaches.forEach(a => {
           this.galleryImages.push({big: a.path, small: a.path, medium: a.path });

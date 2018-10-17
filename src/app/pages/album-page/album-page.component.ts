@@ -82,11 +82,14 @@ export class AlbumPageComponent implements OnInit {
   }
 
   delete(id) {
-    this.albumService.deleteImage(id).subscribe( res => {
-      console.log(res);
+    if(window.confirm('Are sure you want to delete this item ?')) {
+      this.albumService.deleteImage(id).subscribe( res => {
+        console.log(res);
 
-      this.album.attachments = this.album.attachments.filter(v => v.id !== id);
-    });
+        this.album.attachments = this.album.attachments.filter(v => v.id !== id);
+      });
+    }
+
   }
 
 }

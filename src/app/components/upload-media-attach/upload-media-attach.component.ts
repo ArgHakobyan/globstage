@@ -1,14 +1,7 @@
-import {MatDialogRef} from '@angular/material';
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
-import {FileUploader} from 'ng2-file-upload';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {Component, OnInit, EventEmitter, Output, Inject} from '@angular/core';
 import {HttpService} from '../../services/http.service';
-import {getFromLocalStorage} from '../../utils/local-storage';
-import {appConfig} from '../../app.config';
 import {FilesService} from '../../services/files.service';
-
-
-const URL = `${appConfig.apiUrl}/files`;
-
 
 @Component({
   selector: 'app-upload-media-attach',
@@ -17,27 +10,16 @@ const URL = `${appConfig.apiUrl}/files`;
 })
 export class UploadMediaAttachComponent implements OnInit {
 
-  public uploader: FileUploader = new FileUploader({
-    url: URL, disableMultipart: false,
-    headers: [{
-      'name': 'Authorization',
-      'value': `Bearer ${getFromLocalStorage('GLOBE_AUTH').token}`
-    }]
-  });
-
   @Output() onUpload = new EventEmitter();
-
-
   public filesToUpload = [];
-  public hasBaseDropZoneOver = false;
-  public hasAnotherDropZoneOver = false;
-  public uploadedImage;
   public urls = [];
   public uploading = false;
+
   constructor(
       private httpService: HttpService,
       private filesService: FilesService,
-      public dialogRef: MatDialogRef<UploadMediaAttachComponent>
+      public dialogRef: MatDialogRef<UploadMediaAttachComponent>,
+      @Inject(MAT_DIALOG_DATA) public data: any
   ) {
   }
 
@@ -108,4 +90,5 @@ export class UploadMediaAttachComponent implements OnInit {
     this.filesToUpload = [];
     this.dialogRef.close();
   }
+
 }

@@ -50,11 +50,10 @@ export class NewVideoModalComponent implements OnInit {
       this.postServices.createWallPost(
         {
           'posttype': 'video',
-          'video_name': this.newpostvideo.value.namevideo,
-          'link_to_videos': this.newpostvideo.value.linkvideo,
-          'video_description': this.newpostvideo.value.descvideo,
-          'privacy': this.newpostvideo.value.selectmembers,
-          'video_image': '',
+          'post_conten': this.newpostvideo.value.namevideo,
+          'post_link': this.newpostvideo.value.linkvideo,
+          'post_description': this.newpostvideo.value.descvideo,
+          'post_privacy': this.newpostvideo.value.selectmembers,
         }).subscribe(res => {
         this.dialogRef.close(res);
       });

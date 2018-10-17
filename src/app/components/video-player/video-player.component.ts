@@ -29,13 +29,13 @@ export class VideoPlayerComponent implements OnInit {
           let settings = {};
           const container = document.getElementById('vid-' + this.video.id);
 
-          if (this.video.link_to_videos.indexOf('youtube.com') > -1) {
+          if (this.video.post_link.indexOf('youtube.com') > -1) {
             settings = {
               'techOrder': ['youtube'],
               'sources': [
                 {
                   'type': 'video/youtube',
-                  'src': this.video.link_to_videos
+                  'src': this.video.post_link
                 }
               ]
             };
@@ -45,7 +45,7 @@ export class VideoPlayerComponent implements OnInit {
               'sources': [
                 {
                   'type': 'video/vimeo',
-                  'src': this.video.link_to_videos
+                  'src': this.video.post_link
                 }
               ]
             };
@@ -55,7 +55,7 @@ export class VideoPlayerComponent implements OnInit {
               'sources': [
                 {
                   'type': 'video/vimeo',
-                  'src': this.video.link_to_videos
+                  'src': this.video.post_link
                 }
               ],
               'vimeo': { 'color': '#fbc51b'}

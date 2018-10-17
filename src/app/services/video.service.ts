@@ -18,15 +18,15 @@ export class VideoService {
   }
 
   addVideo(video) {
-    return this.http.post(`${appConfig.apiUrl}/videos`, video);
+    return this.http.post(`${appConfig.apiUrl}/posts`, video);
   }
 
   deleteVideo(id) {
-    return this.http.delete(`${appConfig.apiUrl}/videos/${id}`);
+    return this.http.delete(`${appConfig.apiUrl}/posts/${id}`);
   }
 
   getUserVideos(id) {
-    return this.http.get(`${appConfig.apiUrl}/videos/${id}`);
+    return this.http.get(`${appConfig.apiUrl}/posts?filter[author_id]=${id}&filter[posttype]=video`);
   }
 
 }

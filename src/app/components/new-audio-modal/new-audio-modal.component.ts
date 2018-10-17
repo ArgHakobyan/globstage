@@ -39,9 +39,9 @@ export class NewAudioModalComponent implements OnInit {
       this.audioServices.addAudio(
         {
           'audio_name' : audio,
-          'audio_link_url':cname,
-          'privacy':1
-        }).subscribe()
+          'audio_link_url': cname,
+          'privacy': 1
+        }).subscribe();
     }
     this.audioServices.addAudio(JSON.parse(localStorage.getItem('GLOBE_USER')).id).subscribe(
       audios => {
@@ -61,17 +61,18 @@ export class NewAudioModalComponent implements OnInit {
       );
       this.dialogRef.close();
       console.log(this.uploadedAudio);
-      
+
   }
 
   openDialogAttach() {
     const dialogRef = this.dialog.open(UploadMediaAttachComponent, {
       height: 'auto',
       width: '500px',
+      data: {fileTypes: ['audio/*']}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.uploadedAudio = JSON.parse(result);
+      this.uploadedAudio = result;
       console.log(result);
     });
   }

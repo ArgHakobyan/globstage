@@ -1,7 +1,3 @@
-<div class="progress">
-  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">
-  </div>
-</div>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -12,7 +8,7 @@
       </div>
       <div class="chooser-wrapper">
         <span>{{'uploader.uploader_text' | translate}}</span>
-        <input class="chooser" (change)="displaySelected($event)" type="file" multiple/>
+        <input  class="chooser" (change)="displaySelected($event)" type="file" multiple/>
       </div>
       <p>{{'uploader.files_selected' | translate}} : {{ urls?.length }}</p>
       <div style="text-align: right">

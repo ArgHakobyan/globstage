@@ -140,6 +140,9 @@
     margin: 6px 0;
     position: relative;
     cursor: pointer;
+    object-fit: cover;
+    height: 120px;
+    overflow: hidden;
     mat-icon {
       color: #c9302c;
       position: absolute;
@@ -147,7 +150,9 @@
       right: 15px;
     }
     img{
-      max-width: 100%;
+      width: 100%;
+      min-width: 100%;
+      min-height: 100%;
     }
     h3{
       font-size: 18px;

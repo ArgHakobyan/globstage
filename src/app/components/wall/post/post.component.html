@@ -1,4 +1,5 @@
 <article class="post-article" *ngIf="post.user || post.posttype == 'googlenews'">
+
   <div class="col-md-12 wall-user">
     <i (click)="deleteWallPost(post.id)" *ngIf="post.post_user_id == user.id || post.post_wall_id == user.id" class="delete-post fa fa-times"
       aria-hidden="true"></i>
@@ -22,6 +23,7 @@
       <div class="clearfix"></div>
     </div>
   </div>
+
   <div class="col-md-12">
     <div class="row">
       <div class="wall-content col-md-11">
@@ -57,18 +59,16 @@
               </div>
             </div>
           </div>
+
           <div *ngIf="post.posttype == 'video'" class="audio">
             <h6 *ngIf="post.user?.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
               video
             </h6>
-
-            <video controls="true">
-              <source [src]="post.post_attachment_url" type="video/mp4" />
-            </video>
+            <app-video-player [video]="post"></app-video-player>
             <div class="clearfix"></div>
           </div>
-
           <app-attachments [post]="post"></app-attachments>
+
         </div>
         <div class="col-md-12">
           <div class="row">
@@ -79,7 +79,9 @@
           </div>
         </div>
       </div>
+
       <div class="clearfix"></div>
+
       <div *ngIf="post.posttype !== 'googlenews'" class="like-dislike col-md-12">
         <i (click)="addLike()" class="like fa fa-thumbs-up" aria-hidden="true">
           <span>{{ post.post_like_count }}</span>
@@ -98,6 +100,7 @@
           </div>
         </i>
       </div>
+
       <div class="clearfix"></div>
       <app-comments class="col-md-12" [post]="post"></app-comments>
       <div class="clearfix"></div>
