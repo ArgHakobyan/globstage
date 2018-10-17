@@ -7,7 +7,7 @@
           <img *ngIf='! request.user.user_photo' src="/assets/imgs/no_ava_friend.png">
         </div>
         <div class="col-md-8">
-          <a [routerLink]="'/user-profile/'+request.user.id"><h4>{{ request.user.user_name + " " + request.user.user_last_name }}</h4></a>
+          <a [routerLink]="'/user-profile/'+friend.username"><h4>{{ request.user.user_name + " " + request.user.user_last_name }}</h4></a>
           <button (click)="confirmFriend()" type="submit" class="post btn-success save">{{'addFriend' | translate}}</button>
           <button (click)="unConfirmFriend()" type="submit" class="view-friend btn-success save">{{'ignore' | translate}}</button>
         </div>

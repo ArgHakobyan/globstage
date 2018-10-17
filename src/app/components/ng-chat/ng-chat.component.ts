@@ -140,7 +140,7 @@ export class NgChatComponent implements OnInit {
     this.chatService.getMessageNotify().subscribe((res: any[]) => {
       this.messNotReq = res;
       this.messnotifylength = res["body"].length;
-      console.log(res["body"].length);
+      // console.log(res["body"].length);
       
     })
   }

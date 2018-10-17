@@ -4,12 +4,23 @@
     <app-comment [comment]="comment" (onDelete)="filterComments($event)" ></app-comment>
   </div>
   <span *ngIf="post.post_comment_count > 4" class="show-all" (click)="getAllComments(post.id)">{{'comment.showAllComments' | translate}} {{post.post_comment_count}}</span>
-  <form [formGroup]="formgroupComment" action="" method="post">
-    <div class="add-comment" [ngClass]="activeClass">
-      <textarea formControlName="user_comment" (focus)="focusFunction()" (focusout)="focusOutFunction()"
-                class="text-comm" placeholder="{{'comment.addComm' | translate}}"></textarea>
-      <button (click)="postComment()" type="submit" class="add-comm btn btn-success">{{'comment.sendCom' | translate}}
-      </button>
-    </div>
-  </form>
+  <div class="commSmile" [ngClass]="smileClass">
+      <form [formGroup]="formgroupComment" action="" method="post">
+          <div class="add-comment" [ngClass]="activeClass">
+            <textarea formControlName="user_comment" [(ngModel)]="user_comment" (focus)="focusFunction()" (focusout)="focusOutFunction()"
+              class="text-comm" placeholder="{{'comment.addComm' | translate}}">
+            </textarea>
+              <div class="smiles col10">
+                  <ul>
+                      <li (click)="openSmiles();"><i class="fa fa-smile-o"></i></li>
+                  </ul>
+                  <app-wall-smiles [opened]="smileOpen" (smile)="addSmile($event)"></app-wall-smiles>
+              </div>
+            <div class="btn-send col90">
+                <button (click)="postComment()" type="submit" class="add-comm btn btn-success">{{'comment.sendCom' | translate}}
+                  </button>
+            </div>
+          </div>
+        </form>
+  </div>
 </div>

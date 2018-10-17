@@ -4,18 +4,16 @@
   </div>
   <div class="col-md-3 author">
     <a href="">{{comment.user?.user_name + ' ' + comment.user?.user_last_name}}</a>
-
   </div>
   <div class="col-md-4 date">
     <span class="date-comm">{{comment.comment_created_date}}</span>
   </div>
   <div class="col-md-4 delete-comm">
     <i (click)="deleteComment(comment.id)" *ngIf="comment.comment_user_id == user.id" class="delete fa fa-trash" aria-hidden="true"></i>
-
   </div>
-
-    <div class="comment-text">{{comment.comment_content}}</div>
-
+  <div class="comment-text">
+    <h6 class="comentContent" [innerHTML]=" comment.comment_content || '' | postemojify:true "></h6>
+  </div>
   <mat-icon *ngIf="comment.comment_user_id !== user.id" (click)="repComment()" class="replay">
     reply
   </mat-icon>
@@ -26,9 +24,8 @@
     vertical_align_top
   </mat-icon>
   <div class="clearfix"></div>
-  <app-comment class="replay-comment" (onDelete)="filterReplies($event)" [comment]="reply"  *ngFor="let reply of replies"></app-comment>
+  <app-comment class="replay-comment" (onDelete)="filterReplies($event)" [comment]="reply" *ngFor="let reply of replies"></app-comment>
 </div>
-
 <div *ngIf="replayInput" class="replay-block">
   <div class="add-comment" [formGroup]="formgroupComment">
     <textarea formControlName="user_comment" class="text-comm" placeholder="Replay comment"></textarea>

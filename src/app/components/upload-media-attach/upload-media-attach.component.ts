@@ -41,16 +41,23 @@ export class UploadMediaAttachComponent implements OnInit {
   ) {
   }
 
-  public fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
-
-  public fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-  }
 
   ngOnInit() {
+  }
 
+  detectFiles(event) {
+    this.urls = [];
+    let files = event.target.files;
+    console.log(event.target);
+    if (files) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.urls.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
   }
 
   onNoClick(): void {
@@ -64,7 +71,7 @@ export class UploadMediaAttachComponent implements OnInit {
       let reader = new FileReader();
       reader.onload = (e: any) => {
         this.urls.push(e.target.result);
-      }
+      };
       reader.readAsDataURL(file);
     }
   }

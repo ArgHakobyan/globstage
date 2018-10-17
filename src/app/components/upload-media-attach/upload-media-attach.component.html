@@ -1,29 +1,33 @@
 <div class="progress">
-    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">
-    </div>
+  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">
   </div>
+</div>
 <div class="container">
-<div class="row">
+  <div class="row">
     <div class="col-md-12">
-      <div class="thumb-wrapper"*ngFor="let url of urls; let i = index" >
+
+      <div class="thumb-wrapper" *ngFor="let url of urls; let i = index">
         <mat-icon (click)="removeFromUploads(i)">close</mat-icon>
         <img [src]="url" alt="" class="thumb">
       </div>
       <div class="chooser-wrapper">
         <span>{{'uploader.uploader_text' | translate}}</span>
-        <input class="chooser" (change)="displaySelected($event)" type="file"  multiple/>
+        <input class="chooser" (change)="displaySelected($event)" type="file" multiple/>
       </div>
-        <p>{{'uploader.files_selected' | translate}} : {{ urls?.length }}</p>
-    <div style="text-align: right">
+      <p>{{'uploader.files_selected' | translate}} : {{ urls?.length }}</p>
+      <div style="text-align: right">
 
-      <button style="margin-right: 12px" type="button" class="btn btn-success btn-s"
-              (click)="uploadAll()" [hidden]="!filesToUpload.length">
-        <mat-spinner *ngIf="uploading"></mat-spinner> {{'uploadAll' | translate}}
-      </button>
+        <button style="margin-right: 12px" type="button" class="btn btn-success btn-s"
+                (click)="uploadAll()" [hidden]="!filesToUpload.length">
+          <mat-spinner *ngIf="uploading"></mat-spinner>
+          {{'uploadAll' | translate}}
+        </button>
 
         <!-- <button (click)="postOkClick()" type="button" class="ok btn btn-default">{{'ok' | translate}}</button> -->
-        <button [disabled]="uploading" (click) = "onNoClick()" type="button" class="cancel btn btn-default">{{'cancel' | translate}}</button>
+        <button [disabled]="uploading" (click)="onNoClick()" type="button" class="cancel btn btn-default">{{'cancel' |
+          translate}}
+        </button>
       </div>
     </div>
-</div>
+  </div>
 </div>
