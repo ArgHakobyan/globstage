@@ -31,7 +31,6 @@
             invite you to join to the group
             <a href="http://globstage.com/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
           <h6 *ngIf="post.posttype !== 'groupinvitation' && post.posttype !== 'audio'  " [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
-
           <div *ngIf="post.posttype == 'audio'" class="audio">
             <h6 *ngIf="post.user?.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
               audio

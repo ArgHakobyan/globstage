@@ -61,9 +61,12 @@
 }
 .comment-text {
   display: block;
-  font-size: 12px;
   width: calc(100% - 90px);
   margin: -30px 0 0 62px;
+  .comentContent{
+    font-size: 14px;
+    font-weight: 400;
+  }
 }
 .date {
   text-align: center;

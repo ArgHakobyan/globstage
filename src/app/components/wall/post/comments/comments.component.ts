@@ -3,11 +3,16 @@ import { CommentService } from '../../../../services/comment.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {getFromLocalStorage} from '../../../../utils/local-storage';
 import { MatSnackBar } from '@angular/material';
+import { WallSmilesComponent } from '../../../../components/wall/wall-smiles/wall-smiles.component';
+
+
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+  styleUrls: ['./comments.component.scss'],
+  entryComponents: [
+    WallSmilesComponent],
 })
 export class CommentsComponent implements OnInit {
 
@@ -16,11 +21,13 @@ export class CommentsComponent implements OnInit {
   @Input() post;
   // public  comments;
   // public post;
+  smileOpen = false;
   public activeClass;
   public userAvatar = '';
   public smileClass = '';
   public replayInput = false;
   user;
+  user_comment;
   constructor(
     private commentService: CommentService,
     public snackBar: MatSnackBar,
@@ -28,7 +35,7 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit() {
     this.formgroupComment = new FormGroup({
-      user_comment: new FormControl()
+      user_comment: new FormControl()      
     });
     this.userAvatar = getFromLocalStorage('GLOBE_USER').user_photo || '/assets/imgs/no_ava_50.png';
     this.user = getFromLocalStorage('GLOBE_USER');
@@ -68,5 +75,16 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-}
+  openSmiles() {
+    this.smileOpen = !this.smileOpen;
+  }
 
+  addSmile(e) {
+    this.user_comment = this.formgroupComment.get('user_comment').value ? this.formgroupComment.get('user_comment').value + ` *${e}* ` : ` *${e}* `;
+    this.smileOpen = false;
+    console.log(e, this.formgroupComment.get('user_comment').value);
+  }
+
+
+
+}
