@@ -38,15 +38,18 @@ li{
       img{
         cursor: pointer;
         max-width: 100%;
-        width: 172px;
+        width: 140px;
+        margin: 4px 8px;
       }
       ul{
         position: absolute;
         list-style: none;
-        bottom: 0;
+        bottom: 4px;
         padding: 0;
-        width: 100%;
-        margin: 0;
+        width: 140px;
+        left: 0;
+        right: 0;
+        margin: auto;
         background: rgba(0, 0, 0, 0.56);
         color: #fff;
         text-align: center;

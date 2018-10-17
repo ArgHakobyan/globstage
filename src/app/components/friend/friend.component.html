@@ -1,12 +1,12 @@
 <div class="friend col-md-12">
   <div class="row">
     <div class="col-md-4 padd">
-      <img [routerLink]="'/user-profile/'+friend.id" [src]="friend.user_photo || '/assets/imgs/no_ava_friend.png'" alt="no_ava_friend.png">
+      <img [routerLink]="'/user-profile/'+friend.username" [src]="friend.user_photo || '/assets/imgs/no_ava_friend.png'" alt="no_ava_friend.png">
     </div>
     <div class="col-md-8 padd">
       <i (click)="deleteFriend()" class="delete fa fa-times" aria-hidden="true"></i>
-      <a [routerLink]="'/user-profile/'+friend.id"><h4>{{ friend.user_name + " " + friend.user_last_name }}</h4></a>
-      <button type="submit" [routerLink]="'/user-profile/'+friend.id" class="post btn-success save">{{'postWall' | translate}}</button>
+      <a [routerLink]="'/user-profile/'+friend.username"><h4>{{ friend.user_name + " " + friend.user_last_name }}</h4></a>
+      <button type="submit" [routerLink]="'/user-profile/'+friend.username" class="post btn-success save">{{'postWall' | translate}}</button>
       <button type="submit" [routerLink]="'/user-profile/'" class="view-friend btn-success save">{{'viewFriends' | translate}}</button>
     </div>
     <div class="clearfix"></div>

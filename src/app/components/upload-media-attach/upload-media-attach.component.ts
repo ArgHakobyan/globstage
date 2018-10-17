@@ -17,6 +17,9 @@ const URL = `${appConfig.apiUrl}/files`;
 })
 export class UploadMediaAttachComponent implements OnInit {
 
+
+  urls = new Array<string>();
+
   public uploader: FileUploader = new FileUploader({
     url: URL, disableMultipart: false,
     headers: [{
@@ -43,6 +46,21 @@ export class UploadMediaAttachComponent implements OnInit {
 
   public fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
+  }
+
+  detectFiles(event) {
+    this.urls = [];
+    let files = event.target.files;
+    console.log(event.target);
+    if (files) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.urls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
   }
 
 
