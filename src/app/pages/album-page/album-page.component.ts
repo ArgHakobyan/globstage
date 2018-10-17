@@ -34,15 +34,14 @@ export class AlbumPageComponent implements OnInit {
       this.route.params.subscribe( params => {
         this.album_id = params.id;
         this.albumService.getAlbumsImages(this.album_id).subscribe(res => {
-            this.album = res;
+            this.album = res[0];
             if (this.album.author_id === getFromLocalStorage('GLOBE_USER').id) {
               this.isMyAlbum = true;
             } else {
-              this.userService.getUser(this.album.author_id).subscribe( user =>{
+              this.userService.getUser(this.album.author_id).subscribe( user => {
                 this.albumUser = user;
               });
             }
-
             console.log(res);
           });
     });
@@ -68,14 +67,13 @@ export class AlbumPageComponent implements OnInit {
     });
 
     dialogRef.componentInstance.onUpload.subscribe((res: any) => {
-      // console.log(res);
-      attaches.push(JSON.parse(res).id);
+      console.log(res);
+      attaches.push(res.id);
       console.log(attaches);
-
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.albumService.updateAlbum({'album_id': this.album_id, files: attaches}).subscribe( res => {
+      this.albumService.updateAlbum({'post_id': this.album_id, 'posttype': 'album', files: attaches}).subscribe( res => {
         this.album = res;
         console.log(res);
 
@@ -87,7 +85,7 @@ export class AlbumPageComponent implements OnInit {
     this.albumService.deleteImage(id).subscribe( res => {
       console.log(res);
 
-      this.album.attachmentwithcomments = this.album.attachmentwithcomments.filter(v => v.id !== id);
+      this.album.attachments = this.album.attachments.filter(v => v.id !== id);
     });
   }
 

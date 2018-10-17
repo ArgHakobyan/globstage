@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = getFromLocalStorage('GLOBE_USER');
-    this.userService.getUser(getFromLocalStorage('GLOBE_USER').username).subscribe((user: any) => {
+    this.userService.getUserByUsername(getFromLocalStorage('GLOBE_USER').username).subscribe((user: any) => {
       this.userProfile = user;
       setToLocalStorage('GLOBE_USER', user);
     });

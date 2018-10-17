@@ -15,16 +15,19 @@ export class AlbumService {
   ) { }
 
   createAlbum(album) {
-    return this.http.post(`${appConfig.apiUrl}/albums`, album);
+    return this.http.post(`${appConfig.apiUrl}/posts`, album);
   }
+
   getAlbums() {
-    return this.http.get(`${appConfig.apiUrl}/albums/user-albums/${JSON.parse(localStorage.getItem('GLOBE_USER')).id}`);
+    return this.http.get(`${appConfig.apiUrl}/posts/album/${JSON.parse(localStorage.getItem('GLOBE_USER')).id}`);
   }
-  getAlbumsImages(id){
-    return this.http.get(`${appConfig.apiUrl}/albums/${id}`);
+
+  getAlbumsImages(id) {
+    return this.http.get(`${appConfig.apiUrl}/posts/${id}`);
   }
-  updateAlbum(updateAlb){
-    return this.http.post(`${appConfig.apiUrl}/albums/update-files`, updateAlb);
+
+  updateAlbum(updateAlb) {
+    return this.http.post(`${appConfig.apiUrl}/posts/update-files`, updateAlb);
   }
 
   deleteImage(id) {

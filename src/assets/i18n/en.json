@@ -122,7 +122,7 @@
     "notHide": "Hide",
     "notShow": "Show"
 
-    
+
   },
   "settings":{
     "changePass": "Change password",
@@ -221,6 +221,10 @@
     "addComm": "Add a comment",
     "sendCom": "Send",
     "showAllComments": "Show all comments"
+  },
+  "uploader": {
+    "files_selected": "Files selected",
+    "uploader_text": "Click to select or DRAG and DROP files here"
   },
   "byPeople": "By the people",
   "onVideos": "On the videos",

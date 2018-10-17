@@ -1,63 +1,136 @@
 @import '../../../variable';
-.clearfix{clear: both;}
-img{
+
+.clearfix {
+  clear: both;
+}
+
+img {
   max-width: 100%;
 }
-.my-drop-zone { border: dotted 3px lightgray; }
-.nv-file-over { border: dotted 3px red; }
-.another-file-over-class { border: dotted 3px green; }
-html, body { height: 100%; }
-::ng-deep .mat-dialog-container{
+
+.my-drop-zone {
+  border: dotted 3px lightgray;
+}
+
+.nv-file-over {
+  border: dotted 3px red;
+}
+
+.another-file-over-class {
+  border: dotted 3px green;
+}
+
+html, body {
+  height: 100%;
+}
+
+::ng-deep .mat-dialog-container {
   position: relative;
   padding: 15px;
 }
-  .progress{
-    margin-bottom: 10px;
-    position: absolute;
+
+.progress {
+  margin-bottom: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+
+.progress-bar {
+  background: $color-blue;
+}
+
+.chooser-wrapper {
+  border: 2px solid #1b6d85;
+  border-radius: 6px;
+  text-align: center;
+  color: #1b6d85;
+  height: 120px;
+  position: relative;
+  span{
+    display: inline-block;
+    margin-top: 32px;
+  }
+  .chooser {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 4px;
+    position: absolute;
   }
-  .progress-bar{
-    background: $color-blue;
+}
+
+.mat-spinner::ng-deep circle, .mat-progress-spinner::ng-deep circle {
+  stroke: #fff !important;
+}
+
+.mat-spinner::ng-deep svg, .mat-progress-spinner::ng-deep svg{
+  width: 20px !important; height: 20px !important;
+}
+
+.mat-spinner {
+  float:left;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0px 10px 0px 0px;
+}
+
+.thumb-wrapper{
+  width: 80px;
+  height: 80px;
+  margin: 12px;
+  object-fit: cover;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  .thumb{
+    min-width: 100%;
+    min-height: 100%;
   }
-  .chooser{
-    margin-bottom: 10px;
-    border: 1px solid $color-blue;
-    border-radius: 6px;
-    padding: 4px 8px;
-    background: $color-blue;
+  mat-icon{
+    color: #c9302c;
     cursor: pointer;
+    position: absolute;
+    right: 2px;
+    top: 2px;
   }
-  .upload-btn{
-    text-align: right;
-    width: 100%;
-    margin-top: 10px;
-    .ok{
-      background: linear-gradient(#FFFFFF, #F5F5F5) repeat scroll 0 0 #FCFCFC;
-      border: 1px solid #E0E0E0;
-      border-radius: 3px;
-      color: #3F4752;
-      font-size: 12px;
-      padding: 4px 10px;
-      margin-right: 4px;
-      transition: 0.3s;
-    }
-    .ok:hover{
-      background: $color-green;
-      color: #fff;
-      transition: 0.3s;
-    }
-    .cancel{
-      background: linear-gradient(#FFFFFF, #F5F5F5) repeat scroll 0 0 #FCFCFC;
-      border: 1px solid #E0E0E0;
-      border-radius: 3px;
-      color: #3F4752;
-      font-size: 12px;
-      padding: 4px 15px;
-    }
-    .cancel:hover{
-      background: linear-gradient(#FFFFFF, #E9E9E9);
-    }
+}
+
+
+
+.upload-btn {
+  text-align: right;
+  width: 100%;
+  margin-top: 10px;
+  .ok {
+    background: linear-gradient(#FFFFFF, #F5F5F5) repeat scroll 0 0 #FCFCFC;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
+    color: #3F4752;
+    font-size: 12px;
+    padding: 4px 10px;
+    margin-right: 4px;
+    transition: 0.3s;
   }
+  .ok:hover {
+    background: $color-green;
+    color: #fff;
+    transition: 0.3s;
+  }
+  .cancel {
+    background: linear-gradient(#FFFFFF, #F5F5F5) repeat scroll 0 0 #FCFCFC;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
+    color: #3F4752;
+    font-size: 12px;
+    padding: 4px 15px;
+    margin-left: 16px;
+    display: inline-block;
+  }
+  .cancel:hover {
+    background: linear-gradient(#FFFFFF, #E9E9E9);
+  }
+}

@@ -140,6 +140,12 @@
     margin: 6px 0;
     position: relative;
     cursor: pointer;
+    mat-icon {
+      color: #c9302c;
+      position: absolute;
+      top: 5px;
+      right: 15px;
+    }
     img{
       max-width: 100%;
     }
@@ -159,7 +165,7 @@
 }
 
 // @media only screen and (max-width: 700px) {
-     
+
 //     .upload{
 //         width: 70%;
 //     }

@@ -27,7 +27,7 @@
         <div class="search-group col-md-12">
           <div class="row">
               <div class="col-md-11">
-                <h2 class="group-title">{{album?.name}}</h2>
+                <h2 class="group-title">{{album?.post_title}}</h2>
               </div>
               <div class="upload-btn col-md-1" *ngIf="isMyAlbum">
                 <img style="width: 100%; cursor: pointer" (click)="openDialogAttach()" src="/assets/imgs/Images_no_albums.png" alt="Images_no_albums.png">
@@ -37,7 +37,7 @@
         </div>
         <div class="col-md-12">
           <div class="row">
-            <div class="album-photo col-md-3" *ngFor="let img of album?.attachmentwithcomments">
+            <div class="album-photo col-md-3" *ngFor="let img of album?.attachments">
               <i class="delete fa fa-trash" aria-hidden="true" *ngIf="isMyAlbum" (click)="delete(img.id)"></i>
               <!-- <img [src]="img.path" alt="no-avatar"> -->
               <a data-fancybox="gallery" [href]="img.path"><img [src]="img.path"></a>

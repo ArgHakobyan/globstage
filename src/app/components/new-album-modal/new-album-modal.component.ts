@@ -24,8 +24,11 @@ export class NewAlbumModalComponent implements OnInit {
 
   ngOnInit() {
     this.newAlbum = this._fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required]
+      post_title: ['', Validators.required],
+      post_description: ['', Validators.required],
+      can_see: ['0', Validators.required],
+      can_comment: ['0', Validators.required],
+      posttype: ['album']
     });
   }
 
@@ -36,7 +39,7 @@ export class NewAlbumModalComponent implements OnInit {
   createAlbum($event) {
     if (this.newAlbum.valid) {
       this.albumService.createAlbum(this.newAlbum.value).subscribe(res => {
-        console.log(res);
+        this.dialogRef.close(res);
       });
     }
   }
