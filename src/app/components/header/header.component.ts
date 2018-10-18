@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
     if (this.userId) {
       setInterval(() => {
         this.getNotification();
-      }, 6000);
+      }, 40000);
     }
 
   }

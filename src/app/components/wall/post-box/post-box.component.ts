@@ -99,9 +99,8 @@ export class PostBoxComponent implements OnInit {
     });
 
     dialogRef.componentInstance.onUpload.subscribe((res: any) => {
-      console.log(JSON.parse(res).id);
-      this.attachements.push(JSON.parse(res).id);
-      this.attached.push(JSON.parse(res));
+      this.attachements.push((res).id);
+      this.attached.push((res));
     });
 
     dialogRef.afterClosed().subscribe(result => {
