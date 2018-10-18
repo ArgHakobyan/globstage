@@ -207,7 +207,17 @@
     "sett": "Settings",
     "signout": "Sign Out",
     "reqFriend": "send you friend request",
-    "reqGroup": "Settings"
+    "reqGgroup": "Settings",
+    "navig": "Navigation",
+    "rest": "Restaurant",
+    "hotel": "Hotel",
+    "bar": "Bar",
+    "cafe": "Cafe",
+    "balance": "Account Balance",
+    "park": "Parking",
+    "grocery": "Grocery Store",
+    "gas": "Gas Station",
+    "hosp": "Hospital"
   },
   "glob": {
     "profile": "Profile",

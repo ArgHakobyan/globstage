@@ -7,6 +7,32 @@
   background: url("../../../assets/imgs/Globstagemap.png") center right no-repeat;
   cursor: pointer;
 }
+.show-map{
+  background: #06949d;
+  ul{
+    margin-bottom: 0;
+    padding: 10px;
+    li{
+      list-style: none;
+      display: inline-block;
+      margin-right: 10px;
+      width: 70px;
+      height: 40px;
+      background: none;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      mat-checkbox{
+        margin-left: 10px;
+
+      }
+      .mat-icon{
+        font-size: 22px;
+        color: #fff;
+        margin-top: 6px;
+    }
+  }
+}
+}
 .map-block{
   margin-top: 34px;
   border-bottom: 2px solid rgb(149, 200, 0);

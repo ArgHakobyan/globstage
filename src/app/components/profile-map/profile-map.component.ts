@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 declare var navigator;
 import {UserService} from '../../services/user.service';
 import {getFromLocalStorage, removeFromLocalStorage, setToLocalStorage} from '../../utils/local-storage';
-
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-profile-map',
