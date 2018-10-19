@@ -98,19 +98,19 @@ export class NgChatComponent implements OnInit {
   public messnotifylength;
 
   constructor(
-    private chatService: ChatService,
-    public dialog: MatDialog,
+      private chatService: ChatService,
+      public dialog: MatDialog,
   ) {
   }
 
   get filteredUsers(): User[] {
     if (this.searchInput.length > 0) {
       // Searches in the friend list by the inputted search string
-      return this.users.body.filter(x => {
+      return this.users.filter(x => {
         return x.user_name.toUpperCase().includes(this.searchInput.toUpperCase()) || x.user_last_name.toUpperCase().includes(this.searchInput.toUpperCase());
       });
     }
-    return this.users.body;
+    return this.users;
   }
 
   private get localStorageKey(): string {
@@ -119,8 +119,8 @@ export class NgChatComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userId = getFromLocalStorage('GLOBE_USER').id
-    
+    this.userId = getFromLocalStorage('GLOBE_USER').id;
+
     // window.newMessage = '';
     this.bootstrapChat();
     this.chatService.change.subscribe(res => {
@@ -128,21 +128,20 @@ export class NgChatComponent implements OnInit {
       this.openChatWindow(res, false, false);
       console.log(res);
     });
-    if(this.userId){
+    if (this.userId) {
       setInterval(() => {
         this.getMessageNotify();
       }, 10000);
     }
-    
+
   }
 
-  getMessageNotify(){
+  getMessageNotify() {
     this.chatService.getMessageNotify().subscribe((res: any[]) => {
       this.messNotReq = res;
-      this.messnotifylength = res["body"].length;
-      // console.log(res["body"].length);
-      
-    })
+      this.messnotifylength = res['body'].length;
+
+    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -350,9 +349,9 @@ export class NgChatComponent implements OnInit {
   // Sends a request to load the friends list
   private fetchFriendsList(isBootstrapping: boolean): void {
     this.adapter.listFriends()
-      .map((users: User[]) => {
-        this.users = users;
-      }).subscribe(() => {
+        .map((users: User[]) => {
+          this.users = users;
+        }).subscribe(() => {
       if (isBootstrapping) {
         this.restoreWindowsState();
       }
@@ -410,15 +409,15 @@ export class NgChatComponent implements OnInit {
       // Loads the chat history via an RxJs Observable
       if (this.historyEnabled) {
         this.adapter.getMessageHistory(newChatWindow.chattingTo.id)
-          .map((result: any) => {
+            .map((result: any) => {
 
-            newChatWindow.messages = result.body.concat(newChatWindow.messages);
-            newChatWindow.isLoadingHistory = false;
+              newChatWindow.messages = result.body.concat(newChatWindow.messages);
+              newChatWindow.isLoadingHistory = false;
 
-            setTimeout(() => {
-              this.scrollChatWindowToBottom(newChatWindow);
-            });
-          }).subscribe();
+              setTimeout(() => {
+                this.scrollChatWindowToBottom(newChatWindow);
+              });
+            }).subscribe();
       }
 
       this.windows.unshift(newChatWindow);
@@ -617,14 +616,14 @@ export class NgChatComponent implements OnInit {
       // window.messages.push(message);
 
       this.adapter.sendMessage(message).subscribe(res => {
-        console.log(message);
-        console.log(res);
-          res.body ? window.messages.push(res.body) : window.messages.push(res);
-        this.scrollChatWindowToBottom(window);
-      },
-        error => {
-        console.log(error);
-        });
+            console.log(message);
+            console.log(res);
+            res.body ? window.messages.push(res.body) : window.messages.push(res);
+            this.scrollChatWindowToBottom(window);
+          },
+          error => {
+            console.log(error);
+          });
 
       window.newMessage = ''; // Resets the new message input
 
