@@ -53,11 +53,13 @@ export class ProfileMapComponent implements OnInit {
             'stylers': [{'invert_lightness': true}, {'saturation': 10}, {'lightness': 30}, {'gamma': 0.5}, {'hue': '#435158'}]
           }]
         });
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-          map: this.map,
-          animation: google.maps.Animation.BOUNCE,
-        });
+        if(this.user.show_on_map == true){
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+            map: this.map,
+            animation: google.maps.Animation.BOUNCE,
+          });
+        }
       });
 
     }

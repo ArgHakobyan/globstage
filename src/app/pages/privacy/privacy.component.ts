@@ -39,7 +39,7 @@ export class PrivacyComponent implements OnInit {
         basic_info: new FormControl(res.basic_info ? res.basic_info.toString() : "1"),
         see_guests: new FormControl(res.see_guests ? res.see_guests.toString() : "1"),
         notification: new FormControl(res.notification ? res.notification.toString() : "1"),
-        location: new FormControl(res.location ? res.location.toString() : "1"),
+        location: new FormControl(res.location ? res.location.toString() : "0"),
 
       });
       console.log(res);
@@ -59,4 +59,9 @@ export class PrivacyComponent implements OnInit {
     });
   }
 
+  onChange2(){
+    this.userService.reqLocation(this.infoPrivacy.value).subscribe(ret =>{
+      console.log(ret);
+    });
+  }
 }
