@@ -1,45 +1,54 @@
 <div class="col-md-12">
   <div class="row">
-      <div class="col-md-1 user-img">
-        <div class="user-avatar">
+    <div class="col-md-1 user-img">
+      <div class="user-avatar">
         <a href=""><img [src]="userAvatar" alt="no_ava_50"></a>
-        </div>
       </div>
-      <div class="col-md-11 text-area" [ngClass]="smileClass">
-        <form [formGroup]="formgroupWall" action="" method="post">
+    </div>
+    <div class="col-md-11 text-area" [ngClass]="smileClass">
+      <form [formGroup]="formgroupWall" action="" method="post">
         <textarea class="wall-text" formControlName="user_wall" [(ngModel)]="user_wall" (focus)="smileFocusFunction()"
-        (focusout)="smileFocusOutFunction()"
-        placeholder="{{'wall.wallPlace' | translate}}?"></textarea>
-    <div class="smile-block">
-        <div class="row">
+                  (focusout)="smileFocusOutFunction()"
+                  placeholder="{{'wall.wallPlace' | translate}}?"></textarea>
+        <div class="smile-block">
+          <div class="row">
             <div class="smiles col-md-8">
-                <ul>
-                    <li (click)="openSmiles();"><i class="fa fa-smile-o"></i></li>
-                    <li (click)="openDialogAttach()"><i class="fa fa-picture-o"></i></li>
-                    <li (click)="openDialogVideo()"><i class="fa fa-video-camera"></i></li>
-                    <li (click)="openDialogAudio()"><i class="fa fa-music"></i></li>
-                    <li (click)="openDialogAttach()"><i class="fa fa-file-pdf-o"></i></li>
-                    <li (click)="openDialogPoll()"><i class="fa fa-chain"></i></li>
-                </ul>
-                <app-wall-smiles [opened]="smileOpen" (smile)="addSmile($event)"></app-wall-smiles>
+              <ul>
+                <li (click)="openSmiles();"><i class="fa fa-smile-o"></i></li>
+                <li (click)="openDialogAttach()"><i class="fa fa-picture-o"></i></li>
+                <li (click)="openDialogVideo()"><i class="fa fa-video-camera"></i></li>
+                <li (click)="openDialogAudio()"><i class="fa fa-music"></i></li>
+                <li (click)="openDialogAttach()"><i class="fa fa-file-pdf-o"></i></li>
+                <li (click)="openDialogPoll()"><i class="fa fa-chain"></i></li>
+              </ul>
+              <app-wall-smiles [opened]="smileOpen" (smile)="addSmile($event)"></app-wall-smiles>
             </div>
             <div class="share-btn col-md-4">
-                <button (click)="createPost()" type="submit" class="share btn btn-success">{{'wall.share' | translate}}</button>
+              <button *ngIf="post.posttype != 'video'" (click)="createPost()" type="submit"
+                      class="share btn btn-success">{{'wall.share' | translate}}
+              </button>
+              <button *ngIf="post.posttype == 'video'" (click)="updatePost()" type="submit"
+                      class="share btn btn-success">Update
+              </button>
             </div>
-        <div class="clearfix"></div>
-           <div class="attaches" *ngFor="let img of attached">
+            <div class="clearfix"></div>
+            <div class="attaches" *ngFor="let img of attached">
               <img class="attaches post_attach" *ngIf="img.type=='image'" [src]="img.path" alt="">
               <a target="_blank" [href]="img.path"><img class="attaches post_attach doc-hover" *ngIf="img.type=='pdf'"
-              src="/assets/imgs/pdf_icon_svg_by_qubodup-d9n1mhy.png" alt=""></a>
+                                                        src="/assets/imgs/pdf_icon_svg_by_qubodup-d9n1mhy.png"
+                                                        alt=""></a>
               <a target="_blank" [href]="img.path"><img class="attaches post_attach doc-hover" *ngIf="img.type=='doc'"
-              src="/assets/imgs/2000px-MS_word_DOC_icon.svg.png" alt=""></a>
-         </div>
-          <app-video-player *ngIf="post && post.posttype == 'video'"  [video]="post?.link_to_videos"></app-video-player>
-        <div class="clearfix"></div>
+                                                        src="/assets/imgs/2000px-MS_word_DOC_icon.svg.png" alt=""></a>
+
+            </div>
+            <app-video-player *ngIf="post && post.posttype == 'video'" [video]="post"></app-video-player>
+            <div class="clearfix"></div>
+
+            <div class="clearfix"></div>
+          </div>
         </div>
-        </div>
-        </form>
-      </div>
-      <div class="clearfix"></div>
+      </form>
+    </div>
+    <div class="clearfix"></div>
   </div>
 </div>

@@ -92,11 +92,14 @@ export class PostBoxComponent implements OnInit {
   }
 
   updatePost() {
-    this.post.post_content
+    this.post.post_content = this.formgroupWall.get('user_wall').value;
+    this.postsService.updateWallPost(this.post).subscribe( res => {
+      this.postCreated.emit();
+      this.formgroupWall.get('user_wall').setValue('');
+      this.post = {};
+
+    });
   }
-
-
-
 
   openDialogAttach() {
     const dialogRef = this.dialog.open(UploadMediaAttachComponent, {
@@ -120,7 +123,7 @@ export class PostBoxComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.post = result;
+        this.post = result.body;
       }
     });
   }

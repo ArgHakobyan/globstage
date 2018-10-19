@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+
 declare var navigator;
 import {UserService} from '../../services/user.service';
 import {getFromLocalStorage, removeFromLocalStorage, setToLocalStorage} from '../../utils/local-storage';
@@ -28,17 +29,7 @@ export class ProfileMapComponent implements OnInit {
 
 
     });
-    // this.map = new google.maps.Map(this.gmapElement.nativeElement, {
-    //   center: new google.maps.LatLng(40.089099, 44.538189),
-    //   zoom: 10,
-    //   gestureHandling: 'cooperative',
-    //   mapTypeId: google.maps.MapTypeId.ROADMAP,
-    //   styles: [{
-    //     'featureType': 'all',
-    //     'elementType': 'all',
-    //     'stylers': [{'invert_lightness': true}, {'saturation': 10}, {'lightness': 30}, {'gamma': 0.5}, {'hue': '#435158'}]
-    //   }]
-    // }); 
+
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -53,16 +44,49 @@ export class ProfileMapComponent implements OnInit {
             'stylers': [{'invert_lightness': true}, {'saturation': 10}, {'lightness': 30}, {'gamma': 0.5}, {'hue': '#435158'}]
           }]
         });
-        if(this.user.show_on_map == true){
-          var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-            map: this.map,
-            animation: google.maps.Animation.BOUNCE,
-          });
-        }
+
+        const marker = new google.maps.Marker({
+          position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+          map: this.map,
+          animation: google.maps.Animation.BOUNCE,
+        });
       });
 
+    } else {
+      this.map = new google.maps.Map(this.gmapElement.nativeElement, {
+        center: new google.maps.LatLng(42, 42),
+        zoom: 12,
+        gestureHandling: 'cooperative',
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [{
+          'featureType': 'all',
+          'elementType': 'all',
+          'stylers': [{'invert_lightness': true}, {'saturation': 10}, {'lightness': 30}, {'gamma': 0.5}, {'hue': '#435158'}]
+        }]
+      });
+      const marker = new google.maps.Marker({
+        position: new google.maps.LatLng(42, 42),
+        map: this.map,
+        animation: google.maps.Animation.BOUNCE,
+      });
     }
+  }
+
+  updateMap() {
+    const styles = {
+      default: null,
+      hide: [
+        {
+          featureType: 'poi.business',
+          stylers: [{visibility: 'off'}]
+        },
+        {
+          featureType: 'transit',
+          elementType: 'labels.icon',
+          stylers: [{visibility: 'off'}]
+        }
+      ]
+    };
   }
 
 }
