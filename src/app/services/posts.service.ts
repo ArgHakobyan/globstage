@@ -26,7 +26,7 @@ export class PostsService {
   getGroupPosts(id) {
     return this.http.get(`/posts?filter[post_group_id]=${id}`);
   }
-  
+
   getAudiosPosts(id) {
     return this.http.get(`/posts?filter[posttype]=audio&filter[post_user_id]=${id}`);
   }
@@ -53,6 +53,10 @@ export class PostsService {
 
   selectQuest(vote) {
     return this.http.post('/votes', vote);
+  }
+
+  updateWallPost(post) {
+    return this.http.put(`/posts/${post.id}`, post);
   }
 
 }
