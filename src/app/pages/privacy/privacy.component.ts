@@ -13,6 +13,7 @@ export class PrivacyComponent implements OnInit {
 
   public infoPrivacy: FormGroup;
   public notification: any;
+  public location: any;
   
   constructor(private userService: UserService) {
     this.infoPrivacy = new FormGroup({
@@ -22,7 +23,8 @@ export class PrivacyComponent implements OnInit {
       can_comment: new FormControl("1"),
       basic_info: new FormControl("1"),
       see_guests: new FormControl("1"),
-      notification: new FormControl("1")
+      notification: new FormControl("1"),
+      location: new FormControl("1")
     });
 
    }
@@ -37,6 +39,7 @@ export class PrivacyComponent implements OnInit {
         basic_info: new FormControl(res.basic_info ? res.basic_info.toString() : "1"),
         see_guests: new FormControl(res.see_guests ? res.see_guests.toString() : "1"),
         notification: new FormControl(res.notification ? res.notification.toString() : "1"),
+        location: new FormControl(res.location ? res.location.toString() : "1"),
 
       });
       console.log(res);

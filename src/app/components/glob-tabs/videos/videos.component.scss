@@ -95,19 +95,11 @@
       }
     }
   }
-  .img-alb {
-    img {
-      width: 130px;
-    }
-  }
-  .music-alb {
-    img {
-      width: 130px;
-    }
-  }
+  
   .video-alb {
+    text-align: right;
     img {
-      width: 130px;
+      width: 65px;
     }
   }
   .upload {
@@ -133,7 +125,7 @@
 
 .video-wrap {
   width: 255px;
-  margin: auto;
+  margin-top: 10px;
   display: inline-block;
   box-sizing: border-box;
   overflow: hidden;
@@ -151,17 +143,26 @@
     border-radius: 3px;
   }
   p{
-    margin-left: 5px;
-    margin-bottom: 0;
+    margin: 6px 0;
+    color: $color-blue;
+    letter-spacing: 2px
   }
 }
 
 .video-wrap:hover {
   .delete {
-    right: 16px !important;
+    right: 25px !important;
+    top: 10px;
   }
 }
 
+@media only screen and (max-width: 1200px){
+  .video-alb {
+    img {
+      width: 50px !important;
+    }
+  }
+}
 
 @media only screen and (max-width: 700px) {
      

@@ -54,11 +54,14 @@ export class PostComponent implements OnInit {
   }
 
   deleteWallPost(id) {
-    this.postService.deleteWallPost(id).subscribe(res => {
-      this.onDelete.emit({message: 'postDeleted', id: id});
-    }, err => {
-      this.onDelete.emit({message: 'postDeleted', id: id});
-    });
+    if(window.confirm('Are sure you want to delete this post ?')){
+      this.postService.deleteWallPost(id).subscribe(res => {
+        this.onDelete.emit({message: 'postDeleted', id: id});
+      }, err => {
+        this.onDelete.emit({message: 'postDeleted', id: id});
+      });
+    }
+   
   }
 
   selectQuest(id){
