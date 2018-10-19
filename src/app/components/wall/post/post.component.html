@@ -26,11 +26,11 @@
 
   <div class="col-md-12">
     <div class="row">
-      <div class="wall-content col-md-11">
+      <div class="wall-content col-md-12">
         <div class="wall-atach-photo">
           <img *ngIf="post.posttype == 'googlenews' && post.attachments[0].path !==''" [src]="post.attachments[0].path" alt="post.attachments[0].path">
-          <h6 *ngIf="post.user && post.posttype == 'groupinvitation'">{{ post.user.user_name + ' '+ post.user.user_last_nam }}
-            invite you to join to the group
+          <h6 *ngIf="post.user && post.posttype == 'groupinvitation'">{{ post.user.user_name + ' '+ post.user.user_last_nam
+            }} invite you to join to the group
             <a href="http://globstage.com/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
           <h6 *ngIf="post.posttype !== 'groupinvitation' && post.posttype !== 'audio'  " [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
           <div *ngIf="post.posttype == 'audio'" class="audio">
@@ -42,25 +42,23 @@
             </audio>
             <div class="clearfix"></div>
           </div>
-
           <div *ngIf="post.posttype == 'vote'" class="poll">
             <div class="col-md-12">
               <div class="row">
                 <div class="wall-poll">
                   <h4 class="name">{{ post.post_poll_title }}</h4>
                   <div *ngFor="let question of post.questions">
-                    <p  (click)="selectQuest(question.id)" class="title2">{{ question.title }}
-                  </p>
-                  <div [ngStyle]="{'background': 'linear-gradient(90deg, #35bbbd ' + question.percent + '%, #fff 0%)'}"
-                    class="count-vote">
-                  </div>
+                    <p (click)="selectQuest(question.id)" class="title2">{{ question.title }}
+                    </p>
+                    <div [ngStyle]="{'background': 'linear-gradient(90deg, #35bbbd ' + question.percent + '%, #fff 0%)'}" class="count-vote">
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div *ngIf="post.posttype == 'video'" class="audio">
+          <div *ngIf="post.posttype == 'video'" class="video">
             <h6 *ngIf="post.user?.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
               video
             </h6>

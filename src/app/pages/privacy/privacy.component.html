@@ -71,6 +71,14 @@
               </mat-select>
             </mat-form-field>
           </p>
+          <p>Location  :
+            <mat-form-field>
+              <mat-select formControlName="location" (selectionChange)="onChange1()">
+                <mat-option value="1">Show on map</mat-option>
+                <mat-option value="0">Unshow</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
         </form>
       </div>
     </div>

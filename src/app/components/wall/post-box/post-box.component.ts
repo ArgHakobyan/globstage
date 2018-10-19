@@ -37,6 +37,7 @@ export class PostBoxComponent implements OnInit {
   smileOpen = false;
   user_wall;
   videosid = [];
+  post: any = {};
 
   constructor(
     private postsService: PostsService,
@@ -90,6 +91,11 @@ export class PostBoxComponent implements OnInit {
     }
   }
 
+  updatePost() {
+    this.post.post_content
+  }
+
+
 
 
   openDialogAttach() {
@@ -99,9 +105,8 @@ export class PostBoxComponent implements OnInit {
     });
 
     dialogRef.componentInstance.onUpload.subscribe((res: any) => {
-      console.log(JSON.parse(res).id);
-      this.attachements.push(JSON.parse(res).id);
-      this.attached.push(JSON.parse(res));
+      this.attachements.push((res).id);
+      this.attached.push((res));
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -115,8 +120,7 @@ export class PostBoxComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.videos.push(result);
-        this.videosid.push(result.id)
+        this.post = result;
       }
     });
   }

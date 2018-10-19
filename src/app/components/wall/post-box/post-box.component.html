@@ -34,7 +34,7 @@
               <a target="_blank" [href]="img.path"><img class="attaches post_attach doc-hover" *ngIf="img.type=='doc'"
               src="/assets/imgs/2000px-MS_word_DOC_icon.svg.png" alt=""></a>
          </div>
-          <app-video-player *ngFor="let video of videos" [url]="video.link_to_videos"></app-video-player>
+          <app-video-player *ngIf="post && post.posttype == 'video'"  [video]="post?.link_to_videos"></app-video-player>
         <div class="clearfix"></div>
         </div>
         </div>

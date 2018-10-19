@@ -10,14 +10,12 @@
     <div class="clearfix"></div>
   </div>
   <div class="row" *ngIf="videos.length > 0">
-    <div class="col-md-11 upload">
-
+    <div class="upload">
     </div>
-    <div class="col-md-1 video-alb">
-      <img style="width: 100%; cursor: pointer" (click)="openDialogVideo()" src="/assets/imgs/no_videos.png" alt="no_videos.png">
+    <div class="col-md-12 video-alb">
+      <img style="cursor: pointer" (click)="openDialogVideo()" src="/assets/imgs/no_videos.png" alt="no_videos.png">
       <br>
     </div>
-
     <div class="clearfix"></div>
   </div>
   <div class="col-md-12">
@@ -25,9 +23,8 @@
       <!--<app-video *ngFor="let video of videos" [video]="video"  (deleteVideo)="deleteVideo($event)"></app-video>-->
       <div class="col-md-6 video-wrap" *ngFor="let video of videos">
         <i class="fa fa-trash delete" aria-hidden="true" (click)="delete(video.id)"></i>
-        <p>{{ video.video_name }}</p>
         <app-video-player [video]="video"></app-video-player>
-        <p>{{ video.video_description }}</p>
+        <p>{{ video.post_content }}</p>
       </div>
       <div class="clearfix"></div>
     </div>
