@@ -33,7 +33,6 @@ export class WallComponent implements OnInit, OnChanges {
       this.postsService.getWallPosts(this.wallId).subscribe(
         posts => {
           this.wallPosts = posts.body;
-          console.log(this.wallPosts);
         }
       );
     }
@@ -41,7 +40,6 @@ export class WallComponent implements OnInit, OnChanges {
       this.postsService.getGroupPosts(this.groupId).subscribe(
         posts => {
           this.wallPosts = posts.body;
-          console.log(this.wallPosts);
         }
       );
     }

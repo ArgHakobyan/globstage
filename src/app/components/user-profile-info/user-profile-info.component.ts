@@ -22,7 +22,7 @@ export class UserProfileInfoComponent implements OnInit {
 
   ngOnInit() {
     this.route.parent.params.subscribe(param => {
-      this.userService.getUser(param.id).subscribe(u => {
+      this.userService.getUserByUsername(param.id).subscribe(u => {
         this.user = u;
         this.user.user_contact = JSON.parse(this.user.user_contact);
         this.user.user_interests = JSON.parse(this.user.user_interests);

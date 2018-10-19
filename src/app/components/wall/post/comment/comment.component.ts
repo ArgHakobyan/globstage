@@ -27,7 +27,6 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.comment);
     this.userAvatar = getFromLocalStorage('GLOBE_USER').user_photo || '/assets/imgs/no_ava_50.png';
     this.user = getFromLocalStorage('GLOBE_USER');
 

@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PostsService} from '../../../services/posts.service';
 import {getFromLocalStorage} from '../../../utils/local-storage';
-import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation, NgxGalleryLayout } from 'ngx-gallery';
+import {NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation, NgxGalleryLayout} from 'ngx-gallery';
+import {MatSnackBar} from '@angular/material';
 
 
 @Component({
@@ -17,18 +18,21 @@ export class PostComponent implements OnInit {
   audios = [];
   userId;
 
-  constructor(private postService: PostsService) {
+  constructor(
+      private postService: PostsService,
+      public snackBar: MatSnackBar,
+      ) {
   }
 
   ngOnInit() {
     this.user = getFromLocalStorage('GLOBE_USER');
-    if( this.post.posttype === 'vote'){
+    if (this.post.posttype === 'vote') {
       let totalVotes = 0;
-      this.post.questions.forEach( question => {
+      this.post.questions.forEach(question => {
         totalVotes = totalVotes + question.vote_count;
       });
-      this.post.questions.forEach( question => {
-        question.percent = 100 * question.vote_count / totalVotes ;
+      this.post.questions.forEach(question => {
+        question.percent = 100 * question.vote_count / totalVotes;
       });
     }
   }
@@ -54,19 +58,19 @@ export class PostComponent implements OnInit {
   }
 
   deleteWallPost(id) {
-    if(window.confirm('Are sure you want to delete this post ?')){
+    if (window.confirm('Are sure you want to delete this post ?')) {
       this.postService.deleteWallPost(id).subscribe(res => {
         this.onDelete.emit({message: 'postDeleted', id: id});
       }, err => {
         this.onDelete.emit({message: 'postDeleted', id: id});
       });
     }
-   
+
   }
 
-  selectQuest(id){
+  selectQuest(id) {
     this.userId = getFromLocalStorage('GLOBE_USER').id;
-     this.postService.selectQuest({
+    this.postService.selectQuest({
       author_id: this.userId,
       post_id: this.post.id,
       question_id: id,
@@ -75,6 +79,13 @@ export class PostComponent implements OnInit {
     });
   }
 
-  
+  repost(post) {
+    console.log(post);
+    post.post_type = 'post';
+    post.post_attchments = post.attchments;
+    this.postService.shareGoogleNews(post).subscribe( res => {
+      this.snackBar.open('The post is on your wall now!.', 'ok', {duration: 3000});
+    });
+  }
 
 }

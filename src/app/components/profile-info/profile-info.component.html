@@ -1,8 +1,10 @@
 <div class="home-tab tabs-a">
   <div class="row">
+    <p *ngIf="user" style="width: 100%; text-align: center">My profile url: http:globstage.com/user-profile/{{user.username}}</p>
     <ng-template [ngIf]="showInfo">
       <div class="col-md-8 t-info">
         <div class="information col-md-12">
+
           <p (click)="editUserInfo()" class="title">{{'information.info' | translate}}</p>
           <div class="row">
             <div class="col-md-6 title-info">

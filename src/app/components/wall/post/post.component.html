@@ -28,11 +28,12 @@
     <div class="row">
       <div class="wall-content col-md-12">
         <div class="wall-atach-photo">
-          <img *ngIf="post.posttype == 'googlenews' && post.attachments[0].path !==''" [src]="post.attachments[0].path" alt="post.attachments[0].path">
+          <img *ngIf="post.posttype == 'googlenews'&& post.attachments && post.attachments[0].path !==''" [src]="post.attachments[0].path" alt="post.attachments[0].path">
           <h6 *ngIf="post.user && post.posttype == 'groupinvitation'">{{ post.user.user_name + ' '+ post.user.user_last_nam
             }} invite you to join to the group
             <a href="http://globstage.com/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
           <h6 *ngIf="post.posttype !== 'groupinvitation' && post.posttype !== 'audio'  " [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
+          <button (click)="repost(post)" mat-button *ngIf="post.posttype == 'googlenews'">Repost</button>
           <div *ngIf="post.posttype == 'audio'" class="audio">
             <h6 *ngIf="post.user?.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
               audio
@@ -59,7 +60,7 @@
           </div>
 
           <div *ngIf="post.posttype == 'video'" class="video">
-            <h6 *ngIf="post.user?.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
+            <h6 *ngIf="post.user?.user_name !== null && post.post_content == ''">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
               video
             </h6>
             <app-video-player [video]="post"></app-video-player>

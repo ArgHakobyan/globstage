@@ -59,4 +59,9 @@ export class PostsService {
     return this.http.put(`/posts/${post.id}`, post);
   }
 
+
+  shareGoogleNews(post) {
+    return this.http.post(`/posts/share-post`, post);
+  }
+
 }
