@@ -48,8 +48,8 @@
                 <div class="wall-poll">
                   <h4 class="name">{{ post.post_poll_title }}</h4>
                   <div *ngFor="let question of post.questions">
-                    <p (click)="selectQuest(question.id)" class="title2">{{ question.title }}
-                    </p>
+                    <p (click)="selectQuest(question.id)" class="title2">{{ question.title }}</p>
+                    <span>{{ question.vote_count + '%' }}</span>
                     <div [ngStyle]="{'background': 'linear-gradient(90deg, #35bbbd ' + question.percent + '%, #fff 0%)'}" class="count-vote">
                     </div>
                   </div>

@@ -7,7 +7,7 @@
       <div class="notification">
         <h4>{{'header.notific' | translate}}</h4>
         <div (click)="readReq(notify.id)" *ngFor="let notify of notRequests" class="notify-count {{ notify.id }}">
-        <div *ngIf="notify.user"  class="notify-img" >
+        <div routerLink="/friends" *ngIf="notify.user"  class="notify-img" >
           <img *ngIf="notify.user && notify.type == 'invitation_add_friend'"
           [src]="notify.user.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">
         </div>
