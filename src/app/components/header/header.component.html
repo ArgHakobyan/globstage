@@ -5,7 +5,6 @@
   <div class="menu col-md-8">
     <mat-menu class="notify-block" #menu="matMenu">
       <div class="notification">
-        <h4>{{'header.notific' | translate}}</h4>
         <div (click)="readReq(notify.id)" *ngFor="let notify of notRequests" class="notify-count {{ notify.id }}">
         <div routerLink="/friends" *ngIf="notify.user"  class="notify-img" >
           <img *ngIf="notify.user && notify.type == 'invitation_add_friend'"

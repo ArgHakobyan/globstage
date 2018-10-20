@@ -39,9 +39,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.userId = getFromLocalStorage('GLOBE_USER').id;
 
     if (this.userId) {
+      this.getNotification();
       setInterval(() => {
         this.getNotification();
       }, 40000);
