@@ -23,13 +23,11 @@ export class VideoPlayerComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.video);
-
     setTimeout(() => {
           let settings = {};
           const container = document.getElementById('vid-' + this.video.id);
 
-          if (this.video.post_link.indexOf('youtube.com') > -1) {
+          if (this.video.post_link && this.video.post_link.indexOf('youtube.com') > -1) {
             settings = {
               'techOrder': ['youtube'],
               'sources': [
@@ -39,7 +37,7 @@ export class VideoPlayerComponent implements OnInit {
                 }
               ]
             };
-          } else if (this.video.link_to_videos.indexOf('vimeo.com') > -1) {
+          } else if (this.video.post_link && this.video.link_to_videos.indexOf('vimeo.com') > -1) {
             settings = {
               'techOrder': ['vimeo'],
               'sources': [
@@ -49,7 +47,7 @@ export class VideoPlayerComponent implements OnInit {
                 }
               ]
             };
-          } else if (this.video.link_to_videos.indexOf('globstage.com') > -1) {
+          } else if (this.video.post_link && this.video.link_to_videos.indexOf('globstage.com') > -1) {
             settings = {
               'techOrder': ['vimeo'],
               'sources': [

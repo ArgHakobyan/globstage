@@ -1,7 +1,7 @@
 <div class="map-block">
   <div class="map-header">
     <nav mat-tab-nav-bar>
-      <a routerLinkActive="routerLinkActive" mat-tab-link routerLink="/user-profile/{{user.id}}"  #rla="routerLinkActive" [active]="rla.isActive" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLinkActive="routerLinkActive" mat-tab-link routerLink="/user-profile/{{user.username}}"  #rla="routerLinkActive" [active]="rla.isActive" [routerLinkActiveOptions]="{exact: true}">
         <i class="fa fa-globe"></i>
       </a>
       <a routerLinkActive="routerLinkActive" mat-tab-link routerLink="info"  #rla="routerLinkActive" [active]="rla.isActive">

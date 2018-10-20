@@ -349,9 +349,8 @@ export class NgChatComponent implements OnInit {
   // Sends a request to load the friends list
   private fetchFriendsList(isBootstrapping: boolean): void {
     this.adapter.listFriends()
-        .map((users: User[]) => {
-          this.users = users;
-        }).subscribe(() => {
+        .subscribe((users: any) => {
+      this.users = users.body
       if (isBootstrapping) {
         this.restoreWindowsState();
       }

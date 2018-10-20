@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-import { UserService } from './user.service';
-import { appConfig } from '../app.config';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { getFromLocalStorage, setToLocalStorage, removeFromLocalStorage } from '../utils/local-storage';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {HttpClient} from '@angular/common/http';
+import {UserService} from './user.service';
+import {appConfig} from '../app.config';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {getFromLocalStorage, setToLocalStorage, removeFromLocalStorage} from '../utils/local-storage';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -14,9 +15,11 @@ export class AuthService {
   urlOnlyForOauth = appConfig.apiOauth;
   apiUrl = appConfig.apiUrl;
   isLoggedIN = new BehaviorSubject(false);
+
   constructor(
-    private userService: UserService,
-    private http: HttpClient,
+      private userService: UserService,
+      private http: HttpClient,
+      private router: Router
   ) {
 
   }
@@ -65,6 +68,7 @@ export class AuthService {
       return true;
     }
     removeFromLocalStorage(['GLOBE_AUTH', 'GLOBE_USER']);
+    this.router.navigate(['/']);
     return false;
   }
 
@@ -75,7 +79,7 @@ export class AuthService {
     });
   }
 
-  createNewPassword(password: string,confpassword: string, hash: string): Observable<any> {
+  createNewPassword(password: string, confpassword: string, hash: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/users/changepassword`, {
       new_password: password,
       confirm_password: confpassword,

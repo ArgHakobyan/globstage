@@ -1,50 +1,61 @@
 @import '../../../variable';
-#map{
+
+#map {
   width: 100%;
   height: 300px;
 }
-.map{
+
+.map {
   background: url("../../../assets/imgs/Globstagemap.png") center right no-repeat;
   cursor: pointer;
 }
-.show-map{
+
+.show-map {
   background: #06949d;
-  ul{
+  ul {
     margin-bottom: 0;
     padding: 10px;
-    li{
+    text-align: center;
+    li {
       list-style: none;
       display: inline-block;
-      margin-right: 10px;
+      margin-right: 4px;
       width: 70px;
       height: 40px;
       background: none;
-      border: 2px solid #fff;
+      border: 1px solid #fff;
       border-radius: 4px;
-      mat-checkbox{
+      mat-checkbox, mat-radio-button {
         margin-left: 10px;
 
       }
-      .mat-icon{
+      ::ng-deep {
+        .mat-radio-outer-circle, .mat-checkbox-frame {
+          border-color: white;
+        }
+
+      }
+      .mat-icon {
         font-size: 22px;
         color: #fff;
         margin-top: 6px;
+      }
     }
   }
 }
-}
-.map-block{
+
+.map-block {
   margin-top: 34px;
   border-bottom: 2px solid rgb(149, 200, 0);
-  .map-header{
+  .map-header {
     background: $color-blue;
-    ::ng-deep .mat-tab-label-content{
-      i{
+    ::ng-deep .mat-tab-label-content {
+      i {
         font-size: 26px;
         color: #fff;
       }
     }
-    ::ng-deep .mat-tab-label{
+    ::ng-deep .mat-tab-label {
       opacity: 1;
     }
   }

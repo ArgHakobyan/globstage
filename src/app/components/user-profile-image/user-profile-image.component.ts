@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnChanges, OnInit} from '@angular/core';
 import { FriendsService } from '../../services/friends.service';
 import { MatSnackBar } from '@angular/material';
 import { getFromLocalStorage } from '../../utils/local-storage';
@@ -10,8 +10,8 @@ import {TranslateService} from '@ngx-translate/core';
   templateUrl: './user-profile-image.component.html',
   styleUrls: ['./user-profile-image.component.scss']
 })
-export class UserProfileImageComponent implements OnInit {
-  
+export class UserProfileImageComponent implements OnInit, OnChanges {
+
   @Input() userId;
   @Input() user;
   isFriend = false;
@@ -22,11 +22,10 @@ export class UserProfileImageComponent implements OnInit {
     public snackBar: MatSnackBar,
     private chatService: ChatService,
     public translate: TranslateService,
-  ) { 
+  ) {
   }
 
   ngOnInit() {
-    console.log(this.user);
     if (this.user.friends && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id).length > 0) {
       this.isFriend = true;
     }
@@ -36,9 +35,22 @@ export class UserProfileImageComponent implements OnInit {
       this.following = true;
     }
 
-    console.log(this.isFriend, this.following);
+  }
 
-    // window.addEventListener('scroll', this.getScrollPosition, true); 
+  ngOnChanges() {
+    if (this.user.friends && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id).length > 0) {
+      this.isFriend = true;
+    } else {
+      this.isFriend = false;
+    }
+
+
+    if (this.user.friends && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id)[0] && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id)[0].subscription === 1) {
+      this.following = true;
+    } else {
+      this.following = false;
+    }
+
   }
 
   @HostListener('sendMessage')
@@ -48,6 +60,7 @@ export class UserProfileImageComponent implements OnInit {
 
   addFriend() {
     this.friendService.addFriend(this.user.id).subscribe(res => {
+          this.isFriend = true;
         this.snackBar.open(`Friend request sent to ${this.user.user_name}.`, 'ok', {duration: 3000});
     },
       error => {
@@ -92,18 +105,5 @@ export class UserProfileImageComponent implements OnInit {
     });
   }
 
-  // getScrollPosition(e){
-  //   let avatar = document.getElementById('userAvatar');
-  //   let wallHeight = document.getElementById('wallContent');
-  //   let homeContent = document.getElementById('homeContent');
-  //   if( e.srcElement.scrollTop +200 > e.srcElement.clientHeight){
-  //     avatar.style.position = 'relative';
-  //     avatar.style.top = e.srcElement.scrollTop + 'px';
-  //   }else{
-  //     avatar.style.position = 'relative';
-  //     avatar.style.top = 0 + 'px';
-  //   }   
-  // }
-  
 }
 

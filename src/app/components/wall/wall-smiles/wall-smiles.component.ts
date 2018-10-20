@@ -36,7 +36,6 @@ export class WallSmilesComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const opened: SimpleChange = changes.opened;
-    console.log(changes.opened);
     this._opened = opened.currentValue;
   }
 
