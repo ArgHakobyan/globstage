@@ -3,16 +3,13 @@
 </div>
 <div class="show-map">
   <ul>
-    <li matTooltip="{{'header.navig' | translate}}"><mat-checkbox><mat-icon>navigation</mat-icon></mat-checkbox></li>
-    <li matTooltip="{{'header.rest' | translate}}"><mat-checkbox><mat-icon>restaurant</mat-icon></mat-checkbox></li>
-    <li matTooltip="{{'header.hotel' | translate}}"><mat-checkbox><mat-icon>hotel</mat-icon></mat-checkbox></li>
-    <li matTooltip="{{'header.bar' | translate}}"><mat-checkbox><mat-icon>local_bar</mat-icon></mat-checkbox></li>
-    <li matTooltip="{{'header.cafe' | translate}}"><mat-checkbox><mat-icon>local_cafe</mat-icon></mat-checkbox></li>
-    <li matTooltip="{{'header.balance' | translate}}"><mat-checkbox><mat-icon>account_balance</mat-icon></mat-checkbox></li>
-    <li matTooltip="{{'header.park' | translate}}"><mat-checkbox><mat-icon>local_parking</mat-icon></mat-checkbox></li>
-    <li matTooltip="{{'header.grocery' | translate}}"><mat-checkbox><mat-icon>local_grocery_store</mat-icon></mat-checkbox></li>
-    <li matTooltip="{{'header.gas' | translate}}"><mat-checkbox><mat-icon>local_gas_station</mat-icon></mat-checkbox></li>
-    <li matTooltip="{{'header.hosp' | translate}}"><mat-checkbox><mat-icon>local_hospital</mat-icon></mat-checkbox></li>
+    <!--<li matTooltip="{{'header.navig' | translate}}">-->
+      <!--<mat-checkbox><mat-icon>navigation</mat-icon></mat-checkbox>-->
+    <!--</li>-->
+    <li *ngFor="let place of selectedPlaces" matTooltip="{{'header.rest' | translate}}">
+      <mat-radio-button (change)="updateMap($event)"  name="selectedPlaces" [value]="place.value"><mat-icon>{{place.icon}}</mat-icon></mat-radio-button>
+    </li>
+
   </ul>
 </div>
 <app-wall *ngIf="userProfile" [wallId]="userProfile.id"></app-wall>

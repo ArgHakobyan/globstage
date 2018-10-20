@@ -26,7 +26,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {NgChatModule} from './components/ng-chat/ng-chat.module';
 import {GlobeAdapter} from './services/chatAdapter';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FileUploadModule} from 'ng2-file-upload';
 import {PostsService} from './services/posts.service';
 import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
@@ -60,6 +59,8 @@ import {
   MatTabsModule,
   MatTooltipModule,
   MatStepperModule,
+  MatCheckboxModule,
+    MatRadioModule
 } from '@angular/material';
 import {NewAlbumModalComponent} from './components/new-album-modal/new-album-modal.component';
 import {NewAudioModalComponent} from './components/new-audio-modal/new-audio-modal.component';
@@ -281,6 +282,7 @@ export class CustomTranslateLoader implements TranslateLoader {
     MatDatepickerModule,
     NgChatModule,
     MatCheckboxModule,
+    MatRadioModule,
     FileUploadModule,
     ImageCropperModule,
     AgmCoreModule.forRoot({
