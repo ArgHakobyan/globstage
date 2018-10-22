@@ -128,11 +128,11 @@ export class NgChatComponent implements OnInit {
       this.openChatWindow(res, false, false);
       console.log(res);
     });
-    if (this.userId) {
-      setInterval(() => {
-        this.getMessageNotify();
-      }, 10000);
-    }
+    // if (this.userId) {
+    //   setInterval(() => {
+    //     this.getMessageNotify();
+    //   }, 10000);
+    // }
 
   }
 

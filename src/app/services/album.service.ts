@@ -38,4 +38,12 @@ export class AlbumService {
     return this.http.get(`${appConfig.apiUrl}/albums/user-albums/${id}`);
   }
 
+  saveAlbumPriv(albumPriv, id){
+    return this.http.put(`${appConfig.apiUrl}/posts/${id}`, albumPriv);
+  }
+
+  // getAlbPriv(albumPriv, id){
+  //   return this.http.get(`${appConfig.apiUrl}/posts/${id}`, albumPriv);
+  // }
+
 }

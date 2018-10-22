@@ -6,7 +6,7 @@ import { ActivatedRoute} from '@angular/router';
 import {UploadMediaAttachComponent} from '../../components/upload-media-attach/upload-media-attach.component';
 import { getFromLocalStorage } from '../../utils/local-storage';
 import { UserService} from '../../services/user.service';
-
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-album-page',
@@ -16,8 +16,8 @@ import { UserService} from '../../services/user.service';
     UploadMediaAttachComponent],
 })
 export class AlbumPageComponent implements OnInit {
-
-
+  private albumId;
+  public albumPrivacy: FormGroup;
   album: any = {};
   album_id;
   isMyAlbum = false;
@@ -28,13 +28,21 @@ export class AlbumPageComponent implements OnInit {
     public albumService: AlbumService,
     private route: ActivatedRoute,
     public userService: UserService
-  ) { }
+  ) {
+    this.albumPrivacy = new FormGroup({
+      can_see: new FormControl()
+    });
+   }
 
   ngOnInit() {
       this.route.params.subscribe( params => {
         this.album_id = params.id;
-        this.albumService.getAlbumsImages(this.album_id).subscribe(res => {
-            this.album = res[0];
+        this.albumService.getAlbumsImages(this.album_id).subscribe((res:any) => {
+            this.album = res;
+            this.albumId = res.id;
+            console.log(res.can_see);
+            
+            this.albumPrivacy.controls['can_see'].patchValue(res.can_see);
             if (this.album.author_id === getFromLocalStorage('GLOBE_USER').id) {
               this.isMyAlbum = true;
             } else {
@@ -44,6 +52,17 @@ export class AlbumPageComponent implements OnInit {
             }
             console.log(res);
           });
+    });
+    
+
+    
+
+
+  }
+
+  onChangeAlb(){
+    this.albumService.saveAlbumPriv(this.albumPrivacy.value, this.albumId).subscribe(res =>{
+      console.log(res);
     });
   }
 

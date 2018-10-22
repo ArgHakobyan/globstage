@@ -146,6 +146,23 @@ li{
     font-size: 26px;
     text-align: center;
   }
+  .privacy-album{
+    p{
+      margin-bottom: 0;
+      font-size: 13px;
+      padding-left: 20px;
+  }
+  ::ng-deep .mat-form-field-infix{
+      width: 100px;
+      margin-left: 10px;
+  }
+  ::ng-deep .mat-select-value{
+      color: $color-blue;
+  }
+  ::ng-deep .mat-form-field-underline{
+      background-color: #fff;
+  }
+  }
 }
 .upload-btn{
   text-align: right;
