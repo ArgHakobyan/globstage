@@ -1,4 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {UserService} from '../../services/user.service';
 declare var navigator;
 
 
@@ -11,12 +13,26 @@ export class UserProfileMapComponent implements OnInit {
 
   @ViewChild('gmap2') gmapElement: any;
   map: google.maps.Map;
-
-  constructor() {
+  user: any;
+  public userBlocked;
+  
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
+  ) {
   }
 
 
-  ngOnInit() { 
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.userService.getUserByUsername(params.id).subscribe(user => {
+          this.user = user;
+        },
+        error => {
+          this.userBlocked = true;
+        });
+    });
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.map = new google.maps.Map(this.gmapElement.nativeElement, {
@@ -30,14 +46,14 @@ export class UserProfileMapComponent implements OnInit {
             'stylers': [{'invert_lightness': true}, {'saturation': 10}, {'lightness': 30}, {'gamma': 0.5}, {'hue': '#435158'}]
           }]
         });
-        var marker = new google.maps.Marker({
+        let marker = new google.maps.Marker({
           position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
           map: this.map,
           animation: google.maps.Animation.BOUNCE,
         });
       });
 
-    }   
+    }
 
   }
 

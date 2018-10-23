@@ -22,21 +22,10 @@ export class UserAlbumsComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-
     this.route.parent.params.subscribe( params => {
       this.albumService.getUserAlbums(params.id).subscribe((albums: any[]) => {
         this.albums = albums;
       });
-    });
-  }
-
-  openDialogAlbum() {
-    const dialogRef = this.dialog.open(NewAlbumModalComponent, {
-      height: 'auto',
-      width: '400px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
     });
   }
 

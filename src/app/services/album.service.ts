@@ -35,10 +35,10 @@ export class AlbumService {
   }
 
   getUserAlbums(id) {
-    return this.http.get(`${appConfig.apiUrl}/albums/user-albums/${id}`);
+    return this.http.get(`${appConfig.apiUrl}/posts/album/${id}`);
   }
 
-  saveAlbumPriv(albumPriv, id){
+  saveAlbumPriv(albumPriv, id) {
     return this.http.put(`${appConfig.apiUrl}/posts/${id}`, albumPriv);
   }
 

@@ -33,4 +33,11 @@ export class AppComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.userId = getFromLocalStorage('GLOBE_USER') ? getFromLocalStorage('GLOBE_USER').id : null;
   }
+
+  scrollToTop() {
+    console.log('scrol');
+    window.scrollTo({
+      top: 1000,
+  });
+  }
 }

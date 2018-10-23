@@ -1,6 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../services/user.service';
 import {Title} from '@angular/platform-browser';
 
@@ -17,7 +16,6 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient,
     private userService: UserService,
     private titleService: Title
   ) {

@@ -12,16 +12,16 @@
             </div>
             <div class="col-md-6 user-info">
               <div class="user-country">
-                <span>{{ user.user_country }}</span>
+                <span>{{ user.user_country || 'Not set'}}</span>
               </div>
               <div class="user-city">
-                <span>{{ user.user_city }}</span>
+                <span>{{ user.user_city  || 'Not set'}}</span>
               </div>
               <div class="user-birthday">
-                <span>{{ user.user_date_of_birth }}</span>
+                <span>{{ user.user_date_of_birth  || 'Not set'}}</span>
               </div>
               <div class="user-info-rat">
-                <span class="rating">10</span>
+                <span class="rating">{{user?.user_rate}}</span>
               </div>
             </div>
             <div class="clearfix"></div>

@@ -1,3 +1,4 @@
 <div class="map">
   <div id="map2" #gmap2></div>
 </div>
+<app-wall *ngIf="user" [wallId]="user.id"></app-wall>

@@ -21,7 +21,7 @@ export class AlbumPageComponent implements OnInit {
   album: any = {};
   album_id;
   isMyAlbum = false;
-  albumUser: any = {}
+  albumUser: any = {};
 
   constructor(
     public dialog: MatDialog,
@@ -30,19 +30,20 @@ export class AlbumPageComponent implements OnInit {
     public userService: UserService
   ) {
     this.albumPrivacy = new FormGroup({
-      can_see: new FormControl()
+      can_see: new FormControl('1')
     });
    }
 
   ngOnInit() {
       this.route.params.subscribe( params => {
         this.album_id = params.id;
-        this.albumService.getAlbumsImages(this.album_id).subscribe((res:any) => {
+        this.albumService.getAlbumsImages(this.album_id).subscribe((res: any) => {
             this.album = res;
             this.albumId = res.id;
             console.log(res.can_see);
-            
-            this.albumPrivacy.controls['can_see'].patchValue(res.can_see);
+            this.albumPrivacy = new FormGroup({
+              can_see: new FormControl(res.can_see + '')
+            });
             if (this.album.author_id === getFromLocalStorage('GLOBE_USER').id) {
               this.isMyAlbum = true;
             } else {
@@ -53,19 +54,14 @@ export class AlbumPageComponent implements OnInit {
             console.log(res);
           });
     });
-    
-
-    
-
 
   }
 
-  onChangeAlb(){
-    this.albumService.saveAlbumPriv(this.albumPrivacy.value, this.albumId).subscribe(res =>{
+  onChangeAlb() {
+    this.albumService.saveAlbumPriv(this.albumPrivacy.value, this.albumId).subscribe(res => {
       console.log(res);
     });
   }
-
 
   openDialogAlbum() {
     const dialogRef = this.dialog.open(NewAlbumModalComponent, {
@@ -101,7 +97,7 @@ export class AlbumPageComponent implements OnInit {
   }
 
   delete(id) {
-    if(window.confirm('Are sure you want to delete this item ?')) {
+    if (window.confirm('Are sure you want to delete this item ?')) {
       this.albumService.deleteImage(id).subscribe( res => {
         console.log(res);
 

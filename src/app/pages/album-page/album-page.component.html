@@ -35,19 +35,19 @@
             <div class="clearfix"></div>
           </div>
         </div>
-        <div class="privacy-album">
-            <form [formGroup]="albumPrivacy" class="example-form">
-              <p>Who can see album:
-                <mat-form-field>
-                  <mat-select formControlName="can_see" (selectionChange)="onChangeAlb()">
-                    <mat-option value=2>Public</mat-option>
-                    <mat-option value=1>Friends</mat-option>
-                    <mat-option value=0>Private</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </p>
-            </form>
-          </div>
+        <div class="privacy-album" *ngIf="isMyAlbum">
+          <form [formGroup]="albumPrivacy" class="example-form">
+            <p>Who can see album:
+              <mat-form-field>
+                <mat-select formControlName="can_see" (selectionChange)="onChangeAlb()">
+                  <mat-option value="2">Public</mat-option>
+                  <mat-option value="1">Friends</mat-option>
+                  <mat-option value="0">Private</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+          </form>
+        </div>
         <div class="col-md-12">
           <div class="row">
             <div class="album-photo col-md-3" *ngFor="let img of album?.attachments">

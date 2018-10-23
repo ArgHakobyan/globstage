@@ -28,8 +28,6 @@ export class UserAudiosComponent implements OnInit {
 
   ngOnInit() {
     this.route.parent.params.subscribe( params => {
-      console.log(params);
-      
       this.audioServices.getUserAudios(params.id).subscribe((audios: any[]) => {
         this.audios = audios;
         console.log(audios);
