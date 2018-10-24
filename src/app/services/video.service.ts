@@ -25,8 +25,8 @@ export class VideoService {
     return this.http.delete(`${appConfig.apiUrl}/posts/${id}`);
   }
 
-  getUserVideos(id) {
-    return this.http.get(`${appConfig.apiUrl}/posts?filter[author_id]=${id}&filter[posttype]=video`);
+  getUserVideos(username) {
+    return this.http.get(`${appConfig.apiUrl}/posts/video/${username}`);
   }
 
 }

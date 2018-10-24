@@ -23,8 +23,9 @@
       </div>
     </mat-menu>
     <ul>
-      <li class="relative-length"><span *ngIf="notificationlength > 0"  class="notify-length">{{ notificationlength }}</span>
-        <button matTooltip="{{'header.notific' | translate}}" class="not-btn" [matMenuTriggerFor]="menu"><i class="notify fa fa-bell" aria-hidden="true"></i></button>
+      <li class="relative-length">
+        <button matTooltip="{{'header.notific' | translate}}" class="not-btn" [matMenuTriggerFor]="menu"><i class="notify fa fa-bell" aria-hidden="true"></i>
+          <span *ngIf="notificationlength > 0"  class="notify-length">{{ notificationlength }}</span></button>
       </li>
       <li routerLink="/friends"><button matTooltip="{{'header.friend' | translate}}"><i class="fa fa-users"></i></button></li>
       <li (click)="openDialogSearch()"><button matTooltip="{{'header.search' | translate}}"><i class="fa fa-search"></i></button></li>

@@ -210,15 +210,15 @@
     "reqFriend": "send you friend request",
     "reqGgroup": "Settings",
     "navig": "Navigation",
-    "rest": "Restaurant",
-    "hotel": "Hotel",
+    "restaurant": "Restaurant",
+    "lodging": "Hotel",
     "bar": "Bar",
     "cafe": "Cafe",
-    "balance": "Account Balance",
-    "park": "Parking",
-    "grocery": "Grocery Store",
-    "gas": "Gas Station",
-    "hosp": "Hospital"
+    "bank": "Account Balance",
+    "parking": "Parking",
+    "store": "Grocery Store",
+    "gas_station": "Gas Station",
+    "hospital": "Hospital"
   },
   "glob": {
     "profile": "Profile",
