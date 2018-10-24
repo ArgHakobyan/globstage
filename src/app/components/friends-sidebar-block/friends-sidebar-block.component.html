@@ -4,13 +4,14 @@
       <p>Friends <span>{{friends?.length}}</span></p>
     </div>
     <div class="see-all">
-      <a routerLink="/friends" >See All</a>
+      <a matTooltip="See All" *ngIf="!allFriendsVisible && friends?.length > 4" (click)="showAllFriends()"><mat-icon>arrow_downward</mat-icon></a>
+      <a matTooltip="Collapse"  *ngIf="allFriendsVisible" (click)="showFourFriends()"><mat-icon>arrow_upward</mat-icon></a>
     </div>
     <div class="clearfix"></div>
   </div>
-  <div *ngIf="friends?.length > 4" style="height: 104px; overflow: hidden;" class="friend-img">
-    <div class="friends-item" [routerLink]="'/user-profile/'+user.username" *ngFor="let user of friends">
-      <div class="hover-popup">
+  <div class="friend-img">
+    <div class="friends-item" [routerLink]="'/user-profile/'+user.username" *ngFor="let user of friends; let i = index">
+      <div class="hover-popup" *ngIf="i < 4 || allFriendsVisible">
         <div class="row">
           <div class="col-md-4">
             <img class="popup-img" [src]="user.user_photo || '/assets/imgs/no_avatar.png'" alt="no_avatar.png">
@@ -24,7 +25,7 @@
         </div>
       </div>
       <div class="to-bottom"></div>
-      <div class="img-width">
+      <div class="img-width" *ngIf="i < 4 || allFriendsVisible">
         <img class="friend-ava" [src]="user.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50.png">
       </div>
     </div>

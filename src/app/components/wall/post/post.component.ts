@@ -68,7 +68,9 @@ export class PostComponent implements OnInit {
     });
   }
 
-  deleteWallPost(id) {
+  deleteWallPost(post) {
+    const id = post.id;
+    if (post.posttype === 'post') {
     if (window.confirm('Are sure you want to delete this post ?')) {
       this.postService.deleteWallPost(id).subscribe(res => {
         this.onDelete.emit({message: 'postDeleted', id: id});
@@ -76,7 +78,12 @@ export class PostComponent implements OnInit {
         this.onDelete.emit({message: 'postDeleted', id: id});
       });
     }
-
+  } else {
+    post.hide_from_wall = 0;
+    this.postService.hidePostOnWall(post).subscribe( res => {
+      this.post.hide_from_wall = 0;
+    });
+  }
   }
 
   selectQuest(id) {

@@ -12,6 +12,7 @@ export class FriendsSidebarBlockComponent implements OnInit, OnChanges {
   public friends;
   @Input() userId;
   friendsOnline: any[];
+  allFriendsVisible = false;
 
   constructor(private friendService: FriendsService) { }
 
@@ -26,5 +27,14 @@ export class FriendsSidebarBlockComponent implements OnInit, OnChanges {
       this.friends = res;
     });
   }
+
+  showAllFriends() {
+    this.allFriendsVisible = true;
+  }
+
+  showFourFriends() {
+    this.allFriendsVisible = false;
+  }
+
 
 }

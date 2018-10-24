@@ -77,6 +77,7 @@ export class CommentComponent implements OnInit {
     }, err => {
       this.post.post_comment_count--;
       this.snackBar.open('Comment can not be deleted.', 'ok', {duration: 3000});
+      console.log(err);
     });
   }
 

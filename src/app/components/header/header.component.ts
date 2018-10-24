@@ -39,9 +39,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    
     this.userId = getFromLocalStorage('GLOBE_USER').id;
-
     if (this.userId) {
       this.getNotification();
       setInterval(() => {
@@ -54,17 +52,12 @@ export class HeaderComponent implements OnInit {
   getNotification() {
     this.friendService.getNotification().subscribe((res: any[]) => {
       this.notRequests = res;
-      console.log(this.notRequests);
-
-
       this.notificationlength = 0;
       res.forEach(element => {
         if (element.read_status === 0) {
           this.notificationlength = this.notificationlength + 1;
         }
       });
-      // console.log(this.notificationlength);
-
     });
 
   }
@@ -72,8 +65,6 @@ export class HeaderComponent implements OnInit {
 
   readReq(id) {
     this.friendService.readReq(id).subscribe((res: any[]) => {
-      console.log(res);
-
     });
   }
 
@@ -91,9 +82,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('GLOBE_AUTH');
     localStorage.removeItem('GLOBE_USER');
     this.router.navigate(['']);
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 1);
+
   }
 
   onChatTitleClicked(event: any): void {

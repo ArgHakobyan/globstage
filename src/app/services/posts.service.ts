@@ -23,6 +23,10 @@ export class PostsService {
     return this.http.delete(`/posts/${id}`);
   }
 
+  hidePostOnWall(post) {
+    return this.http.put(`/posts/${post.id}`, post);
+  }
+
   getGroupPosts(id) {
     return this.http.get(`/posts?filter[post_group_id]=${id}`);
   }

@@ -53,15 +53,17 @@ export class NewPollModalComponent implements OnInit {
         }
       }
 
-      this.postServices.addPoll(
-          {
+      this.postServices.addPoll({
             'posttype': 'vote',
             'title': title,
             'questions': questions
-          }).subscribe(res => {
+          }
+          ).subscribe(res => {
+            this.dialogRef.close(res);
         this.pollPost = [];
+
       });
-      this.dialogRef.close();
+      
     }
 
   }
