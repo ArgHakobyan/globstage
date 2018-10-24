@@ -31,7 +31,11 @@ export class UserProfileImageComponent implements OnInit, OnChanges {
     }
 
 
-    if (this.user.friends && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id)[0] && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id)[0].subscription === 1) {
+    // if (this.user.friends && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id)[0] && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id)[0].subscription === 1) {
+    //   this.following = true;
+    // }
+
+    if (this.user.follow) {
       this.following = true;
     }
 
@@ -83,6 +87,7 @@ export class UserProfileImageComponent implements OnInit, OnChanges {
       follow_to: this.user.id, to: 'user'
     }).subscribe(res => {
       this.snackBar.open(`You are following ${this.user.user_name}  now.`, 'ok', {duration: 3000});
+      this.following = true;
     });
   }
 

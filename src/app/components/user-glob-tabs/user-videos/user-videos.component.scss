@@ -1,5 +1,8 @@
 @import '../../../../variable';
 .clearfix{clear: both;}
+::ng-deep .video-js{
+  width: 100%;
+}
 .tabs-a {
   background: $color-white;
   padding: 15px;
@@ -133,12 +136,12 @@
 
 .video-wrap {
   width: 255px;
-  margin: auto;
   display: inline-block;
   box-sizing: border-box;
   height: 160px;
   overflow: hidden;
   position: relative;
+  margin-bottom: 10px;
   .delete {
     position: absolute;
     color: #c9302c;

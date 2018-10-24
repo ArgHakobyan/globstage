@@ -26,7 +26,7 @@ export class VideosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.videoServices.getUserVideos(getFromLocalStorage('GLOBE_USER').id).subscribe((videos: any[]) => {
+    this.videoServices.getUserVideos(getFromLocalStorage('GLOBE_USER').username).subscribe((videos: any[]) => {
       this.videos = videos;
       console.log(videos);
     });
@@ -40,7 +40,7 @@ export class VideosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.videos.push(result);
+        this.videos.push(result.body);
       }
     });
   }
