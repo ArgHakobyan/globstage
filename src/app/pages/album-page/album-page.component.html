@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-3">
       <app-profile-image *ngIf="isMyAlbum"></app-profile-image>
-      <app-user-profile-image [user]="albumUser" *ngIf="!isMyAlbum"></app-user-profile-image>
+      <app-user-profile-image [user]="albumUser" *ngIf="!isMyAlbum && albumUser"></app-user-profile-image>
       <div class="create-group">
         <span *ngIf="isMyAlbum" (click)="openDialogAlbum()" class="create">Create album</span>
       </div>

@@ -8,7 +8,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="friend-img">
+  <div *ngIf="friends?.length > 4" style="height: 104px; overflow: hidden;" class="friend-img">
     <div class="friends-item" [routerLink]="'/user-profile/'+user.username" *ngFor="let user of friends">
       <div class="hover-popup">
         <div class="row">

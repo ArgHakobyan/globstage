@@ -21,7 +21,7 @@ export class AlbumPageComponent implements OnInit {
   album: any = {};
   album_id;
   isMyAlbum = false;
-  albumUser: any = {};
+  albumUser: any;
 
   constructor(
     public dialog: MatDialog,

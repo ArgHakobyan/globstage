@@ -19,7 +19,7 @@ export class AlbumService {
   }
 
   getAlbums() {
-    return this.http.get(`${appConfig.apiUrl}/posts/album/${JSON.parse(localStorage.getItem('GLOBE_USER')).id}`);
+    return this.http.get(`${appConfig.apiUrl}/posts/album/${JSON.parse(localStorage.getItem('GLOBE_USER')).username}`);
   }
 
   getAlbumsImages(id) {
@@ -41,9 +41,5 @@ export class AlbumService {
   saveAlbumPriv(albumPriv, id) {
     return this.http.put(`${appConfig.apiUrl}/posts/${id}`, albumPriv);
   }
-
-  // getAlbPriv(albumPriv, id){
-  //   return this.http.get(`${appConfig.apiUrl}/posts/${id}`, albumPriv);
-  // }
 
 }

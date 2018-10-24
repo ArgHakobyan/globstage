@@ -35,11 +35,9 @@
             <div class="attaches" *ngFor="let img of attached">
               <img class="attaches post_attach" *ngIf="img.type=='image'" [src]="img.path" alt="">
               <a target="_blank" [href]="img.path"><img class="attaches post_attach doc-hover" *ngIf="img.type=='pdf'"
-                                                        src="/assets/imgs/pdf_icon_svg_by_qubodup-d9n1mhy.png"
-                                                        alt=""></a>
+              src="/assets/imgs/pdf_icon_svg_by_qubodup-d9n1mhy.png" alt=""></a>
               <a target="_blank" [href]="img.path"><img class="attaches post_attach doc-hover" *ngIf="img.type=='doc'"
-                                                        src="/assets/imgs/2000px-MS_word_DOC_icon.svg.png" alt=""></a>
-
+              src="/assets/imgs/2000px-MS_word_DOC_icon.svg.png" alt=""></a>
             </div>
             <app-video-player *ngIf="post && post.posttype == 'video'" [video]="post"></app-video-player>
             <div class="clearfix"></div>

@@ -40,7 +40,7 @@
       position: absolute;
       background: #fff;
       padding: 4px;
-      bottom: 84px;
+      top: 90px;
       left: 0;
       display: none;
       .popup-img{
@@ -65,15 +65,16 @@
         font-size: 12px;
       }
     }
-    .to-bottom{
-      background: url(../../../assets/imgs/bottoms.png) no-repeat;
-      position: absolute;
-      top: -6px;
-      left: 10px;
-      width: 24px;
-      height: 10px;
-      display: none;
-    }
+    // .to-bottom{
+    //   background: url(../../../assets/imgs/bottoms.png) no-repeat;
+    //   position: absolute;
+    //   bottom: 48px;
+    //   left: 10px;
+    //   width: 24px;
+    //   height: 10px;
+    //   display: none;
+    //   transform: rotate(180deg);
+    // }
     .img-width{
       width: 55px;
       height: 55px;

@@ -5,6 +5,7 @@ import {HttpService} from './services/http.service';
 import {getFromLocalStorage} from './utils/local-storage';
 import {TranslateService} from '@ngx-translate/core';
 import {ConfigService} from './services/config.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -36,8 +37,6 @@ export class AppComponent implements OnInit, OnChanges {
 
   scrollToTop() {
     console.log('scrol');
-    window.scrollTo({
-      top: 1000,
-  });
+    $('.background-page').scrollTop(0);
   }
 }

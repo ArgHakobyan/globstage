@@ -35,8 +35,7 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit() {
     this.formgroupComment = new FormGroup({
-      user_comment: new FormControl()      
-    });
+      user_comment: new FormControl()      });
     this.userAvatar = getFromLocalStorage('GLOBE_USER').user_photo || '/assets/imgs/no_ava_50.png';
     this.user = getFromLocalStorage('GLOBE_USER');
 
@@ -60,6 +59,7 @@ export class CommentsComponent implements OnInit {
       this.formgroupComment.get('user_comment').setValue('');
       res.user = getFromLocalStorage('GLOBE_USER');
       this.post.comments.push(res);
+      this.post.post_comment_count++;
       this.snackBar.open('Comment added.', 'ok', {duration: 3000});
     });
   }

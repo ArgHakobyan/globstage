@@ -11,6 +11,7 @@ import {MatSnackBar} from '@angular/material';
 })
 export class CommentComponent implements OnInit {
 
+  @Input() post;
   @Input() comment: any;
   @Output() onDelete = new EventEmitter();
   public user;
@@ -74,6 +75,7 @@ export class CommentComponent implements OnInit {
       this.snackBar.open('Comment is successfully deleted.', 'ok', {duration: 3000});
       this.onDelete.emit(id);
     }, err => {
+      this.post.post_comment_count--;
       this.snackBar.open('Comment can not be deleted.', 'ok', {duration: 3000});
     });
   }

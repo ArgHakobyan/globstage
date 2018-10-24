@@ -3,8 +3,8 @@
     <div class="friend-req col-md-6">
       <div class="row">
         <div class="col-md-4">
-          <img *ngIf='request.user.user_photo' src='{{ request.user.user_photo }}'>
-          <img *ngIf='! request.user.user_photo' src="/assets/imgs/no_ava_friend.png">
+          <img [routerLink]="'/user-profile/'+request.user.username" *ngIf='request.user.user_photo' src='{{ request.user.user_photo }}'>
+          <img [routerLink]="'/user-profile/'+request.user.username" *ngIf='! request.user.user_photo' src="/assets/imgs/no_ava_friend.png">
         </div>
         <div class="col-md-8">
           <a [routerLink]="'/user-profile/'+request.user.username"><h4>{{ request.user.user_name + " " + request.user.user_last_name }}</h4></a>

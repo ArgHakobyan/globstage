@@ -15,19 +15,19 @@ export class AudioService {
   ) { }
 
   getAudios() {
-    return this.http.get(`${appConfig.apiUrl}/audios/${JSON.parse(localStorage.getItem('GLOBE_USER')).id}`);
+    return this.http.get(`${appConfig.apiUrl}/posts/audio/${JSON.parse(localStorage.getItem('GLOBE_USER')).username}`);
   }
 
-  addAudio(audio){
-    return this.http.post(`${appConfig.apiUrl}/audios`, audio);
+  addAudio(audio) {
+    return this.http.post(`${appConfig.apiUrl}/posts/audio`, audio);
   }
 
-  addDownAudio(audio){
-    return this.http.post(`${appConfig.apiUrl}/audios`, audio);
+  addDownAudio(audio) {
+    return this.http.post(`${appConfig.apiUrl}/posts/audio`, audio);
   }
 
   getUserAudios(id) {
-    return this.http.get(`${appConfig.apiUrl}/audios/${id}`);
+    return this.http.get(`${appConfig.apiUrl}/posts/audio/${id}`);
   }
 
 }

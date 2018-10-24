@@ -17,6 +17,7 @@ export class PostComponent implements OnInit {
   videos = [];
   audios = [];
   userId;
+  like;
 
   constructor(
       private postService: PostsService,
@@ -44,6 +45,11 @@ export class PostComponent implements OnInit {
       type: 'post'
     }).subscribe(res => {
       this.post.post_like_count++;
+      this.user = getFromLocalStorage('GLOBE_USER');
+      console.log(res);
+      if (res.body.message === 'liked') {
+        this.post.likes_dislikes.push({user: this.user, user_id: this.user.id, status: 'like'});
+        }
     });
   }
 
@@ -54,6 +60,11 @@ export class PostComponent implements OnInit {
       type: 'post'
     }).subscribe(res => {
       this.post.post_dislike_count++;
+      this.user = getFromLocalStorage('GLOBE_USER');
+      console.log(res);
+      if (res.body.message === 'disliked') {
+        this.post.likes_dislikes.push({user: this.user, user_id: this.user.id, status: 'dislike'});
+        }
     });
   }
 
