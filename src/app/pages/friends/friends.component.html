@@ -14,14 +14,14 @@
         <div class="search-friend">
           <form class="example-form">
             <mat-form-field class="example-full-width">
-              <input class="search-fr"type="search" matInput placeholder="Search" value="">
+              <input class="search-fr" (input)="searchFriends($event)" type="search" matInput placeholder="Search" value="">
             </mat-form-field>
             <button type="submit" class="search btn-success save">{{'friend.search' | translate}}</button>
           </form>
         </div>
         <div class="col-md-12 padd">
           <div class="row">
-            <app-friend (delFriend)="friendDelete($event)" class="col-md-6 friend-block" [friend]="friend" *ngFor="let friend of friends"></app-friend>
+            <app-friend (delFriend)="friendDelete($event)" class="col-md-6 friend-block" [friend]="friend" *ngFor="let friend of searchFriend"></app-friend>
             <div class="clearfix"></div>
           </div>
         </div>
