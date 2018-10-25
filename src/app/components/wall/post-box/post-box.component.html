@@ -7,9 +7,9 @@
     </div>
     <div class="col-md-11 text-area" [ngClass]="smileClass">
       <form [formGroup]="formgroupWall" action="" method="post">
-        <textarea class="wall-text" formControlName="user_wall" [(ngModel)]="user_wall" (focus)="smileFocusFunction()"
+        <div contenteditable="true" class="wall-text" formControlName="user_wall" propValueAccessor="innerHTML" [(ngModel)]="user_wall" (focus)="smileFocusFunction()"
                   (focusout)="smileFocusOutFunction()"
-                  placeholder="{{'wall.wallPlace' | translate}}?"></textarea>
+                  ></div>
         <div class="smile-block">
           <div class="row">
             <div class="smiles col-md-8">

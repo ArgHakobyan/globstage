@@ -2,7 +2,7 @@
 .text-area{
   .wall-text{
       width: 100%;
-      height: 50px;
+      min-height: 50px;
       background: #f1f1f1;
       border-radius: 3px;
       font-size: 12px;
@@ -10,6 +10,10 @@
       padding-left: 10px;
       outline: none;
       border: 1px solid #dedbdb;
+    img{
+      width: 32px !important;
+      height: auto;
+    }
   }
   .wall-text:hover{
       border-color: rgb(118, 200, 239);

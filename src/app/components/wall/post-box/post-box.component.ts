@@ -10,7 +10,7 @@ import { UploadMediaAttachComponent } from '../../upload-media-attach/upload-med
 import { getFromLocalStorage } from '../../../utils/local-storage';
 import { ChatService } from '../../../services/chat.service';
 import { WallSmilesComponent } from '../../../components/wall/wall-smiles/wall-smiles.component';
-
+import {EmojifyPipe} from '../../ng-chat/pipes/emojify.pipe';
 
 @Component({
   selector: 'app-post-box',
@@ -163,6 +163,7 @@ export class PostBoxComponent implements OnInit {
 
   addSmile(e) {
     this.user_wall = this.formgroupWall.get('user_wall').value ? this.formgroupWall.get('user_wall').value + ` *${e}* ` : ` *${e}* `;
+    this.user_wall = EmojifyPipe.prototype.transform(this.user_wall, true);
     this.smileOpen = false;
     console.log(e, this.formgroupWall.get('user_wall').value);
   }

@@ -124,11 +124,11 @@ import {AuthGuard} from './auth.guard';
 import { AlbumPageComponent } from './pages/album-page/album-page.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { NewPasswordModalComponent } from './components/new-password-modal/new-password-modal.component';
-// import { CreatePasswordModalComponent } from './components/create-password-modal/create-password-modal.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { PostEmojifyPipe } from './pipes/post-emojify.pipe';
 import { UserProfileMapComponent } from './components/user-profile-map/user-profile-map.component';
 import { CommentComponent } from './components/wall/post/comment/comment.component';
+import { ContenteditableModule } from 'ng-contenteditable';
 
 
 
@@ -242,6 +242,7 @@ export class CustomTranslateLoader implements TranslateLoader {
   ],
   imports: [
     CommonModule,
+    ContenteditableModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),

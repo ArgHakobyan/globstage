@@ -33,11 +33,11 @@ export class FriendsComponent implements OnInit {
     console.log(id);
     this.friends.push(this.friendRequests.filter(a => {
       return  a.id === id;
-    })[0]);
+    })[0].user);
 
     this.friendRequests = this.friendRequests.filter(a => {
       return  a.id !== id;
-    });    
+    });
   }
 
   // friendDelete(id){
