@@ -6,16 +6,15 @@
   padding: 0;
 }
 .post_attachs{
-  width: 100%;
+  max-width: 100%;
   a{
     display: block;
     outline: none;
   }
   .post_attach{
-    width: 100%;
     max-width: 100%;
     margin-top: 10px;
-    height: auto;
+    max-height: 80vh;
   }
   .doc-hover{
     width: 100px;

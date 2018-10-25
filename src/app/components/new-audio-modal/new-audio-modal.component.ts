@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostsService } from '../../services/posts.service';
 import { AudioService } from '../../services/audio.service';
 import { MatDialog } from '@angular/material';
-import { UploadMediaAttachComponent } from "../../components/upload-media-attach/upload-media-attach.component";
+import { UploadMediaAttachComponent } from '../../components/upload-media-attach/upload-media-attach.component';
+import {FilesService} from '../../services/files.service';
 
 
 
@@ -19,62 +20,80 @@ export class NewAudioModalComponent implements OnInit {
   audiosPosts = [];
   audioForm: FormGroup;
   uploadedAudio;
+  @Output() onUpload = new EventEmitter();
+  public filesToUpload = [];
+  public urls = [];
+  public uploading = false;
   constructor(
     public dialogRef: MatDialogRef<NewAudioModalComponent>,
     public postServices: PostsService,
     public audioServices: AudioService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private filesService: FilesService,
   ) { }
 
   ngOnInit() {
     this.audioForm = new FormGroup({
       audioInsertLink: new FormControl(),
       audioInsertName: new FormControl(),
-    })
+    });
   }
   addAudio(name) {
-    const cname = name.controls.audioInsertLink.value;
-    const audio = name.controls.audioInsertName.value;
+    const audioLink = name.controls.audioInsertLink.value;
+    const audioTitle = name.controls.audioInsertName.value;
     if (this.audioForm.valid) {
       this.audioServices.addAudio(
         {
-          'audio_name' : audio,
-          'audio_link_url': cname,
-          'privacy': 1
-        }).subscribe();
+          'posttype': 'audio',
+          'post_title' : audioTitle,
+          'post_link': audioLink,
+          'post_privacy': 1
+        }).subscribe( res => {
+          this.dialogRef.close(res);
+        });
     }
-    this.audioServices.addAudio(JSON.parse(localStorage.getItem('GLOBE_USER')).id).subscribe(
-      audios => {
-        this.dialogRef.close();
-      });
+
   }
-  onNoClick(): void {
+
+  displaySelected(event) {
+    console.log(event.target.files);
+    this.filesToUpload = Array.from(event.target.files);
+    this.audioForm.controls['audioInsertName'].setValue(this.filesToUpload[0].name);
+  }
+
+  uploadAll() {
+    this.uploading = true;
+    let filesCount = this.filesToUpload.length;
+    for (let file of this.filesToUpload) {
+      this.filesService.upload(file).subscribe( (res: any) => {
+            this.onUpload.emit(res);
+            this.audioForm.controls['audioInsertLink'].setValue(res.path);
+          }, error => {
+
+          }, () => {
+            filesCount = filesCount - 1;
+            if (filesCount === 0) {
+              this.filesToUpload = [];
+              // this.dialogRef.close();
+              this.uploading = false;
+            }
+          }
+      );
+    }
+  }
+
+  removeFromUploads(i) {
+    this.filesToUpload.splice(i, 1);
+    this.urls.splice(i, 1); 
+  }
+
+  clearQueue() {
+    this.filesToUpload = [];
     this.dialogRef.close();
   }
 
-  addDownAudio() {
-      this.audioServices.addAudio({
-        'audio_name' : this.uploadedAudio.name,
-        'audio_link_url': this.uploadedAudio.path,
-        'privacy': 1
-      }).subscribe(
-      );
-      this.dialogRef.close();
-      console.log(this.uploadedAudio);
-
-  }
-
-  openDialogAttach() {
-    const dialogRef = this.dialog.open(UploadMediaAttachComponent, {
-      height: 'auto',
-      width: '500px',
-      data: {fileTypes: ['audio/*']}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.uploadedAudio = result;
-      console.log(result);
-    });
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

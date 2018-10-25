@@ -18,6 +18,7 @@ export class PostComponent implements OnInit {
   audios = [];
   userId;
   like;
+  public allVotes = 0;
 
   constructor(
       private postService: PostsService,
@@ -27,10 +28,11 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.user = getFromLocalStorage('GLOBE_USER');
-    if (this.post.posttype === 'vote') {
+    if (this.post.posttype === 'vote' && this.post.questions) {
       let totalVotes = 0;
       this.post.questions.forEach(question => {
         totalVotes = totalVotes + question.vote_count;
+        this.allVotes = totalVotes;
       });
       this.post.questions.forEach(question => {
         question.percent = 100 * question.vote_count / totalVotes;

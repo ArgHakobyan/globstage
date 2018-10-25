@@ -2,6 +2,8 @@
 .col90{
   width: 90%;
   float: left;
+  text-align: right;
+  padding: 10px 0;
 }
 .col10{
   width: 10%;
@@ -9,16 +11,21 @@
 }
 .add-comment {
   padding: 10px 0;
-  text-align: right;
+  text-alig: right;
   .text-comm {
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     border: 1px solid #E5E5E5;
     color: #777777;
     font-size: 12px;
     padding: 12px;
     outline: none;
     border-radius: 2px;
+    text-align: left;
+    ::ng-deep img{
+      width: 35px !important;
+      height: auto;
+    }
   }
   .add-comm, .close-input {
     outline: none;
@@ -37,6 +44,7 @@
   }
   .smiles{
     text-align: left;
+    padding: 10px 0;
     ul{
         padding: 0;
         margin-bottom: 8px;

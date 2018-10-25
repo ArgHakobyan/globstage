@@ -67,6 +67,10 @@
     font-size: 14px;
     font-weight: 400;
   }
+  ::ng-deep img{
+    width: 35px !important;
+    height: auto;
+  }
 }
 .date {
   text-align: center;

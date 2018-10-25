@@ -1,4 +1,5 @@
 @import '../../../variable';
+
 ::ng-deep .mat-menu-panel{
     border: none;
 }
@@ -106,6 +107,23 @@
             left: 20px;
         }
      }
+     .top{
+        position: fixed;
+        bottom: 40px;
+        right: 30px;
+        cursor: pointer;
+        background: url(/assets/imgs/baseline.png) no-repeat;
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        color: #fff;
+        outline: none;
+        border: 2px solid #95c800;
+        background-color: #95c800;
+    }
+    .top:hover{
+        opacity: 0.5;
+    }
     }
  
 

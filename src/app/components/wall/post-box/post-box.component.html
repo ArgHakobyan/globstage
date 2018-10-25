@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="wall-count-padding col-md-12">
   <div class="row">
     <div class="col-md-1 user-img">
       <div class="user-avatar">
@@ -7,9 +7,8 @@
     </div>
     <div class="col-md-11 text-area" [ngClass]="smileClass">
       <form [formGroup]="formgroupWall" action="" method="post">
-        <div contenteditable="true" class="wall-text" formControlName="user_wall" propValueAccessor="innerHTML" [(ngModel)]="user_wall" (focus)="smileFocusFunction()"
-                  (focusout)="smileFocusOutFunction()"
-                  ></div>
+        <div contenteditable="true" class="wall-text" formControlName="user_wall" propValueAccessor="innerHTML"
+         [(ngModel)]="user_wall" (focus)="smileFocusFunction()" (focusout)="smileFocusOutFunction()"></div>
         <div class="smile-block">
           <div class="row">
             <div class="smiles col-md-8">

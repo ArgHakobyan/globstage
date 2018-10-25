@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
+  searchAlls = [];
   type;
   searchResults = [];
   constructor(
@@ -23,9 +24,15 @@ export class SearchComponent implements OnInit {
         this.type = params.get('type');
         return this.searchService.getSearchResults(q, this.type).subscribe((res: any[]) => {
           this.searchResults = res;
+          this.searchAlls = this.searchResults;
           }
         );
       });
+  }
+  searchAfterSearch(e) {
+    this.searchAlls = this.searchResults.filter( res => {
+      return res.user_name.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1;
+    })
   }
 
 }

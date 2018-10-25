@@ -19,15 +19,15 @@ export class AudioService {
   }
 
   addAudio(audio) {
-    return this.http.post(`${appConfig.apiUrl}/posts/audio`, audio);
+    return this.http.post(`${appConfig.apiUrl}/posts`, audio);
   }
 
   addDownAudio(audio) {
-    return this.http.post(`${appConfig.apiUrl}/posts/audio`, audio);
+    return this.http.post(`${appConfig.apiUrl}/posts`, audio);
   }
 
-  getUserAudios(id) {
-    return this.http.get(`${appConfig.apiUrl}/posts/audio/${id}`);
+  getUserAudios(username) {
+    return this.http.get(`${appConfig.apiUrl}/posts/audio/${username}`);
   }
 
 }

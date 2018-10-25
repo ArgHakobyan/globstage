@@ -10,7 +10,7 @@
         <div class="searchUser">
           <form class="example-form">
             <mat-form-field class="example-full-width">
-              <input type="search" matInput placeholder="Search" value="">
+              <input (input)="searchAfterSearch($event)" type="search" matInput placeholder="Search" value="">
               <!--<app-search-all></app-search-all>-->
             </mat-form-field>
             <button type="submit" class="search btn-success save">{{'search' | translate}}</button>
@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-12">
           <div class="row">
-            <div class="search-avatar" *ngFor="let result of searchResults">
+            <div class="search-avatar" *ngFor="let result of searchAlls">
               <div class="search-img" *ngIf="type=='users'" [routerLink]="'/user-profile/'+result.username">
                 <div class="img" >
                   <img [src]="result.user_photo || '/assets/imgs/no_avatar.png'" alt="no_avatar.png">

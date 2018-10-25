@@ -1,43 +1,50 @@
 <div class="create-audio">
     <p class="center-p">{{'newModal.addSong' | translate}}</p>
-    <mat-tab-group>
-      <mat-tab label="The Link">
+
         <div class="song-load">
           <form class="example-form" [formGroup]="audioForm">
             <mat-form-field class="example-full-width">
               <input matInput formControlName="audioInsertName" placeholder="Audio name">
             </mat-form-field>
             <mat-form-field class="example-full-width">
-              <input matInput formControlName="audioInsertLink" placeholder="Insert a link to an mp3 file">
+              <input matInput formControlName="audioInsertLink" placeholder="Insert a link to an mp3 file or upload using box below.">
             </mat-form-field>
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+              
+                    <div class="thumb-wrapper" *ngFor="let url of urls; let i = index">
+                      <mat-icon (click)="removeFromUploads(i)">close</mat-icon>
+                      <!-- <img [src]="url" alt="" class="thumb"> -->
+                    </div>
+                    <div class="chooser-wrapper">
+                      <span>{{'uploader.uploader_text' | translate}}</span>
+                      <input  class="chooser" (change)="displaySelected($event)" type="file" />
+                    </div>
+                    <!-- <p>{{'uploader.files_selected' | translate}} : {{ urls?.length }}</p> -->
+                    <div style="text-align: left">
+              
+                      <button style="margin-top: 6px" type="button" class="btn btn-success btn-s"
+                              (click)="uploadAll()" [hidden]="!filesToUpload.length">
+                        <mat-spinner *ngIf="uploading"></mat-spinner>
+                        {{'upload' | translate}}
+                      </button>
+              
+                      <!-- <button (click)="postOkClick()" type="button" class="ok btn btn-default">{{'ok' | translate}}</button> -->
+                      <!-- <button [disabled]="uploading" (click)="onNoClick()" type="button" class="cancel btn btn-default">{{'cancel' |
+                        translate}}
+                      </button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
           </form>
-          <p>{{'newModal.example' | translate}}:
-            <span>{{'newModal.fileLink' | translate}}</span>
-          </p>
+
         </div>
         <div class="create-btn">
           <button (click)="addAudio(audioForm)" type="button" class="done btn btn-default">{{'newModal.done' | translate}}</button>
           <button (click)="onNoClick()" type="button" class="cancel btn btn-default">{{'newModal.cancel' | translate}}</button>
         </div>
-      </mat-tab>
-      <mat-tab label="From the computer">
-        <div class="from-comp">
-          <span class="limit">{{'newModal.limit' | translate}}</span>
-          <ul>
-            <li>{{'newModal.fileSize' | translate}}</li>
-            <li>{{'newModal.copyright' | translate}}</li>
-          </ul>
-          <div class="upload-file">
-            <button (click)="openDialogAttach()" type="button" class="select-file btn btn-default">{{'newModal.selectFile' | translate}}</button>
-          </div>
-          <p>{{'newModal.downFiles' | translate}}
-            <a href="">{{'newModal.searchAudio' | translate}}</a>
-          </p>
-        </div>
-        <div class="create-btn">
-          <button (click)="addDownAudio()" type="button" class="done btn btn-default">{{'newModal.done' | translate}}</button>
-          <button (click)="onNoClick()" type="button" class="cancel btn btn-default">{{'newModal.cancel' | translate}}</button>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
+
+
 </div>

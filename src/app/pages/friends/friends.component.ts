@@ -44,19 +44,19 @@ export class FriendsComponent implements OnInit {
     });
   }
 
-  searchFriends(e){
-    this.searchFriend = this.friends.filter(res => {  
-      console.log(res);         
+  searchFriends(e) {
+    this.searchFriend = this.friends.filter(res => {
+      console.log(res);
       return res.user_name.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1;
-    })
+   })
   }
 
   friendDelete(id){
     this.friendService.getFriends(getFromLocalStorage('GLOBE_USER').id).subscribe((res: any[]) => {
-      this.friends = res;      
+      this.friends = res;
       this.searchFriend = this.friends;
       console.log(res);
-    });   
+    });
   }
 
 

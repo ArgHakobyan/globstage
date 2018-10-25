@@ -71,7 +71,8 @@ export class CommentComponent implements OnInit {
   }
 
   deleteComment(id) {
-    this.commentService.deleteComment(id).subscribe(res => {
+    console.log(this.post);
+    this.commentService.deleteComment(id).subscribe( res => {
       this.post.post_comment_count--;
       this.snackBar.open('Comment is successfully deleted.', 'ok', {duration: 3000});
       this.onDelete.emit(id);

@@ -9,6 +9,7 @@ import {GlobeAdapter} from '../../services/chatAdapter';
 import {getFromLocalStorage} from '../../utils/local-storage';
 // import {NotificationComponent} from '../../components/notification/notification.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -83,6 +84,10 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('GLOBE_USER');
     this.router.navigate(['']);
 
+  }
+  scrollToTop() {
+    console.log('scrol');
+    $('.background-page').scrollTop(0);
   }
 
   onChatTitleClicked(event: any): void {

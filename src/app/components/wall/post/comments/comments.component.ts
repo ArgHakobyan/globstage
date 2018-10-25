@@ -4,6 +4,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {getFromLocalStorage} from '../../../../utils/local-storage';
 import { MatSnackBar } from '@angular/material';
 import { WallSmilesComponent } from '../../../../components/wall/wall-smiles/wall-smiles.component';
+import {EmojifyPipe} from '../../../ng-chat/pipes/emojify.pipe';
 
 
 
@@ -81,6 +82,7 @@ export class CommentsComponent implements OnInit {
 
   addSmile(e) {
     this.user_comment = this.formgroupComment.get('user_comment').value ? this.formgroupComment.get('user_comment').value + ` *${e}* ` : ` *${e}* `;
+    this.user_comment = EmojifyPipe.prototype.transform(this.user_comment, true);
     this.smileOpen = false;
     console.log(e, this.formgroupComment.get('user_comment').value);
   }

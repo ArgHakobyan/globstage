@@ -21,22 +21,23 @@ export class AudiosComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.audioServices.getAudios().subscribe(
       (audios: any[]) => {
         this.audios = audios;
         console.log(audios);
       });
-
   }
 
   openDialogAudio() {
     const dialogRef = this.dialog.open(NewAudioModalComponent, {
-      height: '350px',
+      height: '400px',
       width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.audios.push(result);
+      }
     });
   }
 }

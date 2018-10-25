@@ -5,9 +5,9 @@ export const appConfig = {
   // apiOauth: 'http://globstage.atero.solutions/api/v1/users/token',
   // serverUrl: 'http://globstage.atero.solutions/api',
 
-  apiUrl: 'http://globstage.com/api/v1',
-  apiOauth: 'http://globstage.com/api/v1/users/token',
-  serverUrl: 'http://globstage.com/api',
+  apiUrl: 'https://globstage.com/api/v1',
+  apiOauth: 'https://globstage.com/api/v1/users/token',
+  serverUrl: 'https://globstage.com/api',
 };
 
 export const allowedImageType = [

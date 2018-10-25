@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="col-md-11 wall-name">
-        <p *ngIf="post.user?.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}}</p>
+        <p *ngIf="post.user?.user_name !== null"><a [routerLink]="['/user-profile/' + post.user.username]">{{post.user.user_name + ' ' + post.user.user_last_name}}</a></p>
         <p *ngIf="post.user?.user_name === null && post.posttype == 'googlenews'">Google News</p>
         <div class="date">
           {{post.post_created_date | date : "dd MMM yyyy"}}
@@ -28,10 +28,10 @@
     <div class="row">
       <div class="wall-content col-md-12">
         <div class="wall-atach-photo">
-          <img *ngIf="post.posttype == 'googlenews'&& post.attachments && post.attachments[0].path !==''" [src]="post.attachments[0].path" alt="post.attachments[0].path">
+          <img *ngIf="post.posttype == 'googlenews' && post.attachments && post.attachments[0].path !==''" [src]="post.attachments[0].path" alt="post.attachments[0].path">
           <h6 *ngIf="post.user && post.posttype == 'groupinvitation'">{{ post.user.user_name + ' '+ post.user.user_last_nam
             }} invite you to join to the group
-            <a href="http://globstage.com/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
+            <a href="https://globstage.com/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
           <h6 *ngIf="post.posttype !== 'groupinvitation' && post.posttype !== 'audio'  " [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
           <button (click)="repost(post)" mat-button *ngIf="post.posttype == 'googlenews'">Repost</button>
           <div *ngIf="post.posttype == 'audio'" class="audio">
@@ -39,7 +39,7 @@
               audio
             </h6>
             <audio controls="controls">
-              <source [src]="post.post_attachment_url" />
+              <source [src]="post.post_link" />
             </audio>
             <div class="clearfix"></div>
           </div>
@@ -50,7 +50,7 @@
                   <h4 class="name">{{ post.post_poll_title }}</h4>
                   <div *ngFor="let question of post.questions">
                     <p (click)="selectQuest(question.id)" class="title2">{{ question.title }}</p>
-                    <span>{{ question.vote_count + '%' }}</span>
+                    <span>{{ 100 * question.vote_count / allVotes | number:0 }} %</span>
                     <div [ngStyle]="{'background': 'linear-gradient(90deg, #35bbbd ' + question.percent + '%, #fff 0%)'}" class="count-vote">
                     </div>
                   </div>

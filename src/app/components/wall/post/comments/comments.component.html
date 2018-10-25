@@ -1,15 +1,15 @@
 <div *ngIf="post.posttype !== 'googlenews'" class="col-md-12 author-comment">
 
   <div *ngFor="let comment of post.comments" class="borders">
-    <app-comment [comment]="comment" (onDelete)="filterComments($event)" ></app-comment>
+    <app-comment [comment]="comment" [post]="post" (onDelete)="filterComments($event)" ></app-comment>
   </div>
   <span *ngIf="post.post_comment_count > 4" class="show-all" (click)="getAllComments(post.id)">{{'comment.showAllComments' | translate}} {{post.post_comment_count}}</span>
   <div class="commSmile" [ngClass]="smileClass">
       <form [formGroup]="formgroupComment" action="" method="post">
           <div class="add-comment" [ngClass]="activeClass">
-            <textarea formControlName="user_comment" [(ngModel)]="user_comment" (focus)="focusFunction()" (focusout)="focusOutFunction()"
-              class="text-comm" placeholder="{{'comment.addComm' | translate}}">
-            </textarea>
+            <div contenteditable="true" propValueAccessor="innerHTML" formControlName="user_comment" [(ngModel)]="user_comment" (focus)="focusFunction()" (focusout)="focusOutFunction()"
+              class="text-comm">
+          </div>
               <div class="smiles col10">
                   <ul>
                       <li (click)="openSmiles();"><i class="fa fa-smile-o"></i></li>
