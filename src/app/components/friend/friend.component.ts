@@ -25,7 +25,7 @@ export class FriendComponent implements OnInit {
   deleteFriend() {
     this.friendService.deleteFriend(this.friend.id).subscribe((res: any[]) => {
       this.friendRequests = res;
-      // this.delFriend.emit(res);
+      this.delFriend.emit(res);
     });
     this.snackBar.open('Friend deleted', 'ok', { duration: 3000 });
   }
