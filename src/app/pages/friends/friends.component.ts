@@ -13,18 +13,17 @@ export class FriendsComponent implements OnInit {
   searchFriend:any = [];
   friends: any[];
   friendRequests: any[];
-  
+
   constructor(private friendService: FriendsService,) { }
 
 
   ngOnInit() {
     this.friendService.getFriends(getFromLocalStorage('GLOBE_USER').id).subscribe((res: any[]) => {
-      this.friends = res;      
+      this.friends = res;
       this.searchFriend = this.friends;
       console.log(res);
     });
-    
-    console.log(this.friend);    
+
 
     this.friendService.getFriendRequests().subscribe((res: any[]) => {
       this.friendRequests = res;

@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.userService.getUserByUsername(params.id).subscribe(user => {
           this.user = user;
-            this.titleService.setTitle( this.user.user_name + ' ' +  this.user.user_last_name);
+            this.titleService.setTitle( this.user.user_name + ' ' +  this.user.user_last_name + ' | GlobStage');
         },
         error => {
           this.userBlocked = true;

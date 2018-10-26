@@ -1,5 +1,4 @@
 @import '../../../../../variable';
-
 .clearfix {
   clear: both;
 }
@@ -14,4 +13,14 @@
    audio{
       width: 100%;
     }
+    .removeAudio{
+      text-align: right;
+      .delete-audio{
+        cursor: pointer;
+        position: absolute;
+        z-index: 9999;
+        top: 6px;
+        right: 8px;
+      }
+  }
 }

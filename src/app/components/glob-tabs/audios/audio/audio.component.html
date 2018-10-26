@@ -1,5 +1,6 @@
 <div class="audio">
   <span>{{audio.post_title}}</span>
+  <div class="removeAudio"><i *ngIf="audio.author_id == userAudio.id" class="delete-audio fa fa-times" aria-hidden="true" (click)="delete(audio.id)"></i></div>
   <audio  controls="controls">
     <source [src]="audio.post_link" />
   </audio>

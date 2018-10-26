@@ -16,8 +16,8 @@
     <button type="button" class="btn btn-success" (click)="sendMessage()"><i class="fa fa-envelope" aria-hidden="true"></i>{{'userProfile.sendMessage' | translate}}</button>
     <button type="button" class="btn btn-success" *ngIf="!following" (click)="addFollow()"><i class="fa fa-share" aria-hidden="true"></i>{{'userProfile.follow' | translate}}</button>
     <button type="button" class="btn btn-success" *ngIf="following" (click)="deleteFollow()"><i class="fa fa-share" aria-hidden="true"></i>{{'userProfile.unfollow' | translate}}</button>
-    <button type="button" class="btn btn-success" *ngIf="!isFriend" (click)="blockUser()"><i class="fa fa-lock" aria-hidden="true"></i>{{'userProfile.block' | translate}}</button>
-    <button type="button" class="btn btn-success" *ngIf="!isFriend" (click)="unblockUser()"><i class="fa fa-unlock" aria-hidden="true"></i>{{'userProfile.unlock' | translate}}</button>
+    <button type="button" class="btn btn-success" *ngIf="!blocking" (click)="blockUser()"><i class="fa fa-lock" aria-hidden="true"></i>{{'userProfile.block' | translate}}</button>
+    <button type="button" class="btn btn-success" *ngIf="blocking" (click)="unblockUser()"><i class="fa fa-unlock" aria-hidden="true"></i>{{'userProfile.unlock' | translate}}</button>
   </div>
   <app-friends-sidebar-block *ngIf="user.friends?.length" [userId]="user.id"></app-friends-sidebar-block>
 </div>

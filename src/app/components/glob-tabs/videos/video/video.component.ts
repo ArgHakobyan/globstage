@@ -17,13 +17,14 @@ export class VideoComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
 
   }
 
   delete(id) {
     this.videoService.deleteVideo(id).subscribe( res => {
       this.deleteVideo.emit(id);
+      console.log(res);
     });
   }
 }

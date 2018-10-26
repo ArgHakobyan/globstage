@@ -30,4 +30,8 @@ export class AudioService {
     return this.http.get(`${appConfig.apiUrl}/posts/audio/${username}`);
   }
 
+  deleteAudio(id) {
+    return this.http.delete(`${appConfig.apiUrl}/posts/${id}`);
+  }
+
 }

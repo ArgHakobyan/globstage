@@ -48,6 +48,7 @@ export class VideosComponent implements OnInit {
   delete(id) {
     this.videoServices.deleteVideo(id).subscribe( res => {
       this.videos = this.videos.filter(v => v.id !== id);
+      console.log(res);
     });
   }
 

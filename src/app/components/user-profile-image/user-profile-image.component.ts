@@ -16,6 +16,7 @@ export class UserProfileImageComponent implements OnInit, OnChanges {
   @Input() user;
   isFriend = false;
   following = false;
+  blocking = false;
 
   constructor(
     private friendService: FriendsService,
@@ -37,6 +38,11 @@ export class UserProfileImageComponent implements OnInit, OnChanges {
 
     if (this.user.follow) {
       this.following = true;
+    }
+    if (this.user.user_blocked) {
+      this.blocking = true;
+    } else {
+      this.blocking = false;
     }
 
   }
@@ -101,12 +107,14 @@ export class UserProfileImageComponent implements OnInit, OnChanges {
   blockUser() {
     this.friendService.blockUser(this.user.id).subscribe(res => {
       this.snackBar.open(`You have blocked ${this.user.user_name}.`, 'ok', {duration: 3000});
+      this.blocking = true;
     });
   }
 
   unblockUser() {
     this.friendService.unblockUser(this.user.id).subscribe(res => {
       this.snackBar.open(`You have unlocked ${this.user.user_name}.`, 'ok', {duration: 3000});
+      this.blocking = false;
     });
   }
 

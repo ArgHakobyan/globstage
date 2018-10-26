@@ -1,17 +1,17 @@
 <div class="music-album tabs-a">
   <div class="row" >
-    <div class="col-md-2 music-alb">
-      <img src="/assets/imgs/music.png" alt="music.png">
-    </div>
     <div class="col-md-10 upload">
       <p>{{'downAudio' | translate}}</p>
       <span (click)="openDialogAudio()">{{'addAudio' | translate}}</span>
+    </div>
+    <div class="col-md-2 music-alb">
+      <img src="/assets/imgs/music.png" alt="music.png">
     </div>
     <div class="clearfix"></div>
     </div>
       <div class="col-md-12">
         <div class="row">
-          <app-audio class="col-md-12" *ngFor="let audio of audios" [audio]="audio"></app-audio>
+          <app-audio (deleteAudio)="delete($event)" class="col-md-12" *ngFor="let audio of audios" [audio]="audio"></app-audio>
         </div>
       </div>
 </div>
