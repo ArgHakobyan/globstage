@@ -14,6 +14,7 @@ export class UserProfileImageComponent implements OnInit, OnChanges {
 
   @Input() userId;
   @Input() user;
+  public username;
   isFriend = false;
   following = false;
   blocking = false;
@@ -30,6 +31,9 @@ export class UserProfileImageComponent implements OnInit, OnChanges {
     if (this.user.friends && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id).length > 0) {
       this.isFriend = true;
     }
+
+    this.username = getFromLocalStorage('GLOBE_USER').username;
+    // console.log(this.username + ' ' + this.user.username);
 
 
     // if (this.user.friends && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id)[0] && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id)[0].subscription === 1) {

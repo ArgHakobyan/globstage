@@ -20,9 +20,11 @@ export class AudioComponent implements OnInit {
   }
 
   delete(id) {
-    this.audioServices.deleteAudio(id).subscribe( res => {
-      this.deleteAudio.emit(id);
-    });
+    if (window.confirm('Are you sure do you want to delete this audio?')) {
+      this.audioServices.deleteAudio(id).subscribe( res => {
+        this.deleteAudio.emit(id);
+      });
+    }
   }
 
 

@@ -46,10 +46,12 @@ export class VideosComponent implements OnInit {
   }
 
   delete(id) {
-    this.videoServices.deleteVideo(id).subscribe( res => {
-      this.videos = this.videos.filter(v => v.id !== id);
-      console.log(res);
-    });
+    if (window.confirm('Are you sure do you want to delete this audio?')) {
+      this.videoServices.deleteVideo(id).subscribe( res => {
+        this.videos = this.videos.filter(v => v.id !== id);
+        console.log(res);
+      });
+    }
   }
 
   playVideo() {

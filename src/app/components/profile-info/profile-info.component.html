@@ -146,7 +146,17 @@
                     <textarea formControlName="activities" matInput placeholder="Activities"></textarea>
                   </mat-form-field>
                   <mat-form-field class="example-full-width">
-                    <textarea formControlName="interests" matInput placeholder="Interests"></textarea>
+                    <textarea matInput placeholder="Interests"></textarea>
+                      <mat-select formControlName="interests">
+                        <mat-option value="">Select Category</mat-option>
+                        <mat-option value="business">Business</mat-option>
+                        <mat-option value="entertainment">Entertainment</mat-option>
+                        <mat-option value="general">General</mat-option>
+                        <mat-option value="health">Health</mat-option>
+                        <mat-option value="science ">Science</mat-option>
+                        <mat-option value="sports">Sports</mat-option>
+                        <mat-option value="technology">Technology</mat-option>
+                      </mat-select>
                   </mat-form-field>
                   <mat-form-field class="example-full-width">
                     <textarea formControlName="favorite_munshids" matInput placeholder="Favorite Munshids"></textarea>

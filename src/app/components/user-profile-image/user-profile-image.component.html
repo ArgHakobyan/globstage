@@ -10,7 +10,7 @@
       {{ user.user_status || 'userProfile.statusPlaceholder' | translate }}
     </div>
   </div>
-  <div class="user-attr">
+  <div *ngIf="this.username !== this.user.username" class="user-attr">
     <button type="button" class="btn btn-success" *ngIf="!isFriend" (click)="addFriend()"><i class="fa fa-plus" aria-hidden="true" ></i>{{'userProfile.addFriend' | translate}}</button>
     <button type="button" class="btn btn-success" *ngIf="isFriend" (click)="removeFriend()"><i class="fa fa-plus" aria-hidden="true" ></i>{{'userProfile.deleteFriend' | translate}}</button>
     <button type="button" class="btn btn-success" (click)="sendMessage()"><i class="fa fa-envelope" aria-hidden="true"></i>{{'userProfile.sendMessage' | translate}}</button>
