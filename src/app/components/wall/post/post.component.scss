@@ -46,6 +46,22 @@
             height: 390px;
         
         }
+        .share-post{
+            margin-right: 15px;
+            cursor: pointer;
+            background: #35bbbd;
+            border-radius: 4px;
+            border: none;
+            padding: 4px 10px;
+            color: #fff;
+            .shared{
+                font-size: 15px;
+                margin-right: 4px;
+            }
+        }
+        .share-post:hover{
+            opacity: 0.8;
+        }
     }
     .poll{
         .wall-poll{
@@ -149,6 +165,22 @@
         .dislike-count{
             display: block;
         }
+    }
+    .share-post{
+        margin-right: 15px;
+        cursor: pointer;
+        background: #35bbbd;
+        border-radius: 4px;
+        border: none;
+        padding: 4px 10px;
+        color: #fff;
+        .shared{
+            font-size: 15px;
+            margin-right: 4px;
+        }
+    }
+    .share-post:hover{
+        opacity: 0.8;
     }
 }
 

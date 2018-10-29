@@ -26,12 +26,14 @@
     <div class="row">
       <div class="wall-content col-md-12">
         <div class="wall-atach-photo">
-          <img *ngIf="post.posttype == 'googlenews' && post.attachments && post.attachments[0].path !==''" [src]="post.attachments[0].path" alt="post.attachments[0].path">
+          <img *ngIf="post.posttype == 'googlenews' && post.attachments && post.attachments[0].path !== null" [src]="post.attachments[0].path" alt="post.attachments[0].path">
           <h6 *ngIf="post.user && post.posttype == 'groupinvitation'">{{ post.user.user_name + ' '+ post.user.user_last_nam
             }} invite you to join to the group
             <a routerLink="/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
           <h6 *ngIf="post.posttype !== 'groupinvitation' && post.posttype !== 'audio'  " [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
-          <button (click)="repost(post)" mat-button *ngIf="post.posttype == 'googlenews'">Repost</button>
+          <button class="share-post" (click)="repost(post)" mat-button 
+           *ngIf="post.posttype == 'googlenews'">
+           <i class="shared fa fa-share" aria-hidden="true"></i>Share</button>
           <div *ngIf="post.posttype == 'audio'" class="audio">
             <h6 *ngIf="post.user?.user_name !== null">{{post.user.user_name + ' ' + post.user.user_last_name}} added a new
               audio
@@ -95,6 +97,9 @@
             </div>
           </div>
         </i>
+        <button class="share-post" (click)="repost(post)" mat-button 
+        *ngIf="(post.posttype == 'googlenews' || post.posttype == 'post' || post.posttype == 'video') && post.user.id != user.id">
+        <i class="shared fa fa-share" aria-hidden="true"></i>Share</button>
         <i (click)="disLike()" class="dislike fa fa-thumbs-down" aria-hidden="true">
           <span>{{post.post_dislike_count || 0}}</span>
           <div *ngIf="post.post_dislike_count != 0" class="dislike-count">

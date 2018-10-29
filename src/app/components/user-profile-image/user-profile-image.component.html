@@ -10,6 +10,16 @@
       {{ user.user_status || 'userProfile.statusPlaceholder' | translate }}
     </div>
   </div>
+  <div *ngIf="this.username === this.user.username">
+    <div routerLink="/groups" class="box-group center">
+      <div class="img-subscribe"></div>
+      {{'profile.groupText' | translate}}
+    </div>
+    <div routerLink="/profile/videos" class="box-video center">
+      <div class="img-video"></div>
+      {{'profile.videosText' | translate}}
+    </div>
+  </div>
   <div *ngIf="this.username !== this.user.username" class="user-attr">
     <button type="button" class="btn btn-success" *ngIf="!isFriend" (click)="addFriend()"><i class="fa fa-plus" aria-hidden="true" ></i>{{'userProfile.addFriend' | translate}}</button>
     <button type="button" class="btn btn-success" *ngIf="isFriend" (click)="removeFriend()"><i class="fa fa-plus" aria-hidden="true" ></i>{{'userProfile.deleteFriend' | translate}}</button>

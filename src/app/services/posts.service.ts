@@ -65,6 +65,7 @@ export class PostsService {
 
 
   shareGoogleNews(post) {
+    post.comments = [];
     return this.http.post(`/posts/share-post`, post);
   }
 
