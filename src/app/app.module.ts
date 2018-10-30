@@ -129,6 +129,7 @@ import { PostEmojifyPipe } from './pipes/post-emojify.pipe';
 import { UserProfileMapComponent } from './components/user-profile-map/user-profile-map.component';
 import { CommentComponent } from './components/wall/post/comment/comment.component';
 import { ContenteditableModule } from 'ng-contenteditable';
+import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
 
 
 
@@ -238,7 +239,8 @@ export class CustomTranslateLoader implements TranslateLoader {
     ForgotComponent,
     PostEmojifyPipe,
     UserProfileMapComponent,
-    CommentComponent
+    CommentComponent,
+    DeleteConfirmationComponent
   ],
   imports: [
     CommonModule,
@@ -337,7 +339,8 @@ export class CustomTranslateLoader implements TranslateLoader {
     AttachmentsComponent,
     FriendsSidebarBlockComponent,
     AttachmentsComponent,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    DeleteConfirmationComponent
   ]
 })
 export class AppModule {

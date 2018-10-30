@@ -15,7 +15,6 @@ export class UserProfileMapComponent implements OnInit {
   map: google.maps.Map;
   user: any;
   public userBlocked;
-  
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -43,7 +42,7 @@ export class UserProfileMapComponent implements OnInit {
           styles: [{
             'featureType': 'all',
             'elementType': 'all',
-            'stylers': [{'invert_lightness': true}, {'saturation': 10}, {'lightness': 30}, {'gamma': 0.5}, {'hue': '#435158'}]
+            // 'stylers': [{'invert_lightness': true}, {'saturation': 10}, {'lightness': 30}, {'gamma': 0.5}, {'hue': '#435158'}]
           }]
         });
         let marker = new google.maps.Marker({

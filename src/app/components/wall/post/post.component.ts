@@ -3,6 +3,8 @@ import {PostsService} from '../../../services/posts.service';
 import {getFromLocalStorage} from '../../../utils/local-storage';
 import {NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation, NgxGalleryLayout} from 'ngx-gallery';
 import {MatSnackBar} from '@angular/material';
+import {MatDialog} from '@angular/material';
+import { DeleteConfirmationComponent } from '../../../components/delete-confirmation/delete-confirmation.component';
 
 
 @Component({
@@ -23,6 +25,7 @@ export class PostComponent implements OnInit {
   constructor(
       private postService: PostsService,
       public snackBar: MatSnackBar,
+      public dialog: MatDialog,
       ) {
   }
 
@@ -72,22 +75,34 @@ export class PostComponent implements OnInit {
 
   deleteWallPost(post) {
     const id = post.id;
-    if (window.confirm('Are you sure do you want to delete this post?')) {
     if (post.posttype === 'post') {
       this.postService.deleteWallPost(id).subscribe(res => {
         this.onDelete.emit({message: 'postDeleted', id: id});
       }, err => {
         this.onDelete.emit({message: 'postDeleted', id: id});
       });
-  } else  {
-    post.hide_from_wall = 0;
-    this.postService.hidePostOnWall(post).subscribe( res => {
-      this.post.hide_from_wall = 0;
-      console.log(res);
+    } else  {
+      post.hide_from_wall = 0;
+      this.postService.hidePostOnWall(post).subscribe( res => {
+        this.post.hide_from_wall = 0;
+        console.log(res);
+      });
+    }
+  }
+
+  openDialogDelete() {
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
+      height: 'auto',
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteWallPost(this.post);
+      }
     });
   }
-}
-  }
+
 
   selectQuest(id) {
     this.userId = getFromLocalStorage('GLOBE_USER').id;
