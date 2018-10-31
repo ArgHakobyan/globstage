@@ -7,6 +7,8 @@ import {UploadMediaAttachComponent} from '../../components/upload-media-attach/u
 import { getFromLocalStorage } from '../../utils/local-storage';
 import { UserService} from '../../services/user.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { DeleteConfirmationComponent } from '../../components/delete-confirmation/delete-confirmation.component';
+
 
 @Component({
   selector: 'app-album-page',
@@ -97,14 +99,24 @@ export class AlbumPageComponent implements OnInit {
   }
 
   delete(id) {
-    if (window.confirm('Are sure you want to delete this item ?')) {
       this.albumService.deleteImage(id).subscribe( res => {
         console.log(res);
-
         this.album.attachments = this.album.attachments.filter(v => v.id !== id);
       });
-    }
 
+  }
+
+  openDialogDelete(id) {
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
+      height: 'auto',
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.delete(id);
+      }
+    });
   }
 
 }

@@ -32,6 +32,7 @@
     .friends-item:hover{
       .hover-popup, .to-bottom{
         display: block;
+        z-index: 9999;
       }
     }
     .friends-item{

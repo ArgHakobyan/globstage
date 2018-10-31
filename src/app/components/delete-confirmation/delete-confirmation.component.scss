@@ -1,13 +1,10 @@
 @import '../../../variable';
-::ng-deep .mat-dialog-container{
-    background: rgb(38, 133, 135);
-}
 .delete-modal{
     .modal-title{
         text-align: center;
         h4{
             font-size: 15px;
-            color: #fff;
+            color: $color-blue;
         }
     }
     
@@ -25,7 +22,7 @@
         }
         .done:hover{
             background: $color-green;
-            border-color: $color-blue;
+            // border-color: $color-blue;
         }
         .cancel{
             background: linear-gradient(#FFFFFF, #F5F5F5) repeat scroll 0 0 #FCFCFC;

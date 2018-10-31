@@ -16,7 +16,8 @@
     "videosText": "Can store an unlimited number of video files. To add your first video, click here.",
     "uplNewPhoto": "Upload a new photo",
     "changeThumb": "Change thumbnail",
-    "delete": "Delete"
+    "delete": "Delete",
+    "areYouSure": "Are you sure do you want to delete this item?"
 
   },
   "user": {
@@ -176,6 +177,7 @@
     "commentPhoto": "Who can comment on the photos?",
     "done": "Done",
     "cancel": "Cancel",
+    "delete": "Delete",
     "allMember": "All Members",
     "justFriend": "Just Friends",
     "butI": "But I",

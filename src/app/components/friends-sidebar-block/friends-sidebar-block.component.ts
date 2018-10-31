@@ -11,12 +11,15 @@ export class FriendsSidebarBlockComponent implements OnInit, OnChanges {
 
   public friends;
   @Input() userId;
+  @Input() user;
   friendsOnline: any[];
   allFriendsVisible = false;
 
   constructor(private friendService: FriendsService) { }
 
   ngOnInit() {
+    console.log(this.user);
+    
     this.friendService.getFriends(this.userId).subscribe(res => {
       this.friends = res;
     });

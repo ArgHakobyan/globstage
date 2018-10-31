@@ -30,4 +30,53 @@
       </div>
     </div>
   </div>
+  <div class="user-quantity">
+    <div class="friends">
+      <p>Followers <span>{{follower?.length}}</span></p>
+    </div>
+  </div>
+  <div class="friend-img">
+    <div class="friends-item" [routerLink]="'/user-profile/'+follower.username" *ngFor="let follower of user.user_followers?.user; let i = index">
+      <div class="hover-popup" *ngIf="i < 4 || allFriendsVisible">
+        <div class="row">
+          <div class="col-md-4">
+            <img class="popup-img" [src]="follower.user_photo || '/assets/imgs/no_avatar.png'" alt="no_avatar.png">
+          </div>
+          <div class="col-md-8 center-text">
+            <h5>{{follower.user_name + ' ' + follower.user_last_name}}</h5>
+            <h4>{{follower.user_country}} {{follower.user_city}}</h4>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="to-bottom"></div>
+      <div class="img-width" *ngIf="i < 4 || allFriendsVisible">
+        <img class="friend-ava" [src]="follower.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50.png">
+      </div>
+    </div>
+  </div>
+  <div class="user-quantity">
+    <div class="friends">
+      <p>Groups <span>{{groups?.length}}</span></p>
+    </div>
+  </div>
+  <div class="friend-img">
+    <div class="friends-item" [routerLink]="'/user-profile/'+groups.username" *ngFor="let groups of user.user_followers?.group; let i = index">
+      <div class="hover-popup" *ngIf="i < 4 || allFriendsVisible">
+        <div class="row">
+          <div class="col-md-4">
+            <img class="popup-img" [src]="'/assets/imgs/no_ava_groups.png'" alt="no_avatar.png">
+          </div>
+          <div class="col-md-8 center-text">
+            <h5>{{groups.group_name }}</h5>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="to-bottom"></div>
+      <div class="img-width" *ngIf="i < 4 || allFriendsVisible">
+        <img class="friend-ava" [src]="'/assets/imgs/no_ava_groups.png'" alt="no_ava_50.png">
+      </div>
+    </div>
+  </div>
 </div>

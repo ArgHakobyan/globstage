@@ -28,6 +28,8 @@ export class UserProfileImageComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    console.log(this.user);
+    
     if (this.user.friends && this.user.friends.filter(u => u.id === getFromLocalStorage('GLOBE_USER').id).length > 0) {
       this.isFriend = true;
     }

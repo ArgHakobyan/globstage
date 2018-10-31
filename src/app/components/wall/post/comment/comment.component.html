@@ -10,7 +10,7 @@
     <span class="date-comm">{{comment.comment_created_date}}</span>
   </div>
   <div class="col-md-4 delete-comm">
-    <i (click)="deleteComment(comment.id)" *ngIf="comment.comment_user_id == user.id" class="delete fa fa-trash" aria-hidden="true"></i>
+    <i (click)="openDialogDelete()" *ngIf="comment.comment_user_id == user.id" class="delete fa fa-trash" aria-hidden="true"></i>
   </div>
   <div class="comment-text">
     <h6 class="comentContent" [innerHTML]=" comment.comment_content || '' | postemojify:true "></h6>

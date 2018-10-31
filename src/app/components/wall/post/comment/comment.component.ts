@@ -3,6 +3,9 @@ import { getFromLocalStorage } from '../../../../utils/local-storage';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CommentService } from '../../../../services/comment.service';
 import { MatSnackBar } from '@angular/material';
+import { DeleteConfirmationComponent } from '../../../../components/delete-confirmation/delete-confirmation.component';
+import {MatDialog} from '@angular/material';
+
 
 @Component({
   selector: 'app-comment',
@@ -24,6 +27,7 @@ export class CommentComponent implements OnInit {
   constructor(
     private commentService: CommentService,
     public snackBar: MatSnackBar,
+    public dialog: MatDialog,
   ) {
   }
 
@@ -72,7 +76,6 @@ export class CommentComponent implements OnInit {
 
   deleteComment(id) {
     console.log(this.post);
-    if (window.confirm('Are you sure do you want to delete this comment?')) {
       this.commentService.deleteComment(id).subscribe(res => {
         this.post.post_comment_count--;
         this.snackBar.open('Comment is successfully deleted.', 'ok', { duration: 3000 });
@@ -82,7 +85,19 @@ export class CommentComponent implements OnInit {
         this.snackBar.open('Comment can not be deleted.', 'ok', { duration: 3000 });
         console.log(err);
       });
-    }
+  }
+
+  openDialogDelete() {
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
+      height: 'auto',
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteComment(this.comment.id);
+      }
+    });
   }
 
   filterReplies(id) {

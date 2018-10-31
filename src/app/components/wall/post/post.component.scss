@@ -118,8 +118,9 @@
 .wall-atach-photo{
     padding-bottom: 20px;
     img{
-        width: 400px;
         max-width: 100%;
+        margin: auto;
+        display: block;
     }
 }
 .wall-attach-video{

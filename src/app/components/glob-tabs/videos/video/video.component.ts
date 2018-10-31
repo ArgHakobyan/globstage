@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {VideoService} from '../../../../services/video.service';
 
+
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
@@ -11,7 +12,7 @@ export class VideoComponent implements OnInit {
 @Output() deleteVideo = new EventEmitter();
 
   constructor(
-    private videoService: VideoService
+    private videoService: VideoService,
   ) {
 
   }
@@ -20,6 +21,7 @@ export class VideoComponent implements OnInit {
 
 
   }
+
 
   delete(id) {
     this.videoService.deleteVideo(id).subscribe( res => {
