@@ -1,0 +1,43 @@
+@import '../../../variable';
+::ng-deep .mat-dialog-container{
+    background: rgb(38, 133, 135);
+}
+.delete-modal{
+    .modal-title{
+        text-align: center;
+        h4{
+            font-size: 15px;
+            color: #fff;
+        }
+    }
+    
+    .delete-cancel{
+        text-align: right;
+        padding-top: 10px;
+        .done{
+            background: linear-gradient(#FFFFFF, #F5F5F5) repeat scroll 0 0 #FCFCFC;
+            border: 1px solid #E0E0E0;
+            border-radius: 3px;
+            color: #3F4752;
+            font-size: 11px;
+            padding: 4px 15px;
+            margin-right: 10px;
+        }
+        .done:hover{
+            background: $color-green;
+            border-color: $color-blue;
+        }
+        .cancel{
+            background: linear-gradient(#FFFFFF, #F5F5F5) repeat scroll 0 0 #FCFCFC;
+            border: 1px solid #E0E0E0;
+            border-radius: 3px;
+            color: #3F4752;
+            font-size: 11px;
+            padding: 4px 15px;
+        }
+        .cancel:hover{
+            background: linear-gradient(#FFFFFF, #E9E9E9);
+        }
+        
+    }
+}

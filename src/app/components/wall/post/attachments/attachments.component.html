@@ -1,5 +1,4 @@
 <div class="attach-styling col-md-12">
-  <div class="row">
     <div class="post_attachs" *ngFor="let attach of post.attachments">
       <!-- <img *ngIf="imageAttaches && imageAttaches.length == 1" class="post_attach "  [src]="attach.path" alt=""> -->
       <a *ngIf="imageAttaches && imageAttaches.length == 1" data-fancybox [href]="attach.path">
@@ -11,5 +10,4 @@
     </div>
     <ngx-gallery class="fullWidth" *ngIf="imageAttaches?.length > 1" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
     <div class="clearfix"></div>
-  </div>
 </div>

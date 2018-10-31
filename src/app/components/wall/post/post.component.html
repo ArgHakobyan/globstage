@@ -1,20 +1,20 @@
 <article class="post-article" *ngIf="(post.user || post.posttype == 'googlenews') && post.hide_from_wall">
   <div class="col-md-12 wall-user">
-    <i (click)="deleteWallPost(post)" *ngIf="post.post_user_id == user.id || post.post_wall_id == user.id" class="delete-post fa fa-times"
+      <!-- (click)="deleteWallPost(post)" -->
+    <i (click)="openDialogDelete()" *ngIf="post.post_user_id == user.id || post.post_wall_id == user.id" class="delete-post fa fa-times"
       aria-hidden="true"></i>
     <div class="row">
       <div class="col-md-1 user-images">
         <div class="wall-avatar">
-          <!-- [routerLink]="'/user-profile/'+post.user.id" -->
-          <a [routerLink]="['/user-profile/' + post.user.username]">
-            <img *ngIf="post.posttype !== 'googlenews'" [src]="post.user?.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">
+          <a>
+            <img [routerLink]="['/user-profile/' + post.user.username]" *ngIf="post.posttype !== 'googlenews'" [src]="post.user?.user_photo || '/assets/imgs/no_ava_50.png'" alt="no_ava_50">
             <img *ngIf="post.posttype == 'googlenews'" [src]="post.user?.user_photo || '/assets/imgs/googlenews.png'" alt="googlenews">
           </a>
         </div>
       </div>
       <div class="col-md-11 wall-name">
-        <p *ngIf="post.user?.user_name !== null"><a [routerLink]="['/user-profile/' + post.user.username]">{{post.user.user_name + ' ' + post.user.user_last_name}}</a></p>
-        <p *ngIf="post.user?.user_name === null && post.posttype == 'googlenews'">Google News</p>
+        <p *ngIf="post.user?.user_name !== null && post.posttype != 'googlenews'"><a [routerLink]="['/user-profile/' + post.user.username]">{{post.user.user_name + ' ' + post.user.user_last_name}}</a></p>
+        <p *ngIf="post.posttype == 'googlenews'">Google News</p>
         <div class="date">
           {{post.post_created_date | date : "dd MMM yyyy"}}
         </div>
@@ -30,7 +30,7 @@
           <h6 *ngIf="post.user && post.posttype == 'groupinvitation'">{{ post.user.user_name + ' '+ post.user.user_last_nam
             }} invite you to join to the group
             <a routerLink="/group/{{post.post_group_id}}">{{post.post_content}}</a></h6>
-          <h6 *ngIf="post.posttype !== 'groupinvitation' && post.posttype !== 'audio'  " [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
+          <h6 *ngIf="post.posttype !== 'groupinvitation' && post.posttype !== 'audio' && post.posttype !=='avatar'" [innerHTML]=" post.post_content || '' | postemojify:true "></h6>
           <button class="share-post" (click)="repost(post)" mat-button 
            *ngIf="post.posttype == 'googlenews'">
            <i class="shared fa fa-share" aria-hidden="true"></i>Share</button>
@@ -56,6 +56,15 @@
                     <div [ngStyle]="{'background': 'linear-gradient(90deg, #35bbbd ' + question.percent + '%, #fff 0%)'}" class="count-vote">
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="post.posttype == 'avatar'" class="avatar">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="wall-avatar-img">
+                  <h4 class="name">{{post.user.user_name + ' ' + post.user.user_last_name}} changed avatar</h4>
                 </div>
               </div>
             </div>
