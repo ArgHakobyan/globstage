@@ -36,6 +36,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { EmbedVideoService } from './services/embed-video.service';
 import { WallSmilesComponent } from './components/wall/wall-smiles/wall-smiles.component';
 import {MatInputModule} from '@angular/material/input';
+import { MomentModule } from 'angular2-moment';
 
 import {
   MatAutocompleteModule,
@@ -251,6 +252,7 @@ export class CustomTranslateLoader implements TranslateLoader {
       appRoutes
     ),
     BrowserModule,
+    MomentModule,
     MatSelectModule,
     BrowserAnimationsModule,
     AngularFontAwesomeModule,

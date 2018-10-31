@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '../../../../services/comment.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {getFromLocalStorage} from '../../../../utils/local-storage';
 import { MatSnackBar } from '@angular/material';
 import { WallSmilesComponent } from '../../../../components/wall/wall-smiles/wall-smiles.component';
@@ -36,10 +36,15 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit() {
     this.formgroupComment = new FormGroup({
-      user_comment: new FormControl()      });
+      user_comment: new FormControl('', Validators.required)
+    });
     this.userAvatar = getFromLocalStorage('GLOBE_USER').user_photo || '/assets/imgs/no_ava_50.png';
     this.user = getFromLocalStorage('GLOBE_USER');
 
+  }
+
+  keyPress(e){
+    console.log(e);
   }
 
   focusFunction() {
@@ -50,19 +55,27 @@ export class CommentsComponent implements OnInit {
     // this.activeClass = '';
   }
 
+
   postComment() {
-    let mn = this.commentService.postComment({
-      comment_content: this.formgroupComment.get('user_comment').value,
-      comment_post_id:  this.post.id,
-      comment_for: 'post',
-    }).subscribe((res: any) => {
-      this.smileClass = '';
-      this.formgroupComment.get('user_comment').setValue('');
-      res.user = getFromLocalStorage('GLOBE_USER');
-      this.post.comments.push(res);
-      this.post.post_comment_count++;
-      this.snackBar.open('Comment added.', 'ok', {duration: 3000});
-    });
+    if(this.formgroupComment.valid){
+      let mn = this.commentService.postComment({
+        comment_content: this.formgroupComment.get('user_comment').value,
+        comment_post_id:  this.post.id,
+        comment_for: 'post',
+      }).subscribe((res: any) => {
+        console.log(res);
+        
+        this.smileClass = '';
+        this.formgroupComment.get('user_comment').setValue('');
+        res.user = getFromLocalStorage('GLOBE_USER');
+        this.post.comments.push(res);
+        this.post.post_comment_count++;
+        this.snackBar.open('Comment added.', 'ok', {duration: 3000});
+      });
+    }else{
+      console.log('test');
+      
+    }
   }
 
   filterComments(e) {

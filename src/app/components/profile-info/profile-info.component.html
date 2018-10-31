@@ -21,7 +21,7 @@
                 <span>{{ user?.user_city || 'Not set'}} </span>
               </div>
               <div class="user-birthday">
-                <span>{{ user?.user_date_of_birth || 'not set'}} </span>
+                <span>{{ user?.user_date_of_birth | amLocal | amDateFormat: 'MMM Do YYYY'  || 'not set'}} </span>
               </div>
               <div class="user-info-rat">
                 <span class="rating">{{user?.user_rate}}</span>
@@ -57,7 +57,7 @@
                 </mat-select>
               </mat-form-field>
               <mat-form-field>
-                <input formControlName="user_date_of_birth" matInput [matDatepicker]="picker" placeholder="Date of birth">
+                <input matInput formControlName="user_date_of_birth" [matDatepicker]="picker" placeholder="Date of birth">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -125,7 +125,8 @@
             </div>
             <div *ngIf="!personalEditing" class="personal borders">
               <p (click)="editUserPersonal()" class="personal-info edits">{{'information.personal-info' | translate}}</p>
-              <p class="pers-inf">{{'information.activities' | translate}}:<span>{{ user?.user_interests.activities }}</span></p>
+              <div *ngIf="personalInfo">
+                <p class="pers-inf">{{'information.activities' | translate}}:<span>{{ user?.user_interests.activities }}</span></p>
               <p class="pers-inf">{{'information.interests' | translate}}:<span>{{ user?.user_interests.interests }}</span></p>
               <p class="pers-inf">{{'information.fav-munshids' | translate}}:<span>{{ user?.user_interests.favorite_munshids
                   }}
@@ -137,6 +138,8 @@
               <p class="pers-inf">{{'information.sports' | translate}}:<span>{{ user?.user_interests.favorite_sports }}</span></p>
               <p class="pers-inf">{{'information.quotes' | translate}}:<span>{{ user?.user_interests.favorite_books }}</span></p>
               <p class="pers-inf">{{'information.about-me' | translate}}:<span>{{ user?.user_interests.about_me }}</span></p>
+            
+              </div>
             </div>
             <ng-template [ngIf]="showPersonal">
               <div class="edit-personal">

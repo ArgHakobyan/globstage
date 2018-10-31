@@ -40,6 +40,17 @@ export class PostComponent implements OnInit {
     }
   }
 
+  addAudio(post){
+    post.posttype = 'audio';
+    post.post_attchments = [],
+    post.post_content = post.post_title,
+    post.post_link = post.post_link,
+    post.post_privacy = 1,
+    this.postService.shareGoogleNews(post).subscribe( res => {
+      this.snackBar.open('The audio is on your wall now!.', 'ok', {duration: 3000});
+    });
+  }
+
   addLike() {
     let mn = this.postService.addLike({
       action: 'like',
@@ -48,7 +59,6 @@ export class PostComponent implements OnInit {
     }).subscribe(res => {
       this.post.post_like_count++;
       this.user = getFromLocalStorage('GLOBE_USER');
-      console.log(res);
       if (res.body.message === 'liked') {
         this.post.likes_dislikes.push({user: this.user, user_id: this.user.id, status: 'like'});
         }
@@ -63,7 +73,6 @@ export class PostComponent implements OnInit {
     }).subscribe(res => {
       this.post.post_dislike_count++;
       this.user = getFromLocalStorage('GLOBE_USER');
-      console.log(res);
       if (res.body.message === 'disliked') {
         this.post.likes_dislikes.push({user: this.user, user_id: this.user.id, status: 'dislike'});
         }

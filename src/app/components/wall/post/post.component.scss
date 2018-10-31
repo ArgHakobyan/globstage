@@ -62,6 +62,18 @@
         .share-post:hover{
             opacity: 0.8;
         }
+
+        .audio{
+            position: relative;
+            .audio-add{
+                background: transparent;
+                position: absolute;
+                cursor: pointer;
+                border: none;
+                top: 38px;
+                left: 36.5%;
+            }
+        }
     }
     .poll{
         .wall-poll{

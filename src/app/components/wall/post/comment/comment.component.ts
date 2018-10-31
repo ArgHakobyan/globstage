@@ -1,8 +1,8 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {getFromLocalStorage} from '../../../../utils/local-storage';
-import {FormControl, FormGroup} from '@angular/forms';
-import {CommentService} from '../../../../services/comment.service';
-import {MatSnackBar} from '@angular/material';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { getFromLocalStorage } from '../../../../utils/local-storage';
+import { FormControl, FormGroup } from '@angular/forms';
+import { CommentService } from '../../../../services/comment.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-comment',
@@ -22,8 +22,8 @@ export class CommentComponent implements OnInit {
   public replies = [];
 
   constructor(
-      private commentService: CommentService,
-      public snackBar: MatSnackBar,
+    private commentService: CommentService,
+    public snackBar: MatSnackBar,
   ) {
   }
 
@@ -56,7 +56,7 @@ export class CommentComponent implements OnInit {
       this.formgroupComment.get('user_comment').setValue('');
       res.user = getFromLocalStorage('GLOBE_USER');
       this.replies.push(res);
-      this.snackBar.open('Comment added.', 'ok', {duration: 3000});
+      this.snackBar.open('Comment added.', 'ok', { duration: 3000 });
     });
   }
 
@@ -72,20 +72,22 @@ export class CommentComponent implements OnInit {
 
   deleteComment(id) {
     console.log(this.post);
-    this.commentService.deleteComment(id).subscribe( res => {
-      this.post.post_comment_count--;
-      this.snackBar.open('Comment is successfully deleted.', 'ok', {duration: 3000});
-      this.onDelete.emit(id);
-    }, err => {
+    if (window.confirm('Are you sure do you want to delete this comment?')) {
+      this.commentService.deleteComment(id).subscribe(res => {
+        this.post.post_comment_count--;
+        this.snackBar.open('Comment is successfully deleted.', 'ok', { duration: 3000 });
+        this.onDelete.emit(id);
+      }, err => {
 
-      this.snackBar.open('Comment can not be deleted.', 'ok', {duration: 3000});
-      console.log(err);
-    });
+        this.snackBar.open('Comment can not be deleted.', 'ok', { duration: 3000 });
+        console.log(err);
+      });
+    }
   }
 
   filterReplies(id) {
     this.replies = this.replies.filter(r => r.id !== id);
-    this.snackBar.open('Comment is successfully deleted.', 'ok', {duration: 3000});
+    this.snackBar.open('Comment is successfully deleted.', 'ok', { duration: 3000 });
   }
 
 }

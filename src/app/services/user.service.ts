@@ -45,6 +45,8 @@ export class UserService {
   }
 
   updateUserInfo(info) {
+    console.log(info);
+    
     return this.http.put(`${this.apiUrl}/users/${JSON.parse(localStorage.getItem('GLOBE_USER')).id}`, info);
   }
 

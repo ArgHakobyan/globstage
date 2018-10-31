@@ -41,6 +41,8 @@
             <audio controls="controls">
               <source [src]="post.post_link" />
             </audio>
+            <button matTooltip="Add to my music" class="audio-add" (click)="addAudio(post)" mat-button 
+           *ngIf="post.posttype == 'audio' && post.user.id != user.id">+</button>
             <div class="clearfix"></div>
           </div>
           <div *ngIf="post.posttype == 'vote'" class="poll">
