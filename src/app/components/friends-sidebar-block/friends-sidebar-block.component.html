@@ -61,7 +61,7 @@
     </div>
   </div>
   <div class="friend-img">
-    <div class="friends-item" [routerLink]="'/user-profile/'+groups.username" *ngFor="let groups of user.user_followers?.group; let i = index">
+    <div class="friends-item" [routerLink]="'/group/'+groups.id" *ngFor="let groups of user.user_followers?.group; let i = index">
       <div class="hover-popup" *ngIf="i < 4 || allFriendsVisible">
         <div class="row">
           <div class="col-md-4">

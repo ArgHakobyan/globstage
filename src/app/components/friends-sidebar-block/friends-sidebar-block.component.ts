@@ -10,6 +10,8 @@ import { FriendsService } from '../../services/friends.service';
 export class FriendsSidebarBlockComponent implements OnInit, OnChanges {
 
   public friends;
+  public follower;
+  public groups;
   @Input() userId;
   @Input() user;
   friendsOnline: any[];
