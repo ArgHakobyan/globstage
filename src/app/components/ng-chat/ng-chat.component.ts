@@ -602,6 +602,7 @@ export class NgChatComponent implements OnInit {
           window.messages.push(res1.body);
           this.attachments = [];
           this.socket.emit('message', res1.body);
+          this.scrollChatWindowToBottom(window);
         });
 
         window.newMessage = '';
