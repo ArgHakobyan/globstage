@@ -12,7 +12,7 @@ import {MatDialog} from '@angular/material';
 import {NewVideoModalComponent} from '../new-video-modal/new-video-modal.component';
 import {NewAudioModalComponent} from '../new-audio-modal/new-audio-modal.component';
 import {getFromLocalStorage, removeFromLocalStorage, setToLocalStorage} from '../../utils/local-storage';
-
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-ng-chat',
@@ -85,14 +85,14 @@ export class NgChatComponent implements OnInit {
     offline: 'Offline'
   };
   private audioFile: HTMLAudioElement;
-  private users: any;
+  private users: any[];
   // Defines the size of each opened window to calculate how many windows can be opened on the viewport at the same time.
   private windowSizeFactor = 320;
   // Total width size of the friends list section
   private friendsListWidth = 262;
   // Available area to render the plugin
   private viewPortTotalArea;
-
+  private socket = io('https://globstage-chat.herokuapp.com');
   smileOpen = false;
   messNotReq: any[];
   public messnotifylength;
@@ -101,6 +101,50 @@ export class NgChatComponent implements OnInit {
       private chatService: ChatService,
       public dialog: MatDialog,
   ) {
+  }
+
+  ngOnInit() {
+    this.userId = getFromLocalStorage('GLOBE_USER').id;
+    this.bootstrapChat();
+    this.chatService.change.subscribe(res => {
+      res.status = 'online';
+      this.openChatWindow(res, false, false);
+      // console.log(res);
+    });
+
+
+    this.socket.on('connect', () => {
+      const token = getFromLocalStorage('GLOBE_AUTH');
+
+      this.socket.emit(
+          'storeClientInfo',
+          JSON.stringify({ userId: getFromLocalStorage('GLOBE_USER').id }),
+          () => {}
+      );
+
+      this.socket.on('message', (data) => {
+        console.log(this.users);
+        const user = this.users.filter((u) => {
+          if (u) {
+            return  u.id === data.from_id;
+          }
+          return false;
+        })[0];
+        const message = data;
+        console.log(data);
+        if (user) {
+          this.onMessageReceived(user, message);
+        }
+
+      });
+
+      this.socket.on('disconnect', () => {
+
+      });
+    });
+
+
+
   }
 
   get filteredUsers(): User[] {
@@ -117,24 +161,6 @@ export class NgChatComponent implements OnInit {
     return `ng-chat-users-${this.userId}`;
   }
 
-  ngOnInit() {
-
-    this.userId = getFromLocalStorage('GLOBE_USER').id;
-
-    // window.newMessage = '';
-    this.bootstrapChat();
-    this.chatService.change.subscribe(res => {
-      res.status = 'online';
-      this.openChatWindow(res, false, false);
-      console.log(res);
-    });
-    // if (this.userId) {
-    //   setInterval(() => {
-    //     this.getMessageNotify();
-    //   }, 10000);
-    // }
-
-  }
 
   getMessageNotify() {
     this.chatService.getMessageNotify().subscribe((res: any[]) => {
@@ -245,13 +271,13 @@ export class NgChatComponent implements OnInit {
     this.scrollChatWindowToBottom(window);
   }
 
-  // Asserts if a user avatar is visible in a chat cluster
+  // Asserts if a usr avatar is visible in a chat cluster
   isAvatarVisible(window: Window, message: Message, index: number): boolean {
     if (message.from_id && message.from_id !== this.userId) {
       if (index === 0) {
         return true; // First message, good to show the thumbnail
       } else {
-        // Check if the previous message belongs to the same user, if it belongs there is no need to show the avatar again to form the message cluster
+        // Check if the previous message belongs to the same usr, if it belongs there is no need to show the avatar again to form the message cluster
         if (window.messages[index - 1].from_id !== message.from_id) {
           return true;
         }
@@ -317,7 +343,7 @@ export class NgChatComponent implements OnInit {
       console.error('ng-chat component couldn\'t be bootstrapped.');
 
       if (this.userId == null) {
-        console.error('ng-chat can\'t be initialized without an user id. Please make sure you\'ve provided an userId as a parameter of the ng-chat component.');
+        console.error('ng-chat can\'t be initialized without an usr id. Please make sure you\'ve provided an userId as a parameter of the ng-chat component.');
       }
       if (this.adapter == null) {
         console.error('ng-chat can\'t be bootstrapped without a ChatAdapter. Please make sure you\'ve provided a ChatAdapter implementation as a parameter of the ng-chat component.');
@@ -350,15 +376,16 @@ export class NgChatComponent implements OnInit {
   private fetchFriendsList(isBootstrapping: boolean): void {
     this.adapter.listFriends()
         .subscribe((users: any) => {
-      this.users = users.body;
-      if (isBootstrapping) {
-        this.restoreWindowsState();
-      }
-    });
+          this.users = users.body;
+          if (isBootstrapping) {
+            this.restoreWindowsState();
+          }
+        });
   }
 
   // Updates the friends list via the event handler
   private onFriendsListChanged(users: User[]): void {
+    // console.log(users);
     if (users) {
       this.users = users;
     }
@@ -496,10 +523,10 @@ export class NgChatComponent implements OnInit {
   }
 
   // Emits a browser notification
-  private emitBrowserNotification(window: Window, message: any): void {
+  private emitBrowserNotification(window: Window, message: Message): void {
     if (this.browserNotificationsBootstrapped && !window.hasFocus && message) {
       let notification = new Notification(`New message from ${window.chattingTo.user_name}`, {
-        'body': window.messages[window.messages.length - 1].content,
+        'body': message.content,
         'icon': this.browserNotificationIconSource
       });
 
@@ -536,7 +563,7 @@ export class NgChatComponent implements OnInit {
         }
       }
     } catch (ex) {
-      console.log(`An error occurred while restoring ng-chat windows state. Details: ${ex}`);
+      // console.log(`An error occurred while restoring ng-chat windows state. Details: ${ex}`);
     }
   }
 
@@ -558,25 +585,26 @@ export class NgChatComponent implements OnInit {
     });
 
     this.dialogRef.componentInstance.onUpload.subscribe((res: any) => {
-      console.log(JSON.parse(res).id);
+      // console.log(JSON.parse(res).id);
 
-      this.attachments.push(JSON.parse(res).id);
-      this.attached.push(JSON.parse(res));
-      let message = new Message();
+      this.attachments.push(res.id);
+      this.attached.push(res);
+      let message: Message = new Message();
 
       message.from_id = this.userId;
       message.for_id = window.chattingTo.id;
       message.content = ''; // window.newMessage;
       message.attachments = this.attachments;
-
+      console.log(message);
       if (message.attachments && message.attachments.length > 0) {
         this.adapter.sendMessage(message).subscribe(res1 => {
-          console.log(message);
-          console.log(res);
-          window.messages.push(res1);
+          console.log(res1);
+          window.messages.push(res1.body);
           this.attachments = [];
+          this.socket.emit('message', res1.body);
         });
-        window.newMessage = ''; // Resets the new message input
+
+        window.newMessage = '';
         this.scrollChatWindowToBottom(window);
       }
       this.dialogRef.close();
@@ -604,7 +632,7 @@ export class NgChatComponent implements OnInit {
   }
 
   sendMessage($event, window) {
-    console.log(window.newMessage);
+    // console.log(window.newMessage);
     if (window.newMessage && window.newMessage.trim() !== '') {
       let message = new Message();
 
@@ -613,15 +641,15 @@ export class NgChatComponent implements OnInit {
       message.content = window.newMessage;
 
       // window.messages.push(message);
-
+      this.socket.emit('message', message);
       this.adapter.sendMessage(message).subscribe(res => {
-            console.log(message);
-            console.log(res);
+            // console.log(message);
+            // console.log(res);
             res.body ? window.messages.push(res.body) : window.messages.push(res);
             this.scrollChatWindowToBottom(window);
           },
           error => {
-            console.log(error);
+            // console.log(error);
           });
 
       window.newMessage = ''; // Resets the new message input
@@ -637,7 +665,7 @@ export class NgChatComponent implements OnInit {
   addSmile(e, window) {
     window.newMessage = window.newMessage ? window.newMessage + ` *${e}* ` : ` *${e}* `;
     window.smileOpen = false;
-    console.log(e);
+    // console.log(e);
   }
 
 }

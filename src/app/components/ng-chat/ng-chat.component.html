@@ -15,16 +15,26 @@
     <input id="ng-chat-search_friend" type="search" [placeholder]="localization.searchPlaceholder" [(ngModel)]="searchInput"
     />
     <ul id="ng-chat-users" *ngIf="!isCollapsed">
-      <li *ngFor="let user of filteredUsers" (click)="openChatWindow(user, true, true)">
-        <div *ngIf="!user.user_photo" class="icon-wrapper">
-          <i class="user-icon"></i>
+
+      <li *ngFor="let usr of filteredUsers" (click)="openChatWindow(usr, true, true)">
+        <div *ngIf="usr">
+          <div *ngIf="!usr?.user_photo" class="icon-wrapper">
+            <i class="user-icon"></i>
+          </div>
+          <img *ngIf="usr?.user_photo" alt="" class="avatar" height="30" width="30" src="{{usr?.user_photo}}" />
+          <strong title="{{usr?.user_name}}">{{usr?.user_name}} {{usr?.user_last_name}}</strong>
+          <span [ngClass]="{
+          'ng-chat-user-status': true,
+          'online': usr?.status == UserStatus.Online,
+          'busy': usr?.status == UserStatus.Busy,
+          'away': usr?.status == UserStatus.Away,
+          'offline': usr?.status == UserStatus.Offline
+          }"
+            title="{{getStatusTitle(UserStatus[usr.status])}}"></span>
+          <span *ngIf="unreadMessagesTotalByUser(usr).length > 0" class="ng-chat-unread-messages-count">{{unreadMessagesTotalByUser(usr)}}</span>
         </div>
-        <img *ngIf="user.user_photo" alt="" class="avatar" height="30" width="30" src="{{user.user_photo}}" />
-        <strong title="{{user.user_name}}">{{user.user_name}} {{user.user_last_name}}</strong>
-        <span [ngClass]="{'ng-chat-user-status': true, 'online': user.status == UserStatus.Online, 'busy': user.status == UserStatus.Busy, 'away': user.status == UserStatus.Away, 'offline': user.status == UserStatus.Offline}"
-          title="{{getStatusTitle(UserStatus[user.status])}}"></span>
-        <span *ngIf="unreadMessagesTotalByUser(user).length > 0" class="ng-chat-unread-messages-count">{{unreadMessagesTotalByUser(user)}}</span>
       </li>
+
     </ul>
   </div>
   <div *ngFor="let window of windows; let i = index" [ngClass]="{'ng-chat-window': true, 'ng-chat-window-collapsed': window.isCollapsed}"

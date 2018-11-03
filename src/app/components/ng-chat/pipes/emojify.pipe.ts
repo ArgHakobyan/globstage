@@ -8,7 +8,7 @@ export class EmojifyPipe implements PipeTransform {
 
   transform(message: string, pipeEnabled: boolean): string {
     let re = /(\*+)(\d*)(\*)/g;
-    message = message.replace(re, '<img src="/assets/imgs/smiles/' + '$2' + '.png">');
+    message = message.replace(re, '<img src="./assets/imgs/smiles/' + '$2' + '.png">');
 
     return message;
   }
