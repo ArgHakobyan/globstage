@@ -406,7 +406,6 @@ export class NgChatComponent implements OnInit {
       this.emitMessageSound(chatWindow[0]);
 
       if (this.maximizeWindowOnNewMessage || (!chatWindow[1] && !chatWindow[0].isCollapsed)) {
-        // Some messages are not pushed because they are loaded by fetching the history hence why we supply the message here
         this.emitBrowserNotification(chatWindow[0], message);
       }
     }
