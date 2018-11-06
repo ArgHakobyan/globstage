@@ -393,6 +393,7 @@ export class NgChatComponent implements OnInit {
 
   // Handles received messages by the adapter
   private onMessageReceived(user: User, message: Message) {
+    console.log(user, message);
     if (user && message) {
       const chatWindow = this.openChatWindow(user);
 
@@ -401,7 +402,7 @@ export class NgChatComponent implements OnInit {
 
         this.scrollChatWindowToBottom(chatWindow[0]);
       }
-
+      console.log(chatWindow);
       this.emitMessageSound(chatWindow[0]);
 
       if (this.maximizeWindowOnNewMessage || (!chatWindow[1] && !chatWindow[0].isCollapsed)) {
@@ -490,7 +491,7 @@ export class NgChatComponent implements OnInit {
       let windowIndex = this.windows.indexOf(window);
 
       setTimeout(() => {
-        if (this.chatMessageClusters) {
+        if (this.chatMessageClusters && this.chatMessageClusters.toArray()[windowIndex]) {
           this.chatMessageClusters.toArray()[windowIndex].nativeElement.scrollTop = this.chatMessageClusters.toArray()[windowIndex].nativeElement.scrollHeight;
         }
       });

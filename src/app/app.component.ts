@@ -6,6 +6,7 @@ import {getFromLocalStorage} from './utils/local-storage';
 import {TranslateService} from '@ngx-translate/core';
 import {ConfigService} from './services/config.service';
 import * as $ from 'jquery';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,12 @@ export class AppComponent implements OnInit, OnChanges {
     private chatAdapter: GlobeAdapter,
     public _translate: TranslateService,
     private _config: ConfigService,
+    private router: Router
   ) {
+    router.events.subscribe((val) => {
+
+      this.userId = getFromLocalStorage('GLOBE_USER') ? getFromLocalStorage('GLOBE_USER').id : null;
+    });
   }
 
   ngOnInit(): void {

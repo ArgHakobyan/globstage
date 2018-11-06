@@ -3,3 +3,4 @@
 <div class="background-page">
 <router-outlet></router-outlet>
 </div>
+<app-ng-chat *ngIf="userId" [adapter]="adapter" [userId]="userId" [isCollapsed]=true></app-ng-chat>
