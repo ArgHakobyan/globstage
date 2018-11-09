@@ -112,20 +112,18 @@
         bottom: 40px;
         right: 30px;
         cursor: pointer;
-        background: url(/assets/imgs/baseline.png) no-repeat;
+        background: url(/assets/imgs/baseline.png) no-repeat #95c800;
         border-radius: 100%;
         width: 40px;
         height: 40px;
         color: #fff;
-        outline: none;
-        border: 2px solid #95c800;
-        background-color: #95c800;
+        outline: 0;
+        border: 2px solid #95c800
+     }
+     .top:hover{
+         opacity: 0.5;;
+     }
     }
-    .top:hover{
-        opacity: 0.5;
-    }
-    }
- 
 
  @media only screen and (max-width: 767px) {
     .menu-block{

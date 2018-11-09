@@ -159,15 +159,16 @@ export class ProfileInfoComponent implements OnInit {
   }
 
   saveInfo(inf) {
-    console.log(inf.value)
+    console.log(inf.value);
     this.userService.updateUserInfo(inf.value).subscribe(data => {
       this.user = data;
       this.showInfo = true;
       this.editInfo = false;
+      console.log(data);
     });
   }
   saveContact(contact) {
-    console.log(this.user)
+    console.log(this.user);
     this.userService.updateUserContact(contact.value).subscribe(data => {
       this.user.user_contact = data;
       this.editContact = false;

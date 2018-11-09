@@ -21,7 +21,7 @@
                 <span>{{ user?.user_city || 'Not set'}} </span>
               </div>
               <div class="user-birthday">
-                <span>{{ user?.user_date_of_birth | amLocal | amDateFormat: 'MMM Do YYYY'  || 'not set'}} </span>
+                <span>{{ user?.user_date_of_birth | amDateFormat: 'LL'  || 'not set'}} </span>
               </div>
               <div class="user-info-rat">
                 <span class="rating">{{user?.user_rate}}</span>
