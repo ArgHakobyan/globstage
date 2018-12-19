@@ -221,6 +221,7 @@ export class NgChatComponent implements OnInit {
     switch (event.keyCode) {
       case 13:
         this.sendMessage(event, window);
+
         break;
       case 9:
         event.preventDefault();

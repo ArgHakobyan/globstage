@@ -5,6 +5,8 @@ import { CommentService } from '../../../../services/comment.service';
 import { MatSnackBar } from '@angular/material';
 import { DeleteConfirmationComponent } from '../../../../components/delete-confirmation/delete-confirmation.component';
 import {MatDialog} from '@angular/material';
+import {PostsService} from '../../../../services/posts.service';
+
 
 
 @Component({
@@ -28,6 +30,7 @@ export class CommentComponent implements OnInit {
     private commentService: CommentService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
+    private postService: PostsService,
   ) {
   }
 
@@ -103,6 +106,42 @@ export class CommentComponent implements OnInit {
   filterReplies(id) {
     this.replies = this.replies.filter(r => r.id !== id);
     this.snackBar.open('Comment is successfully deleted.', 'ok', { duration: 3000 });
+  }
+
+  addLikeComm() {
+    let mn = this.postService.addLikeCom({
+      action: 'like',
+      post_id: this.comment.id,
+      type: 'comment'
+    }).subscribe(res => {
+      this.comment.comment_like_count = this.comment.comment_like_count ? this.comment.comment_like_count + 1 : 1;
+      this.user = getFromLocalStorage('GLOBE_USER');
+      if (res.body.message === 'liked') {
+        if (this.comment.likes_dislikes) {
+          this.comment.likes_dislikes.push({user: this.user, user_id: this.user.id, status: 'like'});
+        } else {
+          this.comment.likes_dislikes = [{user: this.user, user_id: this.user.id, status: 'like'}];
+        }
+      }
+    });
+  }
+
+  disLikeComm() {
+    let mn = this.postService.disLikeComm({
+      action: 'dislike',
+      post_id: this.comment.id,
+      type: 'comment'
+    }).subscribe(res => {
+      this.comment.comment_dislike_count = this.comment.comment_dislike_count ? this.comment.comment_dislike_count + 1 : 1;
+      this.user = getFromLocalStorage('GLOBE_USER');
+      if (res.body.message === 'disliked') {
+        if (this.comment.likes_dislikes) {
+          this.comment.likes_dislikes.push({user: this.user, user_id: this.user.id, status: 'dislike'});
+        } else {
+          this.comment.likes_dislikes = [{user: this.user, user_id: this.user.id, status: 'dislike'}];
+        }
+      }
+    });
   }
 
 }

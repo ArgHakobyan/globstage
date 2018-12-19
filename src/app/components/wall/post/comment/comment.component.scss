@@ -3,6 +3,79 @@
 .row {
   position: relative;
 }
+.like-dislike{
+  text-align: left;
+  padding-bottom: 20px;
+  padding-left: 36px;
+  i{
+    font-size: 21px;
+    cursor: pointer;
+  }
+  .like{
+    color: #95c800;
+    padding-right: 15px;
+    position: relative;
+    .like-count{
+      width: 140px;
+      position: absolute;
+      bottom: 40px;
+      background: #000;
+      display: none;
+      padding: 4px;
+      h5{
+        margin: 0;
+        font-size: 14px;
+        color: #fff;
+        padding: 0 6px;
+        font-family: sans-serif;
+      }
+    }
+  }
+  .like:hover{
+    .like-count{
+      display: block;
+    }
+  }
+  .dislike{
+    color: $color-red;
+    .dislike-count{
+      width: 140px;
+      position: absolute;
+      bottom: 65px;
+      background: #000;
+      display: none;
+      padding: 4px;
+      h5{
+        margin: 0;
+        font-size: 14px;
+        color: #fff;
+        padding: 0 6px;
+        font-family: sans-serif;
+      }
+    }
+  }
+  .dislike:hover{
+    .dislike-count{
+      display: block;
+    }
+  }
+  .share-post{
+    margin-right: 15px;
+    cursor: pointer;
+    background: #35bbbd;
+    border-radius: 4px;
+    border: none;
+    padding: 4px 10px;
+    color: #fff;
+    .shared{
+      font-size: 15px;
+      margin-right: 4px;
+    }
+  }
+  .share-post:hover{
+    opacity: 0.8;
+  }
+}
 
 .add-comment {
   padding: 10px 0;

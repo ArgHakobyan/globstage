@@ -47,6 +47,14 @@ export class PostsService {
     return this.http.post(`/likes`, dislike);
   }
 
+  addLikeCom(like){
+    return this.http.post(`/likes`, like);
+  }
+
+  disLikeComm(dislike){
+    return this.http.post(`/likes`, dislike);
+  }
+
   getNews() {
     return this.http.get(`/followers/news`);
   }

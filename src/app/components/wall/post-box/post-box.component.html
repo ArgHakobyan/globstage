@@ -8,7 +8,8 @@
     <div class="col-md-11 text-area" [ngClass]="smileClass">
       <form [formGroup]="formgroupWall" action="" method="post">
         <div contenteditable="true" class="wall-text" formControlName="user_wall" propValueAccessor="innerHTML"
-         [(ngModel)]="user_wall" (focus)="smileFocusFunction()" (focusout)="smileFocusOutFunction()"></div>
+         [(ngModel)]="user_wall" (keydown)="onChatInputTyped($event)"
+         (focus)="smileFocusFunction()" (focusout)="smileFocusOutFunction()"></div>
         <div class="smile-block">
           <div class="row">
             <div class="smiles col-md-8">

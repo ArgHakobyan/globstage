@@ -1,6 +1,6 @@
 <div class="row">
   <div class="author-img col-md-1">
-    <img [routerLink]="'/user-profile/'+comment.user?.username" 
+    <img [routerLink]="'/user-profile/'+comment.user?.username"
     src="{{comment.user?.user_photo || '/assets/imgs/no_ava_50.png'}}" alt="no_ava_50.png">
   </div>
   <div class="col-md-3 author">
@@ -26,6 +26,24 @@
   </mat-icon>
   <div class="clearfix"></div>
   <app-comment class="replay-comment" (onDelete)="filterReplies($event)" [comment]="reply" *ngFor="let reply of replies"></app-comment>
+</div>
+<div class="like-dislike col-md-12">
+  <i (click)="addLikeComm()" class="like fa fa-thumbs-up" aria-hidden="true">
+    <span>{{ comment.comment_like_count || 0 }}</span>
+    <div *ngIf="comment.comment_like_count != 0" class="like-count">
+      <div class="like-abs" *ngFor="let like of comment.likes_dislikes">
+        <h5 *ngIf="like.status === 'like'">{{ like.user?.user_name + " " + like.user?.user_last_name }}</h5>
+      </div>
+    </div>
+  </i>
+  <i (click)="disLikeComm()" class="dislike fa fa-thumbs-down" aria-hidden="true">
+    <span>{{comment.comment_dislike_count || 0}}</span>
+    <div *ngIf="comment.comment_dislike_count != 0" class="dislike-count">
+      <div *ngFor="let dislike of comment.likes_dislikes" class="dislike-abs">
+        <h5 *ngIf="dislike.status === 'dislike'">{{ dislike.user?.user_name + " " + dislike.user?.user_last_name }}</h5>
+      </div>
+    </div>
+  </i>
 </div>
 <div *ngIf="replayInput" class="replay-block">
   <div class="add-comment" [formGroup]="formgroupComment">

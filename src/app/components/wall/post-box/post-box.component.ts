@@ -52,7 +52,7 @@ export class PostBoxComponent implements OnInit {
     this.userAvatar = getFromLocalStorage('GLOBE_USER').user_photo || '/assets/imgs/no_ava_50.png';
   }
 
-  createPost() {
+  createPost(e) {
     if (this.wallId) {
       let mn = this.postsService.createWallPost({
         post_type: this.type,
@@ -90,7 +90,13 @@ export class PostBoxComponent implements OnInit {
       });
     }
   }
+  onChatInputTyped(event) {
+    switch (event.keyCode) {
+      case 13:
+        this.createPost(event);
 
+        break; }
+  }
   updatePost() {
     this.post.post_content = this.formgroupWall.get('user_wall').value;
     this.postsService.updateWallPost(this.post).subscribe( res => {
@@ -100,6 +106,8 @@ export class PostBoxComponent implements OnInit {
 
     });
   }
+
+
 
   openDialogAttach() {
     const dialogRef = this.dialog.open(UploadMediaAttachComponent, {
