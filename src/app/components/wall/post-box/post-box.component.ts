@@ -93,9 +93,12 @@ export class PostBoxComponent implements OnInit {
   onChatInputTyped(event) {
     switch (event.keyCode) {
       case 13:
+        event.preventDefault();
         this.createPost(event);
 
-        break; }
+        break;
+      case 9:
+    }
   }
   updatePost() {
     this.post.post_content = this.formgroupWall.get('user_wall').value;

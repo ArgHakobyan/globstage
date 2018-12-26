@@ -31,6 +31,8 @@ export const MY_FORMATS = {
 })
 export class ProfileInfoComponent implements OnInit {
 
+  startDate = new Date(1990, 0, 1);
+
   public detailsToggle;
   public showInfo = true;
   public editInfo = false;
@@ -52,7 +54,6 @@ export class ProfileInfoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.information = new FormGroup({
       user_gender: new FormControl(),
       user_date_of_birth: new FormControl(),
@@ -159,7 +160,8 @@ export class ProfileInfoComponent implements OnInit {
   }
 
   saveInfo(inf) {
-    console.log(inf.value);
+    let d = inf.value.user_date_of_birth;
+    inf.value.user_date_of_birth = d.utc(d.year(), d.month(), d.day());
     this.userService.updateUserInfo(inf.value).subscribe(data => {
       this.user = data;
       this.showInfo = true;

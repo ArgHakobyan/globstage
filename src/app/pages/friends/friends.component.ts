@@ -10,7 +10,7 @@ import { getFromLocalStorage } from "../../utils/local-storage";
 })
 export class FriendsComponent implements OnInit {
   @Input() friend;
-  searchFriend:any = [];
+  searchFriend: any = [];
   friends: any[];
   friendRequests: any[];
 

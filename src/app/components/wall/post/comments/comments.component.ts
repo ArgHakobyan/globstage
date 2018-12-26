@@ -56,15 +56,14 @@ export class CommentsComponent implements OnInit {
   }
 
 
-  postComment() {
-    if(this.formgroupComment.valid){
+  postComment(event) {
+    if (this.formgroupComment.valid){
       let mn = this.commentService.postComment({
         comment_content: this.formgroupComment.get('user_comment').value,
         comment_post_id:  this.post.id,
         comment_for: 'post',
       }).subscribe((res: any) => {
         console.log(res);
-        
         this.smileClass = '';
         this.formgroupComment.get('user_comment').setValue('');
         res.user = getFromLocalStorage('GLOBE_USER');
@@ -72,9 +71,8 @@ export class CommentsComponent implements OnInit {
         this.post.post_comment_count++;
         this.snackBar.open('Comment added.', 'ok', {duration: 3000});
       });
-    }else{
+    } else {
       console.log('test');
-      
     }
   }
 
@@ -100,6 +98,15 @@ export class CommentsComponent implements OnInit {
     console.log(e, this.formgroupComment.get('user_comment').value);
   }
 
+  onChatInputTyped(event) {
+    switch (event.keyCode) {
+      case 13:
+        event.preventDefault();
+        this.postComment(event);
 
+        break;
+      case 9:
+    }
+  }
 
 }

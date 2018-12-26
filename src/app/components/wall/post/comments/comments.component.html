@@ -7,8 +7,9 @@
   <div class="commSmile" [ngClass]="smileClass">
       <form [formGroup]="formgroupComment" action="" method="post">
           <div class="add-comment" [ngClass]="activeClass">
-            <div contenteditable="true" propValueAccessor="innerHTML" formControlName="user_comment" 
-            [(ngModel)]="user_comment" (click)="keyPress($event)" (focus)="focusFunction()" (focusout)="focusOutFunction()"
+            <div contenteditable="true" propValueAccessor="innerHTML" formControlName="user_comment"
+            [(ngModel)]="user_comment" (keydown)="onChatInputTyped($event)" (click)="keyPress($event)"
+             (focus)="focusFunction()" (focusout)="focusOutFunction()"
               class="text-comm">
           </div>
               <div class="smiles col10">

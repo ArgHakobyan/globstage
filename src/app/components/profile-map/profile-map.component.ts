@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {getFromLocalStorage, removeFromLocalStorage, setToLocalStorage} from '../../utils/local-storage';
 import {FormArray} from '@angular/forms';
+import { FriendsService } from '../../services/friends.service';
 
 
 declare var navigator;
@@ -22,6 +23,8 @@ export class ProfileMapComponent implements OnInit {
   infowindow;
   myLocation;
   placeMarkers = [];
+  public friends;
+  public userId;
 
   selectedPlaces = [
     {icon: 'restaurant', value: 'restaurant', checked: false},
@@ -35,7 +38,7 @@ export class ProfileMapComponent implements OnInit {
     {icon: 'local_hospital', value: 'hospital', checked: false}
   ];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private friendService: FriendsService) {
 
   }
 
@@ -49,6 +52,8 @@ export class ProfileMapComponent implements OnInit {
     this.placeList = new FormArray([
 
     ]);
+
+    this.userId = getFromLocalStorage('GLOBE_USER').id;
     this.initMap();
 
   }
@@ -61,7 +66,7 @@ export class ProfileMapComponent implements OnInit {
 
   initMap() {
     console.log('Rendering the Map');
-
+    let userId = this.userId;
     if (navigator.geolocation) {
 
       console.log('Navigation ON');
@@ -84,7 +89,29 @@ export class ProfileMapComponent implements OnInit {
           map: this.map,
           animation: google.maps.Animation.BOUNCE,
         });
+        this.userService.updLocation(this.myLocation).subscribe();
+        console.log(this.myLocation);
 
+      });
+      this.friendService.getFriends(userId).subscribe((res: any[]) => {
+        this.friends = res;
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].user_location) {
+            const location = new google.maps.LatLng(res[i].user_location.split(',')[0], res[i].user_location.split(',')[1]);
+            let icon = {
+              url: '../../../assets/imgs/friend-marker.png',
+              scaledSize: new google.maps.Size(50, 50),
+            };
+            const marker = new google.maps.Marker({
+              position: location,
+              map: this.map,
+              animation: google.maps.Animation.BOUNCE,
+              icon: icon
+            });
+
+          }
+
+        }
       });
 
     } else {
@@ -107,8 +134,6 @@ export class ProfileMapComponent implements OnInit {
         map: this.map,
         animation: google.maps.Animation.BOUNCE,
       });
-
-
     }
   }
 
@@ -132,8 +157,6 @@ export class ProfileMapComponent implements OnInit {
 
       }
     }
-
-
   }
 
   updateMap(e) {
@@ -148,4 +171,16 @@ export class ProfileMapComponent implements OnInit {
     }, this.callback);
   }
 
+  onInputChange(event: any) {
+    console.log(event);
+    let mn = event.checked;
+    if (event.checked === true) {
+      mn = 1;
+    } else {
+      mn = 0;
+    }
+    this.userService.reqLocation(mn).subscribe(ret => {
+      console.log(ret);
+    });
+  }
 }

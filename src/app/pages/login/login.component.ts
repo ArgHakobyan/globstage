@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  
+
   ngOnInit() {
 
     if (this.authService.isLogged) {
@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit {
         this.errorReg = false;
           // passwordConfirmationInput.setErrors(null);
       }
-    
+
   }
 
   openLogin() {
@@ -149,7 +149,7 @@ export class LoginComponent implements OnInit {
     sendData.user_email = this.formgroupReg.get('user_email').value;
     sendData.user_password = this.formgroupReg.get('user_password').value;
     sendData.password_second = this.formgroupReg.get('password_second').value;
-    if(sendData.user_password === sendData.password_second){
+    if (sendData.user_password === sendData.password_second) {
       this.authService.signUpUser(sendData)
       .subscribe(response => {
         console.log(response, 'response');
@@ -159,24 +159,17 @@ export class LoginComponent implements OnInit {
       }, error => {
         console.log(error);
 
-        if(error.error.code == 402){
+        if (error.error.code === 402) {
           console.log(error.error.code);
           this.errorRegister = error.error.code;
         }
-        
         this.loading = false;
         this.formError = 'true';
       }, () => {
         this.loading = false;
       });
-            
-    }else{
-      // this.errorReg = true;
+    } else {
     }
-    
-      // setTimeout(() => {
-      //   window.location.reload();
-      // }, 2000);
   }
 
   openDialogForgot() {
@@ -188,5 +181,4 @@ export class LoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-  
 }

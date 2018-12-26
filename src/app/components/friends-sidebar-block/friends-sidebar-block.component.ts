@@ -21,7 +21,6 @@ export class FriendsSidebarBlockComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     console.log(this.user);
-    
     this.friendService.getFriends(this.userId).subscribe(res => {
       this.friends = res;
     });
