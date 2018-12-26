@@ -98,14 +98,30 @@ export class CommentsComponent implements OnInit {
     console.log(e, this.formgroupComment.get('user_comment').value);
   }
 
-  onChatInputTyped(event) {
-    switch (event.keyCode) {
-      case 13:
-        event.preventDefault();
-        this.postComment(event);
+  // onChatInputTyped(event) {
+  //   switch (event.keyCode) {
+  //     case 13:
+  //       event.preventDefault();
+  //       this.postComment(event);
+  //
+  //       break;
+  //     case 9:
+  //   }
+  // }
 
-        break;
-      case 9:
+  onChatInputTyped(event) {
+    if (event.keyCode === 13  && !event.shiftKey) {
+      console.log(event.keyCode);
+
+      switch (event.keyCode) {
+        case 13:
+          event.preventDefault();
+          this.postComment(event);
+
+          break;
+        case 9:
+      }
+    } else {
     }
   }
 

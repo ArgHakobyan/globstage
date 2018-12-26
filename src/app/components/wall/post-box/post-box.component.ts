@@ -91,13 +91,21 @@ export class PostBoxComponent implements OnInit {
     }
   }
   onChatInputTyped(event) {
-    switch (event.keyCode) {
-      case 13:
-        event.preventDefault();
-        this.createPost(event);
+    console.log(event);
+    if (event.keyCode === 13  && !event.shiftKey) {
+      console.log(event.keyCode);
 
-        break;
-      case 9:
+      switch (event.keyCode) {
+        case 13:
+          event.preventDefault();
+          this.createPost(event);
+
+          break;
+        case 9:
+      }
+    } else {
+      console.log(event.keyCode);
+
     }
   }
   updatePost() {

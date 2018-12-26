@@ -106,7 +106,7 @@ export class ProfileMapComponent implements OnInit {
               position: location,
               map: this.map,
               animation: google.maps.Animation.BOUNCE,
-              icon: icon
+              icon: icon,
             });
 
           }
