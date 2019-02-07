@@ -25,6 +25,7 @@ li{
       transition: 0.3s;
       background: #fff;
       top: 30px;
+      z-index: 99999;
   }
   .menu-btn:hover{
     background: $color-green;

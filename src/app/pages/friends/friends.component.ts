@@ -14,7 +14,7 @@ export class FriendsComponent implements OnInit {
   friends: any[];
   friendRequests: any[];
 
-  constructor(private friendService: FriendsService,) { }
+  constructor(private friendService: FriendsService, ) { }
 
 
   ngOnInit() {
@@ -47,7 +47,7 @@ export class FriendsComponent implements OnInit {
     this.searchFriend = this.friends.filter(res => {
       console.log(res);
       return res.user_name.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1;
-   })
+   });
   }
 
   friendDelete(id){

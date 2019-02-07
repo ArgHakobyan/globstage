@@ -25,6 +25,8 @@ export class ProfileMapComponent implements OnInit {
   placeMarkers = [];
   public friends;
   public userId;
+  public check;
+  checked: boolean;
 
   selectedPlaces = [
     {icon: 'restaurant', value: 'restaurant', checked: false},
@@ -55,6 +57,11 @@ export class ProfileMapComponent implements OnInit {
 
     this.userId = getFromLocalStorage('GLOBE_USER').id;
     this.initMap();
+
+    this.userService.getPrivacy().subscribe((ret: any) => {
+      console.log(ret.location);
+      this.check = !!ret.location;
+    });
 
   }
 
@@ -93,6 +100,7 @@ export class ProfileMapComponent implements OnInit {
         console.log(this.myLocation);
 
       });
+
       this.friendService.getFriends(userId).subscribe((res: any[]) => {
         this.friends = res;
         for (let i = 0; i < res.length; i++) {
@@ -102,17 +110,25 @@ export class ProfileMapComponent implements OnInit {
               url: '../../../assets/imgs/friend-marker.png',
               scaledSize: new google.maps.Size(50, 50),
             };
+            let infowindow = new google.maps.InfoWindow({
+              content: res[i].user_name + ' ' + res[i].user_last_name
+            });
             const marker = new google.maps.Marker({
               position: location,
               map: this.map,
               animation: google.maps.Animation.BOUNCE,
               icon: icon,
+              title: 'Hello World!'
+            });
+            marker.addListener('click', function() {
+              infowindow.open(this.map, marker);
             });
 
           }
 
         }
       });
+
 
     } else {
       this.myLocation = new google.maps.LatLng(42, 42);
@@ -179,7 +195,7 @@ export class ProfileMapComponent implements OnInit {
     } else {
       mn = 0;
     }
-    this.userService.reqLocation(mn).subscribe(ret => {
+    this.userService.reqLocationMap(mn).subscribe(ret => {
       console.log(ret);
     });
   }

@@ -36,7 +36,7 @@
              width: 25%;
              float: left;
          }
-     } 
+     }
 }
 .menu-block{
     padding-top: 44px;
@@ -87,7 +87,7 @@
                 font-size: 9px;
             }
         }
-        
+
         .En{
             background: url("/assets/imgs/gb.svg") no-repeat;
             width: 40px;
@@ -118,7 +118,8 @@
         height: 40px;
         color: #fff;
         outline: 0;
-        border: 2px solid #95c800
+        border: 2px solid #95c800;
+        z-index: 99999;
      }
      .top:hover{
          opacity: 0.5;;
@@ -129,12 +130,12 @@
     .menu-block{
         .logo{
             width: 30%;
-        } 
+        }
         .menu{
             width: 70%;
         }
     }
-    
-    
-  
+
+
+
 }
